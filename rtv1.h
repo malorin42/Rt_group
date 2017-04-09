@@ -116,13 +116,37 @@ typedef struct	s_env
 	t_image		*img;
 	t_objects	*objects;
 	t_vector	camera;
+	int 		i_sphere;
+	int 		i_plane;
+	int 		i_cylinder;
+	int 		i_cone;
+	int 		i_light;
 	int			render;
 }				t_env;
 
 int				loop_hook(t_env *env);
 int				key_hook(int keycode, t_env *env);
 
-void			ft_load_file(int fd, t_env *env);
+t_double3		pick_values(t_buff line, int nbr);
+void			check_pars_nbr_value(t_buff line, int nbr);
+
+void			add_sphere_value(t_env *env, t_double3 *values, int i);
+void			add_plane_value(t_env *env, t_double3 *values, int i);
+void			add_cylinder_value(t_env *env, t_double3 *values, int i);
+void			add_cone_value(t_env *env, t_double3 *values, int i);
+void			add_light_value(t_env *env, t_double3 *values, int i);
+
+void			check_files(int fd, t_env *env);
+void			check_sphere_obj(t_env *env, t_buff line, int i);
+void			check_cylinder_obj(t_env *env, t_buff line, int i);
+void			check_cone_obj(t_env *env, t_buff line, int i);
+void			check_light_obj(t_env *env, t_buff line, int i);
+void			check_camera_obj(t_env *env, t_buff line, int i);
+void			check_plane_obj(t_env *env, t_buff line, int i);
+
+void			init_light_obj(t_env *env);
+void			init_object(t_env *env, char *obj);
+
 void			render(t_env *env);
 t_double3		raytracer(t_vector ray, t_objects *objects, void *to_ignore, int depth);
 t_double3		reflect(t_double3 incidence, t_double3 normal);

@@ -1,0 +1,24 @@
+Camera
+	Pos			{3.0	3.0		0.0}
+	Dir			{-5.0	8.0		10.0}
+Sphere
+	Pos 		{0.0 	0.0 	-20.0}
+	Radius 		{2.0}
+	Color		{0.9  	0.9 	0.9}
+	ior 		{1.3}
+	Material 	{0.0}
+Sphere
+	Pos 		{3.0 	-2.0 	-15.0}
+	Radius 		{1.5}
+	Color		{0.2  	0.7 	0.2}
+	ior 		{1.3}
+	Material 	{0.0}
+Sphere
+	Pos 		{-3.0 	2.0 	-15.0}
+	Radius 		{1.5}
+	Color		{0.6  	0.2 	0.4}
+	ior 		{1.3}
+	Material 	{0.0}
+Light
+	Pos			{-20.0	70.0	20.0}
+	Color		{0.5	0.5		0.5}
