@@ -7,16 +7,16 @@ int				key_hook(int keycode, t_env *env)
 	return (0);
 }
 
-int				loop_hook(t_env *env)
-{
-	if (env->render == 1)
-	{
-		render(env);
-		mlx_put_image_to_window(env->mlx, env->win_scene, env->img->img, 0, 0);
-		env->render = 0;
-	}
-	return (0);
-}
+// int				loop_hook(t_env *env)
+// {
+// 	// if (env->render == 1)
+// 	// {
+// 	// 	render(env);
+// 	// 	mlx_put_image_to_window(env->mlx, env->win_scene, env->img->img, 0, 0);
+// 	// 	env->render = 0;
+// 	// }
+// 	return (0);
+// }
 
 static t_image	*ft_new_image(void *mlx)
 {
@@ -36,29 +36,28 @@ static t_image	*ft_new_image(void *mlx)
 static t_env	*env_init()
 {
 	t_env		*env;
+	t_object	**init_object;
+	t_light		**init_light;
 	
 	if ((env = (t_env*)malloc(sizeof(t_env))) == NULL)
 		ft_error("Error : malloc() failed.\n");
 	if ((env->mlx = mlx_init()) == NULL)
 		ft_error("Error : mlx_init() failed.\n");
+	if ((env->object = (t_object**)malloc(sizeof(t_object**))) == NULL)
+		ft_error("Error : malloc() failed.\n");
 	env->win_scene = mlx_new_window(env->mlx, WIDTH, HEIGHT, "RTv1");
 	env->img = ft_new_image(env->mlx);
-	if ((env->objects = (t_objects*)malloc(sizeof(t_objects))) == NULL)
-		ft_error("Error : malloc() failed.\n");
-	env->objects->spheres = ft_array_new();
-	env->objects->planes = ft_array_new();
-	env->objects->cylinders = ft_array_new();
-	env->objects->cones = ft_array_new();
-	env->objects->lights = ft_array_new();
-	env->i_sphere = -1;
-	env->i_plane = -1;
-	env->i_cylinder = -1;
-	env->i_cone = -1;
-	env->i_light = -1;
+	env->nbr_obj = 0;
 	env->camera = (t_vector){(t_double3){0, 0, 0}, (t_double3){0, 0, 0}};
+	init_object = (t_object**)malloc(sizeof(t_object*));
+	*init_object = NULL;
+	env->object = init_object;
+	init_light = (t_light**)malloc(sizeof(t_light*));
+	*init_light = NULL;
+	env->light = init_light;
 	env->render = 1;
-	mlx_key_hook(env->win_scene, &key_hook, env);
-	mlx_loop_hook(env->mlx, &loop_hook, env);
+	// mlx_key_hook(env->win_scene, &key_hook, env);
+	// mlx_loop_hook(env->mlx, &loop_hook, env);
 	return (env);
 }
 
@@ -88,16 +87,17 @@ int 			wrong_files(char const *str)
 	return (1);
 }
 
+void			test(t_object **obj)
+{
+	t_object *tmp;
+	tmp = *obj;
+	printf("%f\n", tmp->pos.z);
+}
+
 int				main(int argc, char const **argv)
 {
 	t_env		*env;
 	int			fd;
-	t_sphere	*tmp;
-	t_cylinder	*tmp_cy;
-	t_plane		*tmp_p;
-	t_cone		*tmp_c;
-	t_light		*tmp_l;
-	int 		i;
 
 	if (argc != 2)
 		ft_error("Error : Wrong numbers of Arguments.\n");
@@ -107,14 +107,8 @@ int				main(int argc, char const **argv)
 		ft_error("Error : File not found.\n");
 	env = env_init();
 	check_files(fd, env);
-	i = 0;
-	while (i < env->objects->spheres->length)
-	{
-		tmp = AG(t_sphere*, env->objects->spheres, i);
-		i++;
-		printf("pos->x = %f\npos->y %f\npos->z = %f\n", tmp->pos.x ,tmp->pos.y, tmp->pos.z);
-	}
-	close(fd);		
-	mlx_loop(env->mlx);
+	print_object(env->object, env->light);
+	close(fd);
+	// mlx_loop(env->mlx);
 	return (0);
 }

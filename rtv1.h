@@ -2,8 +2,8 @@
 # define RTV1_H
 
 # include "libft/libft.h"
-# include <mlx.h>
-//# include "minilibx/mlx.h"
+//# include <mlx.h>
+# include "minilibx/mlx.h"
 # include <math.h>
 # include <stdio.h>
 
@@ -23,6 +23,24 @@
 # define DIFFUSE_GLOSSY 0
 # define REFLECTION 1
 # define REFLECTION_AND_REFRACTION 2
+
+# define SPHERE 0
+# define PLANE 1
+# define CYLINDER 2
+# define CONE 3
+# define SPOTLIGHT 4
+
+# define RED "ff0000"
+# define BLUE "0000ff"
+# define GREEN "00ff00"
+# define LIGHT_BLUE "ADD8E6"
+# define LIGHT_GREEN "90ee90"
+# define ORANGE "ffa500"
+# define PINK "ffc0cb"
+# define PURPLE "800080"
+# define DARK_GREEN "006400"
+# define DARK_BLUE "00008b"
+# define DARK_RED "8b0000"
 
 # define BIAS 0.00001
 
@@ -45,58 +63,28 @@ typedef struct	s_vector
 	t_double3	dir;
 }				t_vector;
 
-typedef struct	s_sphere
-{
-	t_double3	pos;
-	double		radius;
-	t_double3	color;
-	double		ior;
-	int			material;
-}				t_sphere;
-
-typedef struct	s_plane
-{
-	t_double3	pos;
-	t_double3	normal;
-	t_double3	color;
-	double		ior;
-	int			material;
-}				t_plane;
-
-typedef struct	s_cylinder
-{
-	t_double3	pos;
-	t_double3	dir;
-	double 		radius;
-	t_double3	color;
-	double		ior;
-	int			material;
-}				t_cylinder;
-
-typedef struct	s_cone
-{
-	t_double3	pos;
-	t_double3	dir;
-	double 		aperture;
-	t_double3	color;
-	double		ior;
-	int			material;
-}				t_cone;
-
 typedef struct	s_light
 {
-	t_double3	pos;
-	t_double3	color;
+	t_double3		pos;
+	t_double3		dir;
+	t_double3		color;
+	int 			type;
+	struct s_light	*next;
 }				t_light;
 
-typedef struct	s_objects
+typedef struct	s_object
 {
-	t_array		*spheres;
-	t_array		*planes;
-	t_array		*cylinders;
-	t_array		*cones;
-	t_array		*lights;
-}				t_objects;
+	int				type;
+	t_double3		pos;
+	t_double3		rotation;
+	double 			radius;
+	t_double3		color;
+	double			gloss;
+	double			refraction;
+	double 			reflex;
+	double 			transparency;
+	struct s_object	*next;
+}				t_object;
 
 typedef struct	s_surface
 {
@@ -109,18 +97,27 @@ typedef struct	s_surface
 	int			material;
 }				t_surface;
 
-typedef struct	s_env
+typedef struct	s_pars
 {
-	void		*mlx;
-	void		*win_scene;
-	t_image		*img;
-	t_objects	*objects;
-	t_vector	camera;
+	int			balise;
+	int 		nbr_lign;
 	int 		i_sphere;
 	int 		i_plane;
 	int 		i_cylinder;
 	int 		i_cone;
 	int 		i_light;
+}				t_pars;
+
+typedef struct	s_env
+{
+	void		*mlx;
+	void		*win_scene;
+	t_image		*img;
+	t_object	**object;
+	t_light		**light;
+	t_pars		*pars;
+	t_vector	camera;
+	int			nbr_obj;
 	int			render;
 }				t_env;
 
@@ -130,11 +127,8 @@ int				key_hook(int keycode, t_env *env);
 t_double3		pick_values(t_buff line, int nbr);
 void			check_pars_nbr_value(t_buff line, int nbr);
 
-void			add_sphere_value(t_env *env, t_double3 *values, int i);
-void			add_plane_value(t_env *env, t_double3 *values, int i);
-void			add_cylinder_value(t_env *env, t_double3 *values, int i);
-void			add_cone_value(t_env *env, t_double3 *values, int i);
-void			add_light_value(t_env *env, t_double3 *values, int i);
+void			add_light_value(t_light **light, t_double3 *values, int i);
+void			add_value(t_object **object, t_double3 *values, int i);
 
 void			check_files(int fd, t_env *env);
 void			check_sphere_obj(t_env *env, t_buff line, int i);
@@ -142,18 +136,25 @@ void			check_cylinder_obj(t_env *env, t_buff line, int i);
 void			check_cone_obj(t_env *env, t_buff line, int i);
 void			check_light_obj(t_env *env, t_buff line, int i);
 void			check_camera_obj(t_env *env, t_buff line, int i);
+void			check_color_obj(t_object **object, char *value);
+void			check_color_light(t_light **light, char *value);
 void			check_plane_obj(t_env *env, t_buff line, int i);
+void			print_object(t_object **first, t_light **first_l);
 
-void			init_light_obj(t_env *env);
-void			init_object(t_env *env, char *obj);
+void			init_light_obj(t_env *env, t_pars *pars, int obj, t_light **light);
+void			init_object(t_env *env, t_pars *pars, int obj, t_object **object);
+void			object_add(t_object **first, t_object *new);
+t_object		*object_new(int type);
+void			light_add(t_light **first, t_light *new);
+t_light			*light_new(int type);
 
 void			render(t_env *env);
-t_double3		raytracer(t_vector ray, t_objects *objects, void *to_ignore, int depth);
+// t_double3		raytracer(t_vector ray, t_objects *objects, void *to_ignore, int depth);
 t_double3		reflect(t_double3 incidence, t_double3 normal);
 t_double3		refract(t_double3 incidence, t_double3 normal, double ior);
 void			fresnel(t_double3 incidence, t_double3 normal, double ior, double *kr);
 
-t_surface		*intersect(t_vector ray, t_objects *objects, void *to_ignore);
+// t_surface		*intersect(t_vector ray, t_objects *objects, void *to_ignore);
 void			get_nearest_sphere(t_vector ray, t_array *spheres, t_surface **surface, void *to_ignore);
 void			get_nearest_plane(t_vector ray, t_array *planes, t_surface **surface, void *to_ignore);
 void			get_nearest_cylinder(t_vector ray, t_array *cylinder, t_surface **surface, void *to_ignore);

@@ -1,20 +1,8 @@
 #include "../rtv1.h"
 
-/*
-# define RED "ff0000"
-# define BLUE "0000ff"
-# define GREEN "00ff00"
-# define LIGHT_BLUE "ADD8E6"
-# define LIGHT_GREEN "90ee90"
-# define ORANGE "ffa500"
-# define PINK "ffc0cb"
-# define PURPLE "800080"
-# define DARK_GREEN "006400"
-# define DARK_BLUE "00008b"
-# define DARK_RED "8b0000"
-*/
-t_double3	hex_to_double(char	*str)
+static t_double3		hex_to_double(char	*str)
 {
+	char		*tmp;
 	t_double3	rgb;
 	double		hex[6];
 	int			i;
@@ -37,30 +25,58 @@ t_double3	hex_to_double(char	*str)
 	return (rgb);
 }
 
-void	check_color_obj(t_env *env, char *value)
+void		check_color_light(t_light **light, char *value)
 {
+	t_light		*tmp;
+	char		*tmp_c;
+
+	tmp_c = ft_strnew(7);
+	tmp = *light;
 	if (ft_strcmp(value, "red") == 0)
-		env->objects->color = hex_to_double(ft_strcpy(RED));
+		tmp->color = hex_to_double(ft_strcpy(tmp_c, RED));
 	else if (ft_strcmp(value, "blue") == 0)
-		env->objects->color = hex_to_double(ft_strcpy(BLUE));
+		tmp->color = hex_to_double(ft_strcpy(tmp_c, BLUE));
 	else if (ft_strcmp(value, "green") == 0)
-		env->objects->color = hex_to_double(ft_strcpy(GREEN));
+		tmp->color = hex_to_double(ft_strcpy(tmp_c, GREEN));
 	else if (ft_strcmp(value, "lightblue") == 0)
-		env->objects->color = hex_to_double(ft_strcpy(LIGHT_BLUE));
+		tmp->color = hex_to_double(ft_strcpy(tmp_c, LIGHT_BLUE));
 	else if (ft_strcmp(value, "lightgreen") == 0)
-		env->objects->color = hex_to_double(ft_strcpy(LIGHT_GREEN));
+		tmp->color = hex_to_double(ft_strcpy(tmp_c, LIGHT_GREEN));
 	else if (ft_strcmp(value, "orange") == 0)
-		env->objects->color = hex_to_double(ft_strcpy(ORANGE));
+		tmp->color = hex_to_double(ft_strcpy(tmp_c, ORANGE));
 	else if (ft_strcmp(value, "pink") == 0)
-		env->objects->color = hex_to_double(ft_strcpy(PINK));
+		tmp->color = hex_to_double(ft_strcpy(tmp_c, PINK));
 	else if (ft_strcmp(value, "purple") == 0)
-		env->objects->color = hex_to_double(ft_strcpy(PURPLE));
-	else if (ft_strcmp(value, "darkgreen") == 0)
-		env->objects->color = hex_to_double(ft_strcpy(DARK_GREEN));
-	else if (ft_strcmp(value, "darkblue") == 0)
-		env->objects->color = hex_to_double(ft_strcpy(DARK_BLUE));
-	else if (ft_strcmp(value, "darkred") == 0)
-		env->objects->color = hex_to_double(ft_strcpy(DARK_RED));
+		tmp->color = hex_to_double(ft_strcpy(tmp_c, PURPLE));
 	else
-		env->objects->color = hex_to_double(value);
+		tmp->color = hex_to_double(value);
+	free(tmp_c);
+}
+
+void		check_color_obj(t_object **object, char *value)
+{
+	t_object	*tmp;
+	char		*tmp_c;
+
+	tmp_c = ft_strnew(7);
+	tmp = *object;
+	if (ft_strcmp(value, "red") == 0)
+		tmp->color = hex_to_double(ft_strcpy(tmp_c, RED));
+	else if (ft_strcmp(value, "blue") == 0)
+		tmp->color = hex_to_double(ft_strcpy(tmp_c, BLUE));
+	else if (ft_strcmp(value, "green") == 0)
+		tmp->color = hex_to_double(ft_strcpy(tmp_c, GREEN));
+	else if (ft_strcmp(value, "lightblue") == 0)
+		tmp->color = hex_to_double(ft_strcpy(tmp_c, LIGHT_BLUE));
+	else if (ft_strcmp(value, "lightgreen") == 0)
+		tmp->color = hex_to_double(ft_strcpy(tmp_c, LIGHT_GREEN));
+	else if (ft_strcmp(value, "orange") == 0)
+		tmp->color = hex_to_double(ft_strcpy(tmp_c, ORANGE));
+	else if (ft_strcmp(value, "pink") == 0)
+		tmp->color = hex_to_double(ft_strcpy(tmp_c, PINK));
+	else if (ft_strcmp(value, "purple") == 0)
+		tmp->color = hex_to_double(ft_strcpy(tmp_c, PURPLE));
+	else
+		tmp->color = hex_to_double(value);
+	free(tmp_c);
 }
