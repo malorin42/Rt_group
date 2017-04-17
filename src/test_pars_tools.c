@@ -30,6 +30,30 @@ t_double3	pick_values(t_buff line, int nbr)
 	return (values);
 }
 
+void		empty_lign(t_buff line)
+{
+	ft_parse_space(&line);
+	if (line.data[line.i] != '\0')
+		ft_error("Error : not an empty line between <Object>.\n");
+}
+
+void		check_object_name(t_env *env, char *name, t_pars *pars)
+{
+	if (ft_strcmp(name, "Sphere") == 0)
+		init_object(env, pars, SPHERE, env->object);
+	else if (ft_strcmp(name, "Plane") == 0)
+		init_object(env, pars, PLANE, env->object);
+	else if (ft_strcmp(name, "Cylinder") == 0)
+		init_object(env, pars, CYLINDER, env->object);
+	else if (ft_strcmp(name, "Cone") == 0)
+		init_object(env, pars, CONE, env->object);
+	else if (ft_strcmp(name, "Spotlight") == 0)
+		init_light_obj(env, pars, SPOTLIGHT, env->light);
+	else
+		ft_error("Error : Wrong object name.\n");
+	free(name);
+}
+
 void		check_pars_nbr_value(t_buff line, int nbr)
 {
 	int		i;

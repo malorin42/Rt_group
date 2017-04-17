@@ -126,20 +126,28 @@ int				key_hook(int keycode, t_env *env);
 
 t_double3		pick_values(t_buff line, int nbr);
 void			check_pars_nbr_value(t_buff line, int nbr);
+void			empty_lign(t_buff line);
 
 void			add_light_value(t_light **light, t_double3 *values, int i);
+void			add_double_param(t_buff line, char *type, t_object **object);
 void			add_value(t_object **object, t_double3 *values, int i);
 
+void			check_object_balise(t_env *env, t_buff line, t_pars *pars);
 void			check_files(int fd, t_env *env);
 void			check_sphere_obj(t_env *env, t_buff line, int i);
 void			check_cylinder_obj(t_env *env, t_buff line, int i);
 void			check_cone_obj(t_env *env, t_buff line, int i);
 void			check_light_obj(t_env *env, t_buff line, int i);
 void			check_camera_obj(t_env *env, t_buff line, int i);
+void			check_object_name(t_env *env, char *name, t_pars *pars);
 void			check_color_obj(t_object **object, char *value);
 void			check_color_light(t_light **light, char *value);
 void			check_plane_obj(t_env *env, t_buff line, int i);
 void			print_object(t_object **first, t_light **first_l);
+void			pars_camera_line(t_env *env, t_buff line, int i);
+void			pars_light_line(t_env *env, t_buff line, int i);
+void			pars_object_line(t_env *env, t_buff line, int i);
+
 
 void			init_light_obj(t_env *env, t_pars *pars, int obj, t_light **light);
 void			init_object(t_env *env, t_pars *pars, int obj, t_object **object);
