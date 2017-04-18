@@ -83,6 +83,8 @@ typedef struct			s_object
 	double				refraction;
 	double				reflex;
 	double				transparency;
+	t_double3			dcp_min;
+	t_double3			dcp_max;
 	struct	s_object	*next;
 }						t_object;
 
@@ -106,6 +108,8 @@ typedef struct			s_pars
 	int					i_cylinder;
 	int					i_cone;
 	int					i_light;
+	int					error;
+	char				**error_mess;
 }						t_pars;
 
 typedef struct			s_env
@@ -113,9 +117,8 @@ typedef struct			s_env
 	void				*mlx;
 	void				*win_scene;
 	t_image				*img;
-	t_object			**object;
-	t_light				**light;
-	t_pars				*pars;
+	t_object			*object;
+	t_light				*light;
 	t_vector			camera;
 	int					nbr_obj;
 	int					render;
@@ -128,9 +131,9 @@ t_double3		pick_values(t_buff line, int nbr);
 void			check_pars_nbr_value(t_buff line, int nbr);
 void			empty_lign(t_buff line);
 
-void			add_light_value(t_light **light, t_double3 *values, int i);
+void			add_light_value(t_env *env, t_double3 *values, int i);
 void			add_double_param(t_buff line, char *type, t_object **object);
-void			add_value(t_object **object, t_double3 *values, int i);
+void			add_value(t_env *env, t_double3 *values, int i);
 
 void			check_object_balise(t_env *env, t_buff line, t_pars *pars);
 void			check_files(int fd, t_env *env);
@@ -146,6 +149,7 @@ void			check_plane_obj(t_env *env, t_buff line, int i);
 void			print_object(t_object **first, t_light **first_l);
 void			pars_camera_line(t_env *env, t_buff line, int i);
 void			pars_light_line(t_env *env, t_buff line, int i);
+void			test_decoup_balise(char *line, int i);
 void			pars_object_line(t_env *env, t_buff line, int i);
 
 
@@ -175,3 +179,11 @@ t_double3		rotation_y(t_double3 point, double angle);
 t_double3		rotation_z(t_double3 point, double angle);
 
 #endif
+
+/* 
+typage camera : fov;
+
+object limite :
+
+
+*/

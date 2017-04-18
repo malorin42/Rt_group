@@ -29,6 +29,8 @@ t_object		*object_new(int type)
 	object->pos = (t_double3){0, 0, 0};
 	object->rotation = (t_double3){0, 0, 0};
 	object->radius = 0;
+	object->dcp_min = (t_double3){0, 0, 0};
+	object->dcp_max = (t_double3){0, 0, 0};
 	object->color = (t_double3){0, 0, 0};
 	object->reflex = 0;
 	object->transparency = 0;
@@ -72,6 +74,8 @@ void			print_object(t_object **first, t_light **first_l)
 		printf("\tTRANSPARENCY :\t%.2f\n", tmp->transparency);
 		printf("\tGLOSS :\t\t%.2f\n", tmp->gloss);
 		printf("\tREFRACTION :\t%.2f\n\n", tmp->refraction);
+		printf("\tDCP_MIN :\t(%.2f, %.2f, %.2f)\n", tmp->dcp_min.x, tmp->dcp_min.y, tmp->dcp_min.z);
+		printf("\tDCP_MAX :\t(%.2f, %.2f, %.2f)\n", tmp->dcp_max.x, tmp->dcp_max.y, tmp->dcp_max.z);
 		tmp = tmp->next;	
 	}
 	i = 0;

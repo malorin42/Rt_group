@@ -60,7 +60,6 @@ void			check_files(int fd, t_env *env)
 
 	j = 0;
 	pars = init_parser();
-	env->pars = pars;
 	while (get_next_line(fd, &line) > 0)
 	{
 		ft_putendl(line.data);

@@ -1,5 +1,33 @@
 #include "../rtv1.h"
 
+static void	pars_object_line3(t_env *env, t_buff line, int i)
+{
+	t_double3	values;
+
+	if (i == 4)
+	{
+		if (ft_strstr(line.data, "Min") != NULL)
+		{
+			check_pars_nbr_value(line, 3);
+			values = pick_values(line, 3);
+			add_value(env, &values, i);
+		}
+		else
+			ft_error("Error : Wrong Value Name.\n");
+	}
+	if (i == 5)
+	{
+		if (ft_strstr(line.data, "Max") != NULL)
+		{
+			check_pars_nbr_value(line, 3);
+			values = pick_values(line, 3);
+			add_value(env, &values, i);
+		}
+		else
+			ft_error("Error : Wrong Value Name.\n");
+	}
+}
+
 static void	pars_object_line2(t_env *env, t_buff line, int i)
 {
 	t_double3	values;
@@ -10,11 +38,14 @@ static void	pars_object_line2(t_env *env, t_buff line, int i)
 		{
 			check_pars_nbr_value(line, 3);
 			values = pick_values(line, 3);
-			add_value(env->object, &values, i);
+			add_value(env, &values, i);
 		}
 		else
 			ft_error("Error : Wrong Value Name.\n");
 	}
+	if (i == 3 || i == 6)
+		test_decoup_balise(line.data, i);
+	pars_object_line3(env, line, i);
 }
 
 void		pars_object_line(t_env *env, t_buff line, int i)
@@ -27,7 +58,7 @@ void		pars_object_line(t_env *env, t_buff line, int i)
 		{
 			check_pars_nbr_value(line, 3);
 			values = pick_values(line, 3);
-			add_value(env->object, &values, i);
+			add_value(env, &values, i);
 		}
 		else
 			ft_error("Error : Wrong Value Name.\n");
@@ -38,7 +69,7 @@ void		pars_object_line(t_env *env, t_buff line, int i)
 		{
 			check_pars_nbr_value(line, 1);
 			values = pick_values(line, 1);
-			add_value(env->object, &values, i);
+			add_value(env, &values, i);
 		}
 		else
 			ft_error("Error : Wrong Value Name.\n");
@@ -56,7 +87,7 @@ void		pars_light_line(t_env *env, t_buff line, int i)
 		{
 			check_pars_nbr_value(line, 3);
 			values = pick_values(line, 3);
-			add_light_value(env->light, &values, i);
+			add_light_value(env, &values, i);
 		}
 		else
 			ft_error("Error : Wrong Value Name.\n");
@@ -67,7 +98,7 @@ void		pars_light_line(t_env *env, t_buff line, int i)
 		{
 			check_pars_nbr_value(line, 3);
 			values = pick_values(line, 3);
-			add_light_value(env->light, &values, i);
+			add_light_value(env, &values, i);
 		}
 		else
 			ft_error("Error : Wrong Value Name.\n");

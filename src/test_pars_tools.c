@@ -33,15 +33,15 @@ t_double3		pick_values(t_buff line, int nbr)
 void			check_object_name(t_env *env, char *name, t_pars *pars)
 {
 	if (ft_strcmp(name, "Sphere") == 0)
-		init_object(env, pars, SPHERE, env->object);
+		init_object(env, pars, SPHERE, &env->object);
 	else if (ft_strcmp(name, "Plane") == 0)
-		init_object(env, pars, PLANE, env->object);
+		init_object(env, pars, PLANE, &env->object);
 	else if (ft_strcmp(name, "Cylinder") == 0)
-		init_object(env, pars, CYLINDER, env->object);
+		init_object(env, pars, CYLINDER, &env->object);
 	else if (ft_strcmp(name, "Cone") == 0)
-		init_object(env, pars, CONE, env->object);
+		init_object(env, pars, CONE, &env->object);
 	else if (ft_strcmp(name, "Spotlight") == 0)
-		init_light_obj(env, pars, SPOTLIGHT, env->light);
+		init_light_obj(env, pars, SPOTLIGHT, &env->light);
 	else
 		ft_error("Error : Wrong object name.\n");
 	free(name);
