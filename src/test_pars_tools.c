@@ -1,6 +1,6 @@
 #include "../rtv1.h"
 
-static int	search_next_nbr(t_buff line, int i)
+static int		search_next_nbr(t_buff line, int i)
 {
 	while (line.data[i] != '\0' && line.data[i] != '\n' &&
 		ft_isdigit(line.data[i]) == 0)
@@ -10,10 +10,10 @@ static int	search_next_nbr(t_buff line, int i)
 	return (i);
 }
 
-t_double3	pick_values(t_buff line, int nbr)
+t_double3		pick_values(t_buff line, int nbr)
 {
 	t_double3	values;
-	
+
 	values.x = 0;
 	values.y = 0;
 	values.z = 0;
@@ -30,14 +30,7 @@ t_double3	pick_values(t_buff line, int nbr)
 	return (values);
 }
 
-void		empty_lign(t_buff line)
-{
-	ft_parse_space(&line);
-	if (line.data[line.i] != '\0')
-		ft_error("Error : not an empty line between <Object>.\n");
-}
-
-void		check_object_name(t_env *env, char *name, t_pars *pars)
+void			check_object_name(t_env *env, char *name, t_pars *pars)
 {
 	if (ft_strcmp(name, "Sphere") == 0)
 		init_object(env, pars, SPHERE, env->object);
@@ -54,7 +47,20 @@ void		check_object_name(t_env *env, char *name, t_pars *pars)
 	free(name);
 }
 
-void		check_pars_nbr_value(t_buff line, int nbr)
+static int		check_pars_nbr_value2(char *line, int i)
+{
+	while (ft_isdigit(line[i]) == 1)
+		i++;
+	if (line[i] != '.' && line[i] != '}')
+		ft_error("Error : Problem in Bracket.");
+	else
+		i++;
+	while (ft_isdigit(line[i]) == 1)
+		i++;
+	return (i);
+}
+
+void			check_pars_nbr_value(t_buff line, int nbr)
 {
 	int		i;
 
@@ -68,14 +74,7 @@ void		check_pars_nbr_value(t_buff line, int nbr)
 	{
 		if (ft_isdigit(line.data[i]) == 1)
 		{
-			while (ft_isdigit(line.data[i]) == 1)
-				i++;
-			if (line.data[i] != '.' && line.data[i] != '}')
-				ft_error("Error : Problem in Bracket.");
-			else
-				i++;
-			while (ft_isdigit(line.data[i]) == 1)
-				i++;
+			i = check_pars_nbr_value2(line.data, i);
 			if (ft_isspace(line.data[i]) == 1 || line.data[i] == '}')
 				nbr--;
 			else

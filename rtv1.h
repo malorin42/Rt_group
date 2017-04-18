@@ -44,82 +44,82 @@
 
 # define BIAS 0.00001
 
-typedef struct	s_double2
+typedef struct			s_double2
 {
-	double		x;
-	double		y;
-}				t_double2;
+	double				x;
+	double				y;
+}						t_double2;
 
-typedef struct	s_double3
+typedef struct			s_double3
 {
-	double		x;
-	double		y;
-	double		z;
-}				t_double3;
+	double				x;
+	double				y;
+	double				z;
+}						t_double3;
 
-typedef struct	s_vector
+typedef struct			s_vector
 {
-	t_double3	pos;
-	t_double3	dir;
-}				t_vector;
+	t_double3			pos;
+	t_double3			dir;
+}						t_vector;
 
-typedef struct	s_light
+typedef struct			s_light
 {
-	t_double3		pos;
-	t_double3		dir;
-	t_double3		color;
-	int 			type;
-	struct s_light	*next;
-}				t_light;
+	t_double3			pos;
+	t_double3			dir;
+	t_double3			color;
+	int					type;
+	struct s_light		*next;
+}						t_light;
 
-typedef struct	s_object
+typedef struct			s_object
 {
-	int				type;
-	t_double3		pos;
-	t_double3		rotation;
-	double 			radius;
-	t_double3		color;
-	double			gloss;
-	double			refraction;
-	double 			reflex;
-	double 			transparency;
-	struct s_object	*next;
-}				t_object;
+	int					type;
+	t_double3			pos;
+	t_double3			rotation;
+	double				radius;
+	t_double3			color;
+	double				gloss;
+	double				refraction;
+	double				reflex;
+	double				transparency;
+	struct	s_object	*next;
+}						t_object;
 
-typedef struct	s_surface
+typedef struct			s_surface
 {
-	void		*object;
-	double		distance;
-	t_double3	p_hit;
-	t_double3	n_hit;
-	t_double3	color;
-	double		ior;
-	int			material;
-}				t_surface;
+	void				*object;
+	double				distance;
+	t_double3			p_hit;
+	t_double3			n_hit;
+	t_double3			color;
+	double				ior;
+	int					material;
+}						t_surface;
 
-typedef struct	s_pars
+typedef struct			s_pars
 {
-	int			balise;
-	int 		nbr_lign;
-	int 		i_sphere;
-	int 		i_plane;
-	int 		i_cylinder;
-	int 		i_cone;
-	int 		i_light;
-}				t_pars;
+	int					balise;
+	int					nbr_lign;
+	int					i_sphere;
+	int					i_plane;
+	int					i_cylinder;
+	int					i_cone;
+	int					i_light;
+}						t_pars;
 
-typedef struct	s_env
+typedef struct			s_env
 {
-	void		*mlx;
-	void		*win_scene;
-	t_image		*img;
-	t_object	**object;
-	t_light		**light;
-	t_pars		*pars;
-	t_vector	camera;
-	int			nbr_obj;
-	int			render;
-}				t_env;
+	void				*mlx;
+	void				*win_scene;
+	t_image				*img;
+	t_object			**object;
+	t_light				**light;
+	t_pars				*pars;
+	t_vector			camera;
+	int					nbr_obj;
+	int					render;
+}						t_env;
 
 int				loop_hook(t_env *env);
 int				key_hook(int keycode, t_env *env);
@@ -156,17 +156,6 @@ t_object		*object_new(int type);
 void			light_add(t_light **first, t_light *new);
 t_light			*light_new(int type);
 
-void			render(t_env *env);
-// t_double3		raytracer(t_vector ray, t_objects *objects, void *to_ignore, int depth);
-t_double3		reflect(t_double3 incidence, t_double3 normal);
-t_double3		refract(t_double3 incidence, t_double3 normal, double ior);
-void			fresnel(t_double3 incidence, t_double3 normal, double ior, double *kr);
-
-// t_surface		*intersect(t_vector ray, t_objects *objects, void *to_ignore);
-void			get_nearest_sphere(t_vector ray, t_array *spheres, t_surface **surface, void *to_ignore);
-void			get_nearest_plane(t_vector ray, t_array *planes, t_surface **surface, void *to_ignore);
-void			get_nearest_cylinder(t_vector ray, t_array *cylinder, t_surface **surface, void *to_ignore);
-void			get_nearest_cone(t_vector ray, t_array *cones, t_surface **surface, void *to_ignore);
 
 void			color_pixel_image(t_color color, int pixel_start, t_image *image);
 void			swap(double *t0, double *t1);

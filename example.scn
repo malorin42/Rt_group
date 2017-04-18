@@ -9,13 +9,13 @@
 	Dir			{0.0	0.0		4.0}
 <LightObj/>
 
-<Object> name=Plane; refraction=4.5;
+<Object> name=Plane;
 	Pos 		{0.0 	0.0 	20.0}
 	Rot			{0.0	0.0		0.0}
 	Radius 		{2.0}
 <Object/>
 
-<Object> name=Cylinder; color=FFFFFFF; reflex=8.9; refraction=1.1; transparency=2.0;
+<Object> name=Cylinder; color=FFAAFFF; reflex=8.9; refraction=1.1; transparency=2.0;
 	Pos 		{0.0 	0.0 	-20.0}
 	Rot			{0.0	0.0		54.0}
 	Radius 		{2.0}

@@ -1,6 +1,6 @@
 #include "../rtv1.h"
 
-static t_double3		hex_to_double(char	*str)
+static t_double3	hex_to_double(char *str)
 {
 	char		*tmp;
 	t_double3	rgb;
@@ -10,7 +10,7 @@ static t_double3		hex_to_double(char	*str)
 	tmp = ft_strnew(ft_strlen(str));
 	tmp = ft_strcpy(tmp, str);
 	i = 0;
-	while(tmp[i] != '\0' && i < 7)
+	while (tmp[i] != '\0' && i < 7)
 	{
 		tmp[i] = ft_toupper(tmp[i]);
 		if (tmp[i] >= 48 && tmp[i] <= 57)
@@ -27,7 +27,7 @@ static t_double3		hex_to_double(char	*str)
 	return (rgb);
 }
 
-void		check_color_light(t_light **light, char *value)
+void				check_color_light(t_light **light, char *value)
 {
 	t_light		*tmp;
 	char		*tmp_c;
@@ -55,7 +55,7 @@ void		check_color_light(t_light **light, char *value)
 		tmp->color = hex_to_double(tmp_c);
 }
 
-void		check_color_obj(t_object **object, char *value)
+void				check_color_obj(t_object **object, char *value)
 {
 	t_object	*tmp;
 	char		*tmp_c;
