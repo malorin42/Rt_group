@@ -9,7 +9,7 @@ t_light			*light_new(int type)
 	light->type = type;
 	light->pos = (t_double3){0, 0, 0};
 	light->dir = (t_double3){0, 0, 0};
-	light->color = (t_double3){0, 0, 0};
+	light->color = (t_double3){1, 1, 1};
 	return (light);
 }
 
@@ -34,8 +34,8 @@ t_object		*object_new(int type)
 	object->color = (t_double3){0, 0, 0};
 	object->reflex = 0;
 	object->transparency = 0;
-	object->gloss = 0;
-	object->refraction = 0;
+	object->gloss = 0.3;
+	object->refraction = 1;
 	object->next = NULL;
 	return (object);
 }
