@@ -7,7 +7,8 @@ CFLAGS = -Wall -Wextra -Werror -g -O0
 OBJ = obj/main.o obj/tools.o obj/matrix.o obj/object.o obj/add_pars_value.o
 OBJ += obj/init_object.o obj/test_pars_tools.o obj/check_files.o
 OBJ += obj/check_color_obj.o obj/check_balise_line.o obj/add_param.o obj/pars_space_value.o
-OBJ += obj/test_pars_tools2.o
+OBJ += obj/test_pars_tools2.o obj/color.o obj/cone.o obj/cylinder.o obj/plane.o obj/sphere.o
+OBJ += obj/path.o obj/raytracer.o obj/rotation.o
 
 LIBFT = ./libft/libft.a
 

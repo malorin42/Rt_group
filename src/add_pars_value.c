@@ -4,7 +4,7 @@ void		add_light_value(t_env *env, t_double3 *values, int i)
 {
 	t_light	*tmp;
 
-	tmp = env->light;
+	tmp = env->scene->light;
 	if (i == 0)
 		tmp->pos = *values;
 	else if (i == 1)
@@ -15,7 +15,7 @@ void		add_value(t_env *env, t_double3 *values, int i)
 {
 	t_object	*tmp;
 
-	tmp = env->object;
+	tmp = env->scene->object;
 	if (i == 0)
 		tmp->pos = *values;
 	else if (i == 1)

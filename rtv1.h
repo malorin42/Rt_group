@@ -44,6 +44,9 @@
 
 # define BIAS 0.00001
 
+# define REGULAR_MATRIX	1
+# define INVERSE_MATRIX -1
+
 typedef struct			s_double2
 {
 	double				x;
@@ -90,14 +93,19 @@ typedef struct			s_object
 
 typedef struct			s_surface
 {
-	void				*object;
+	t_object			*object;
 	double				distance;
-	t_double3			p_hit;
-	t_double3			n_hit;
-	t_double3			color;
-	double				ior;
-	int					material;
+	t_double3			point;
+	t_double3			normal;
+	t_double3			simple;
 }						t_surface;
+
+typedef struct			s_scene
+{
+	t_object			*object;
+	t_light				*light;
+	t_vector			camera;
+}						t_scene;
 
 typedef struct			s_pars
 {
@@ -117,9 +125,7 @@ typedef struct			s_env
 	void				*mlx;
 	void				*win_scene;
 	t_image				*img;
-	t_object			*object;
-	t_light				*light;
-	t_vector			camera;
+	t_scene				*scene;
 	int					nbr_obj;
 	int					render;
 }						t_env;
@@ -161,7 +167,6 @@ void			light_add(t_light **first, t_light *new);
 t_light			*light_new(int type);
 
 
-void			color_pixel_image(t_color color, int pixel_start, t_image *image);
 void			swap(double *t0, double *t1);
 double			dot_product(t_double3 vec1, t_double3 vec2);
 t_double3		normalize(t_double3 vec);
@@ -169,14 +174,33 @@ t_double3		find_point(t_double3 origin, t_double3 dir, double scalar);
 t_double3		vec_minus_vec(t_double3 vec1, t_double3 vec2);
 t_double3		vec_plus_vec(t_double3 vec1, t_double3 vec2);
 t_double3		scale_vec(t_double3 vec, double scalar);
+t_double3		v_minus_v(t_double3 vec1, t_double3 vec2);
+t_double3		rotation(t_double3 point, t_double3 angles, int inverse);
+t_double3		scale_v(t_double3 vec, double scalar);
+t_double3 		v_scale_v(t_double3 vec1, t_double3 vec2);
 t_double3 		vec_scale_vec(t_double3 vec1, t_double3 vec2);
+t_double3		v_plus_v(t_double3 vec1, t_double3 vec2);
+t_vector		transform_ray(t_vector ray, t_object *object);
+double			length_v(t_double3 vec);
 double			max_double(double a, double b);
 double			min_double(double a, double b);
 double			abs_double(double n);
+int				solve_quadratic(double a, double b, double c, double *distance);
 
-t_double3		rotation_x(t_double3 point, double angle);
-t_double3		rotation_y(t_double3 point, double angle);
-t_double3		rotation_z(t_double3 point, double angle);
+t_double3			rotation(t_double3 point, t_double3 angles, int inverse);
+
+t_double3		reflect(t_double3 incidence, t_double3 normal);
+t_double3		refract(t_double3 incidence, t_double3 normal, double ior);
+t_double3		raytracer(t_vector ray, t_scene *scene, t_object *to_ignore, int depth);
+t_surface		*intersect(t_vector ray, t_scene *scene, t_object *to_ignore);
+void			render(t_env *env);
+void			color_standard(t_env *env, t_double3 color, int x, int y);
+void			get_surface_normal(t_surface *surface);
+
+void			get_nearest_sphere(t_vector ray, t_object *sphere, t_surface **surface);
+void			get_nearest_plane(t_vector ray, t_object *plane, t_surface **surface);
+void			get_nearest_cylinder(t_vector ray, t_object *cylinder, t_surface **surface);
+void			get_nearest_cone(t_vector ray, t_object *cone, t_surface **surface);
 
 #endif
 

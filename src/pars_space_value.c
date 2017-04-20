@@ -114,7 +114,7 @@ void		pars_camera_line(t_env *env, t_buff line, int i)
 		if (ft_strstr(line.data, "Pos") != NULL)
 		{
 			check_pars_nbr_value(line, 3);
-			env->camera.pos = pick_values(line, 3);
+			env->scene->camera.pos = pick_values(line, 3);
 		}
 		else
 			ft_error("Error : Wrong Value Name.\n");
@@ -124,7 +124,7 @@ void		pars_camera_line(t_env *env, t_buff line, int i)
 		if (ft_strstr(line.data, "Dir") != NULL)
 		{
 			check_pars_nbr_value(line, 3);
-			env->camera.dir = pick_values(line, 3);
+			env->scene->camera.dir = pick_values(line, 3);
 		}
 		else
 			ft_error("Error : Wrong Value Name.\n");

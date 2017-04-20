@@ -72,19 +72,19 @@ static void	pars_balise_obj(t_env *env, t_buff line, t_pars *pars)
 	check_object_name(env, value, pars);
 	value = analyse_balise_lign(line.data, "color=");
 	if (value != NULL)
-		check_color_obj(&env->object, value);
+		check_color_obj(&env->scene->object, value);
 	value = analyse_balise_lign(line.data, "gloss=");
 	if (value != NULL)
-		add_double_param(line, "gloss", &env->object);
+		add_double_param(line, "gloss", &env->scene->object);
 	value = analyse_balise_lign(line.data, "transp=");
 	if (value != NULL)
-		add_double_param(line, "transp", &env->object);
+		add_double_param(line, "transp", &env->scene->object);
 	value = analyse_balise_lign(line.data, "reflex=");
 	if (value != NULL)
-		add_double_param(line, "reflex", &env->object);
+		add_double_param(line, "reflex", &env->scene->object);
 	value = analyse_balise_lign(line.data, "refraction=");
 	if (value != NULL)
-		add_double_param(line, "refraction", &env->object);
+		add_double_param(line, "refraction", &env->scene->object);
 	value = analyse_balise_lign(line.data, "decoupe=");
 	if (value != NULL && ft_strcmp(value, "On") == 0)
 		pars->nbr_lign = 7;
@@ -107,7 +107,7 @@ void		check_object_balise(t_env *env, t_buff line, t_pars *pars)
 		check_object_name(env, value, pars);
 		value = analyse_balise_lign(line.data, "color=");
 		if (value != NULL)
-			check_color_light(&env->light, value);
+			check_color_light(&env->scene->light, value);
 		pars->balise = 2;
 	}
 	else if (ft_strstr(line.data, "<Camera>") != NULL)
