@@ -1,6 +1,7 @@
 #include "../rtv1.h"
 
-static int			intersect_sphere(t_vector ray, t_object *sphere, double *distance)
+static int			intersect_sphere(t_vector ray, t_object *sphere,
+	double *distance)
 {
 	t_double3	center;
 	double		a;
@@ -16,7 +17,8 @@ static int			intersect_sphere(t_vector ray, t_object *sphere, double *distance)
 	return (0);
 }
 
-void				get_nearest_sphere(t_vector ray, t_object *sphere, t_surface **surface)
+void				get_nearest_sphere(t_vector ray, t_object *sphere,
+	t_surface **surface)
 {
 	double			distance;
 

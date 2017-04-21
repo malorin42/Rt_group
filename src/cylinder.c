@@ -1,10 +1,11 @@
 #include "../rtv1.h"
 
-static int				intersect_cylinder(t_vector ray, t_object *cylinder, double *distance)
+static int		intersect_cylinder(t_vector ray, t_object *cylinder,
+	double *distance)
 {
-	double			a;
-	double			b;
-	double			c;
+	double		a;
+	double		b;
+	double		c;
 
 	a = ray.dir.x * ray.dir.x + ray.dir.y * ray.dir.y;
 	b = 2 * (ray.pos.x * ray.dir.x + ray.pos.y *
@@ -16,9 +17,10 @@ static int				intersect_cylinder(t_vector ray, t_object *cylinder, double *dista
 	return (0);
 }
 
-void				get_nearest_cylinder(t_vector ray, t_object *cylinder, t_surface **surface)
+void			get_nearest_cylinder(t_vector ray, t_object *cylinder,
+	t_surface **surface)
 {
-	double			distance;
+	double		distance;
 
 	ray = transform_ray(ray, cylinder);
 	if (intersect_cylinder(ray, cylinder, &distance))
