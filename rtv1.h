@@ -129,7 +129,7 @@ void					check_pars_nbr_value(t_buff line, int nbr);
 void					empty_lign(t_buff line);
 
 void					add_light_value(t_env *env, t_double3 *values, int i);
-void					add_double_param(t_buff line, char *type, t_object **object);
+void					add_double_param(t_buff line, char *type, t_object **object, char *value);
 void					add_value(t_env *env, t_double3 *values, int i);
 
 void					check_object_balise(t_env *env, t_buff line, t_pars *pars);
