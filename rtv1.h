@@ -13,10 +13,10 @@
 # define DEPTH_MAX 5
 
 	 // Key pour Linux 
-# define KEY_ESC 65307
+// # define KEY_ESC 65307
 
 	// Key pour Mac 
-// # define KEY_ESC 53
+# define KEY_ESC 53
 
 # define PI 3.14159265
 
@@ -107,11 +107,6 @@ typedef struct			s_pars
 {
 	int					balise;
 	int					nbr_lign;
-	int					i_sphere;
-	int					i_plane;
-	int					i_cylinder;
-	int					i_cone;
-	int					i_light;
 	int					error;
 	char				**error_mess;
 }						t_pars;

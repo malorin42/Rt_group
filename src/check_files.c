@@ -41,14 +41,10 @@ static t_pars	*init_parser(void)
 {
 	t_pars	*pars;
 
-	pars = (t_pars*)malloc(sizeof(t_pars*));
+	if ((pars = (t_pars*)malloc(sizeof(t_pars*))) == NULL)
+		ft_error("Error : Malloc() failed.\n");
 	pars->balise = 0;
 	pars->nbr_lign = 0;
-	pars->i_sphere = -1;
-	pars->i_plane = -1;
-	pars->i_cylinder = -1;
-	pars->i_cone = -1;
-	pars->i_light = -1;
 	return (pars);
 }
 

@@ -6,7 +6,7 @@ static char	*take_balise_value(char *line, int i)
 	char	*value;
 
 	j = 0;
-	value = (char*)malloc(sizeof(char) * ft_strlen(line));
+	value = (char*)malloc(sizeof(char) * (ft_strlen(line) + 1));
 	if (line[i - 1] == '=')
 	{
 		while (line[i] != '\0' && line[i] != ';')
@@ -69,7 +69,8 @@ static void	pars_balise_obj(t_env *env, t_buff line, t_pars *pars)
 	char	*value;
 
 	value = analyse_balise_lign(line.data, "name=");
-	check_object_name(env, value, pars);
+	if (value != NULL)
+		check_object_name(env, value, pars);
 	value = analyse_balise_lign(line.data, "color=");
 	if (value != NULL)
 		check_color_obj(&env->scene->object, value);
@@ -104,7 +105,8 @@ void		check_object_balise(t_env *env, t_buff line, t_pars *pars)
 	{
 		pars->nbr_lign = 2;
 		value = analyse_balise_lign(line.data, "name=");
-		check_object_name(env, value, pars);
+		if (value != NULL)
+			check_object_name(env, value, pars);
 		value = analyse_balise_lign(line.data, "color=");
 		if (value != NULL)
 			check_color_light(&env->scene->light, value);
