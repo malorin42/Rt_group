@@ -1,23 +1,5 @@
 #include "../rtv1.h"
 
-int				key_hook(int keycode, t_env *env)
-{
-	if (keycode == KEY_ESC)
-		exit(0);
-	return (0);
-}
-
-int				loop_hook(t_env *env)
-{
-	if (env->render == 1)
-	{
-		render(env);
-		mlx_put_image_to_window(env->mlx, env->win_scene, env->img->img, 0, 0);
-		env->render = 0;
-	}
-	return (0);
-}
-
 static t_image	*ft_new_image(void *mlx)
 {
 	t_image		*img;
@@ -25,7 +7,7 @@ static t_image	*ft_new_image(void *mlx)
 	if ((img = (t_image*)malloc(sizeof(t_image))) == NULL)
 		ft_error("Error: malloc failed.\n");
 	img->img = mlx_new_image(mlx, WIDTH, HEIGHT);
-	img->data = (unsigned char*)mlx_get_data_addr(img->img, &img->opp, 
+	img->data = (unsigned char*)mlx_get_data_addr(img->img, &img->opp,
 		&img->l_size, &img->endian);
 	img->opp = img->opp / 8;
 	img->width = WIDTH;
@@ -33,10 +15,10 @@ static t_image	*ft_new_image(void *mlx)
 	return (img);
 }
 
-static t_env	*env_init()
+static t_env	*env_init(void)
 {
 	t_env		*env;
-	
+
 	if ((env = (t_env*)malloc(sizeof(t_env))) == NULL)
 		ft_error("Error : malloc() failed.\n");
 	if ((env->mlx = mlx_init()) == NULL)
@@ -54,10 +36,10 @@ static t_env	*env_init()
 	return (env);
 }
 
-int 			wrong_files(char const *str)
+int				wrong_files(char const *str)
 {
-	int 		i;
-	int 		j;
+	int			i;
+	int			j;
 	char		*scn;
 
 	i = 0;

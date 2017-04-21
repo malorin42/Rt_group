@@ -9,7 +9,7 @@ t_light			*light_new(int type)
 	light->type = type;
 	light->pos = (t_double3){0, 0, 0};
 	light->dir = (t_double3){0, 0, 0};
-	light->color = (t_double3){1, 1, 1};
+	light->color = (t_double3){0, 0, 0};
 	return (light);
 }
 
@@ -31,11 +31,11 @@ t_object		*object_new(int type)
 	object->radius = 0;
 	object->dcp_min = (t_double3){0, 0, 0};
 	object->dcp_max = (t_double3){0, 0, 0};
-	object->color = (t_double3){0, 0, 0};
+	object->color = (t_double3){1, 1, 1};
 	object->reflex = 0;
 	object->transparency = 0;
-	object->gloss = 0.3;
-	object->refraction = 1;
+	object->gloss = 0;
+	object->refraction = 1.2;
 	object->next = NULL;
 	return (object);
 }
@@ -76,7 +76,7 @@ void			print_object(t_object **first, t_light **first_l)
 		printf("\tREFRACTION :\t%.2f\n\n", tmp->refraction);
 		printf("\tDCP_MIN :\t(%.2f, %.2f, %.2f)\n", tmp->dcp_min.x, tmp->dcp_min.y, tmp->dcp_min.z);
 		printf("\tDCP_MAX :\t(%.2f, %.2f, %.2f)\n", tmp->dcp_max.x, tmp->dcp_max.y, tmp->dcp_max.z);
-		tmp = tmp->next;	
+		tmp = tmp->next;
 	}
 	i = 0;
 	while (tmp_l)
@@ -87,6 +87,6 @@ void			print_object(t_object **first, t_light **first_l)
 		printf("\tPOSITION :\t(%.2f, %.2f, %.2f)\n", tmp_l->pos.x, tmp_l->pos.y, tmp_l->pos.z);
 		printf("\tROTATION :\t(%.2f, %.2f, %.2f)\n", tmp_l->dir.x, tmp_l->dir.y, tmp_l->dir.z);
 		printf("\tCOLOR :\t\t(%.2f, %.2f, %.2f)\n", tmp_l->color.x, tmp_l->color.y, tmp_l->color.z);
-		tmp_l = tmp_l->next;	
+		tmp_l = tmp_l->next;
 	}
 }
