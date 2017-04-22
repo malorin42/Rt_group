@@ -25,9 +25,8 @@ t_surface			*is_in_light(t_surface *surface, t_scene *scene,
 	*dot_light = max_double(0, *dot_light);
 	if (length_v(light->dir) > 0.01)
 	{
-		dot_light_dir = dot_product(light_ray.dir, normalize(light->dir));
-		dot_light_dir = max_double(0, -dot_light_dir);
-		// *dot_light = (*dot_light + dot_light_dir) / 2.0;
+		dot_light_dir = abs_double(dot_product(light_ray.dir, normalize(light->dir)));
+		dot_light_dir = max_double(0, dot_light_dir);
 		*dot_light *= dot_light_dir;
 	}
 	light_intersect = intersect(light_ray, scene, surface->object);
@@ -50,7 +49,7 @@ t_double3			color_diffused(t_scene *scene, t_surface *surface)
 	while (light)
 	{
 		light_intersect = is_in_light(surface, scene, light, &dot_light);
-		if (light_intersect != NULL && light_intersect->distance > 0)
+		if (light_intersect == NULL || light_intersect->distance > 0)
 		{
 			color_hit = v_plus_v(color_hit, color_mix(scale_v(light->color,
 				dot_light), surface->object->gloss,
@@ -60,7 +59,7 @@ t_double3			color_diffused(t_scene *scene, t_surface *surface)
 		light_nb++;
 		light = light->next;
 	}
-	if (light_nb != 0)
+	if (light_nb > 1)
 		color_hit = scale_v(color_hit, (1.0 / (double)light_nb));
 	return (color_hit);
 }

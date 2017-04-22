@@ -7,16 +7,16 @@
 # include <math.h>
 # include <stdio.h>
 
-# define WIDTH 1200
-# define HEIGHT 800
+# define WIDTH 2400
+# define HEIGHT 1200
 # define FOV 30
 # define DEPTH_MAX 5
 
 	 // Key pour Linux 
-// # define KEY_ESC 65307
+# define KEY_ESC 65307
 
 	// Key pour Mac 
-# define KEY_ESC 53
+// # define KEY_ESC 53
 
 # define PI 3.14159265
 
@@ -26,7 +26,7 @@
 # define CONE 3
 # define SPOTLIGHT 4
 
-# define AMBIANT 0.1
+# define AMBIANT 0.01
 
 # define RED "ff0000"
 # define BLUE "0000ff"
