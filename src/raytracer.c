@@ -109,7 +109,7 @@ t_double3			raytracer(t_vector ray, t_scene *scene,
 	else
 	{
 		color_hit = (t_double3){0, 0, 0};
-		color_hit = color_mix(surface->object->color, AMBIANT, color_diffused(scene, surface));
+		color_hit = color_mix(surface->object->color, scene->ambiant, color_diffused(scene, surface));
 		if (surface->object->reflex > 0.01)
 			color_hit = color_mix(color_reflected(ray, scene, surface, depth),
 				surface->object->reflex, color_hit);

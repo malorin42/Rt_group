@@ -82,6 +82,7 @@ typedef struct			s_object
 	double				refraction;
 	double				reflex;
 	double				transparency;
+	int					dcp;
 	t_double3			dcp_min;
 	t_double3			dcp_max;
 	struct	s_object	*next;
@@ -101,6 +102,9 @@ typedef struct			s_scene
 	t_object			*object;
 	t_light				*light;
 	t_vector			camera;
+	double				ambiant;
+	int					aliaising;
+	int					direct_light;
 }						t_scene;
 
 typedef struct			s_pars
@@ -130,6 +134,7 @@ void					empty_lign(t_buff line);
 
 void					add_light_value(t_env *env, t_double3 *values, int i);
 void					add_double_param(t_buff line, char *type, t_object **object, char *value);
+void					add_OnOff_value(t_object **object, char *value, t_pars *pars);
 void					add_value(t_env *env, t_double3 *values, int i);
 
 void					check_object_balise(t_env *env, t_buff line, t_pars *pars);
@@ -146,6 +151,7 @@ void					check_plane_obj(t_env *env, t_buff line, int i);
 void					print_object(t_object **first, t_light **first_l);
 void					pars_camera_line(t_env *env, t_buff line, int i);
 void					pars_light_line(t_env *env, t_buff line, int i);
+void					pars_head_value(t_env *env, t_buff line);
 void					test_decoup_balise(char *line, int i);
 void					pars_object_line(t_env *env, t_buff line, int i);
 
