@@ -6,17 +6,19 @@
 # include "minilibx/mlx.h"
 # include <math.h>
 # include <stdio.h>
+# include <pthread.h>
 
-# define WIDTH 2400
-# define HEIGHT 1200
+# define WIDTH 1200
+# define HEIGHT 600
 # define FOV 30
 # define DEPTH_MAX 5
+# define THREAD 24
 
 	 // Key pour Linux 
-# define KEY_ESC 65307
+// # define KEY_ESC 65307
 
 	// Key pour Mac 
-// # define KEY_ESC 53
+# define KEY_ESC 53
 
 # define PI 3.14159265
 
@@ -110,16 +112,20 @@ typedef struct			s_pars
 	int					error;
 	char				**error_mess;
 }						t_pars;
-
-typedef struct			s_env
+ 
+typedef struct          s_env
 {
-	void				*mlx;
-	void				*win_scene;
-	t_image				*img;
-	t_scene				*scene;
-	int					nbr_obj;
-	int					render;
-}						t_env;
+    void                *mlx;
+    void                *win_scene;
+    t_image             *img[THREAD];
+    t_scene             *scene;
+    // int					i_img;
+    pthread_mutex_t		my_mutex;
+    pthread_cond_t		cond;
+    int                 nbr_obj;
+    int                 render;
+    int                 count;
+}                       t_env;
 
 int						loop_hook(t_env *env);
 int						key_hook(int keycode, t_env *env);
@@ -184,14 +190,16 @@ t_double3				color_reflected(t_vector ray, t_scene *scene, t_surface *surface, i
 t_double3				color_refracted(t_vector ray, t_scene *scene,t_surface *surface, int depth);
 t_double3				raytracer(t_vector ray, t_scene *scene, t_object *to_ignore, int depth);
 t_surface				*intersect(t_vector ray, t_scene *scene, t_object *to_ignore);
-void					render(t_env *env);
-void					color_standard(t_env *env, t_double3 color, int x, int y);
+void					*render(void *env);
+void					color_standard(t_env *env, t_double3 color, int x, int y, int index);
 void					get_surface_normal(t_surface *surface);
 
 void					get_nearest_sphere(t_vector ray, t_object *sphere, t_surface **surface);
 void					get_nearest_plane(t_vector ray, t_object *plane, t_surface **surface);
 void					get_nearest_cylinder(t_vector ray, t_object *cylinder, t_surface **surface);
 void					get_nearest_cone(t_vector ray, t_object *cone, t_surface **surface);
+
+void    				multi_threading(t_env *env);
 
 #endif
 

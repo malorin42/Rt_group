@@ -6,25 +6,28 @@ static t_image	*ft_new_image(void *mlx)
 
 	if ((img = (t_image*)malloc(sizeof(t_image))) == NULL)
 		ft_error("Error: malloc failed.\n");
-	img->img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	img->img = mlx_new_image(mlx, WIDTH, (HEIGHT / THREAD));
 	img->data = (unsigned char*)mlx_get_data_addr(img->img, &img->opp,
 		&img->l_size, &img->endian);
 	img->opp = img->opp / 8;
 	img->width = WIDTH;
-	img->height = HEIGHT;
+	img->height = HEIGHT / THREAD;
 	return (img);
 }
 
 static t_env	*env_init(void)
 {
 	t_env		*env;
+	int 		i;
 
+	i = 0;
 	if ((env = (t_env*)malloc(sizeof(t_env))) == NULL)
 		ft_error("Error : malloc() failed.\n");
 	if ((env->mlx = mlx_init()) == NULL)
 		ft_error("Error : mlx_init() failed.\n");
 	env->win_scene = mlx_new_window(env->mlx, WIDTH, HEIGHT, "RTv1");
-	env->img = ft_new_image(env->mlx);
+	while(i < THREAD)
+		env->img[i++] = ft_new_image(env->mlx);
 	env->nbr_obj = 0;
 	env->scene = (t_scene*)malloc(sizeof(t_scene));
 	env->scene->camera = (t_vector){(t_double3){0, 0, 0}, (t_double3){0, 0, 0}};

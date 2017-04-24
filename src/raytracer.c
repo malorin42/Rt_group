@@ -64,28 +64,28 @@ t_double3			color_diffused(t_scene *scene, t_surface *surface)
 	return (color_hit);
 }
 
-t_double3			direct_light(t_vector ray, t_scene *scene,
-	t_double3 color_hit);
-{
-	t_light			*light;
-	t_double3		light_vector;
-	t_surface		*light_intersect;
-	double			dot_light;
+// t_double3			direct_light(t_vector ray, t_scene *scene,
+// 	t_double3 color_hit)
+// {
+// 	t_light			*light;
+// 	t_double3		light_vector;
+// 	t_surface		*light_intersect;
+// 	double			dot_light;
 
-	light = scene->light;
-	while (light)
-	{
-		light_vector = v_minus_v(light->pos, ray.pos);
-		dot_light = dot_product(normalize(light_vector), ray.dir);
-		dot_light = max_double(0, dot_light * 0.5);
-		light_intersect = intersect((t_vector){light_ray}, scene, NULL);
-		if (light_intersect == NULL || light_intersect->distance > length_v(light_vector))
-		{
-			color_hit = color_mix(light->color, dot_light, color_hit);
-			free(light_intersect);
-		}
-	}
-}
+// 	light = scene->light;
+// 	while (light)
+// 	{
+// 		light_vector = v_minus_v(light->pos, ray.pos);
+// 		dot_light = dot_product(normalize(light_vector), ray.dir);
+// 		dot_light = max_double(0, dot_light * 0.5);
+// 		light_intersect = intersect((t_vector){light_ray}, scene, NULL);
+// 		if (light_intersect == NULL || light_intersect->distance > length_v(light_vector))
+// 		{
+// 			color_hit = color_mix(light->color, dot_light, color_hit);
+// 			free(light_intersect);
+// 		}
+// 	}
+// }
 
 t_double3			raytracer(t_vector ray, t_scene *scene,
 	t_object *to_ignore, int depth)
@@ -108,7 +108,7 @@ t_double3			raytracer(t_vector ray, t_scene *scene,
 		if (surface->object->transparency > 0.01)
 			color_hit = color_mix(color_refracted(ray, scene, surface, depth),
 				surface->object->transparency, color_hit);
-		color_hit = direct_light(ray, scene, color_hit);
+		// color_hit = direct_light(ray, scene, color_hit);
 		free(surface);
 		return (color_hit);
 	}
