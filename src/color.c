@@ -7,13 +7,9 @@ static void		color_pixel_image(t_color color, int pixel_start,
 	int			i;
 
 	pixel_end = pixel_start + image->opp;
-	// ft_putnbr(pixel_start);
-	// ft_putendl("");
 	while (pixel_start < pixel_end)
 	{
-		// pthread_mutex_lock(&my_mutex);
 		image->data[pixel_start] = color.b.b;
-		// pthread_mutex_unlock(&my_mutex);
 		color.u >>= 8;
 		pixel_start++;
 	}

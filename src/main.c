@@ -33,6 +33,9 @@ static t_env	*env_init(void)
 	env->scene->camera = (t_vector){(t_double3){0, 0, 0}, (t_double3){0, 0, 0}};
 	env->scene->object = NULL;
 	env->scene->light = NULL;
+	env->scene->ambiant = 0.02;
+	env->scene->aliaising = 0;
+	env->scene->direct_light = 1;
 	env->render = 1;
 	mlx_key_hook(env->win_scene, &key_hook, env);
 	mlx_loop_hook(env->mlx, &loop_hook, env);
