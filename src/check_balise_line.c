@@ -119,6 +119,6 @@ void		check_object_balise(t_env *env, t_buff line, t_pars *pars)
 		pars->balise = 4;
 	else
 		empty_lign(line);
-	if (pars->balise == 2 || pars->balise == 3)
+	if (pars->balise == 2 || pars->balise == 4)
 		pars->nbr_lign = 2;
 }
