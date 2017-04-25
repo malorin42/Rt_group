@@ -68,7 +68,7 @@ static void	pars_balise_obj(t_env *env, t_buff line, t_pars *pars)
 {
 	char	*value;
 
-	value = analyse_balise_lign(line.data, "type=");
+	value = analyse_balise_lign(line.data, "name=");
 	if (value != NULL)
 		check_object_name(env, value, pars);
 	value = analyse_balise_lign(line.data, "color=");

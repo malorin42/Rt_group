@@ -8,7 +8,7 @@
 	<decoupe/>
 <Object/>
 
-<Object> name=Plane; color=blue; gloss=0.3;
+<Object> name=Pane; color=blue; gloss=0.3;
 	Pos 		{0.0 	0.0 	-20.0}
 	Rot			{-45.0	0.0		0.0}
 	Radius 		{0.0}
@@ -28,4 +28,5 @@
 	<Ambiant>			{0.1}
 	<Aliaising> 	 	OFF;
 	<Direct Light>  	ON;
+	<Color Effect>		Cartoon;
 <HEAD/>
