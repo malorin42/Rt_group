@@ -4,7 +4,6 @@ static void		color_pixel_image(t_color color, int pixel_start,
 	t_image *image)
 {
 	int			pixel_end;
-	int			i;
 
 	pixel_end = pixel_start + image->opp;
 	while (pixel_start < pixel_end)
@@ -24,5 +23,4 @@ void			color_standard(t_env *env, t_double3 color, int x, int y, int index)
 	rgb_color.b.g = 255 * max_double(0, min_double(1, color.y));
 	rgb_color.b.b = 255 * max_double(0, min_double(1, color.z));
 	color_pixel_image(rgb_color, (WIDTH * y + x) * env->img[index]->opp, env->img[index]);
-	// mlx_pixel_put(env->mlx, env->win_scene, x, y, 0x00FFFFFF);
 }

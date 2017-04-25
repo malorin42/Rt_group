@@ -9,16 +9,20 @@
 # include <pthread.h>
 
 # define WIDTH 1200
-# define HEIGHT 900
+# define HEIGHT 800
 # define FOV 30
 # define DEPTH_MAX 5
-# define THREAD 24
+# define THREAD 8
 
 	 // Key pour Linux 
 // # define KEY_ESC 65307
 
 	// Key pour Mac 
 # define KEY_ESC 53
+# define L_ARROW 123
+# define U_ARROW 126
+# define R_ARROW 124
+# define D_ARROW 125
 
 # define PI 3.14159265
 
@@ -117,13 +121,21 @@ typedef struct			s_pars
 	char				**error_mess;
 }						t_pars;
  
+typedef struct 			s_menu
+{
+	int 				menu_lvl;
+	int 				index;
+}						t_menu;
+
 typedef struct          s_env
 {
     void                *mlx;
     void                *win_scene;
+    void				*win_menu;
     t_image             *img[THREAD];
+    t_image				*img_menu;
     t_scene             *scene;
-    // int					i_img;
+    t_menu				*menu;
     pthread_mutex_t		my_mutex;
     pthread_cond_t		cond;
     int                 nbr_obj;
@@ -205,7 +217,20 @@ void					get_nearest_plane(t_vector ray, t_object *plane, t_surface **surface);
 void					get_nearest_cylinder(t_vector ray, t_object *cylinder, t_surface **surface);
 void					get_nearest_cone(t_vector ray, t_object *cone, t_surface **surface);
 
+t_image					*ft_new_image(void *mlx, int width, int height, int thread);
+
+/*
+** Fonction multi_thread
+*/
+
 void    				multi_threading(t_env *env);
+
+/*
+** Fonction menu
+*/
+
+int						key_menu(int keycode, t_env *env);
+void					init_menu(t_env *env);
 
 #endif
 

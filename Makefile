@@ -10,7 +10,7 @@ OBJ += obj/check_color_obj.o obj/check_balise_line.o obj/add_param.o obj/pars_sp
 OBJ += obj/test_pars_tools2.o obj/color.o obj/cone.o obj/cylinder.o obj/plane.o obj/sphere.o
 OBJ += obj/raytracer.o obj/rotation.o obj/render.o obj/intersect.o
 OBJ += obj/reflexion.o obj/refraction.o obj/hooks.o obj/pars_head_value.o
-OBJ += obj/intersect_tools.o obj/math.o obj/vector.o obj/multi_threading.o
+OBJ += obj/intersect_tools.o obj/math.o obj/vector.o obj/multi_threading.o obj/init_menu.o obj/ft_new_image.o
 
 LIBFT = ./libft/libft.a
 
