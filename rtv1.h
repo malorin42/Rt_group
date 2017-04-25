@@ -205,6 +205,7 @@ int						solve_quadratic(double a, double b, double c, double *distance);
 t_double3				rotation(t_double3 point, t_double3 angles, int inverse);
 
 t_double3				color_reflected(t_vector ray, t_scene *scene, t_surface *surface, int depth);
+t_double3				reflect(t_double3 incidence, t_double3 normal);
 t_double3				color_refracted(t_vector ray, t_scene *scene,t_surface *surface, int depth);
 t_double3				raytracer(t_vector ray, t_scene *scene, t_object *to_ignore, int depth);
 t_surface				*intersect(t_vector ray, t_scene *scene, t_object *to_ignore);
