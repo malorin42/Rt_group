@@ -11,16 +11,17 @@ OBJ += obj/test_pars_tools2.o obj/color.o obj/cone.o obj/cylinder.o obj/plane.o 
 OBJ += obj/raytracer.o obj/rotation.o obj/render.o obj/intersect.o
 OBJ += obj/reflexion.o obj/refraction.o obj/hooks.o obj/pars_head_value.o
 OBJ += obj/intersect_tools.o obj/math.o obj/vector.o obj/multi_threading.o obj/init_menu.o obj/ft_new_image.o
+OBJ += obj/render_menu.o obj/first_menu.o obj/third_menu.o
 
 LIBFT = ./libft/libft.a
 
-# LIBMLX = -L./minilibx/ -lmlx_Linux -L/usr/lib/x86_64-linux-gnu/ -lXext -lX11 -lm -lpthread
-LIBMLX = ./libmlx.a -framework OPENGL -framework Appkit -lpthread
+LIBMLX = -L./minilibx/ -lmlx_Linux -L/usr/lib/x86_64-linux-gnu/ -lXext -lX11 -lm -lpthread
+# LIBMLX = ./libmlx.a -framework OPENGL -framework Appkit -lpthread
 
 all: obj $(NAME)
 
 $(NAME): $(OBJ)
-#	@$(MAKE) -s -C ./libft/
+	@$(MAKE) -s -C ./libft/
 	@$(GCC) $(CFLAGS) -o $@ $+ $(LIBFT) $(LIBMLX)
 	@echo "\|/        "
 	@echo "-o------.  "

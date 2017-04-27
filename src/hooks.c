@@ -19,8 +19,17 @@ int				loop_hook(t_env *env)
 {
 	int 		i;
 
-	if (env->render == 1)
-		mlx_put_image_to_window(env->mlx, env->win_menu, env->img_menu, 0, 0);
+	if(env->menu->render == 0)
+	{
+		render_menu(env);
+		if(env->menu->menu_lvl == 0)
+			first_menu(env);
+		// if(env->menu->menu_lvl = 1)
+			// second_menu(env);
+		if(env->menu->menu_lvl = 2)
+			third_menu(env);
+		env->menu->render = 1;
+	}
 	if (env->render == 1)
 	{
 		i = 0;
