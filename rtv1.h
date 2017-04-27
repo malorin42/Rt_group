@@ -2,8 +2,8 @@
 # define RTV1_H
 
 # include "libft/libft.h"
-// # include <mlx.h>
-# include "minilibx/mlx.h"
+# include <mlx.h>
+// # include "minilibx/mlx.h"
 # include <math.h>
 # include <stdio.h>
 # include <pthread.h>
@@ -16,14 +16,15 @@
 # define THREAD 8
 
 	 // Key pour Linux 
-# define KEY_ESC 65307
+// # define KEY_ESC 65307
 
 	// Key pour Mac 
-// # define KEY_ESC 53
-// # define L_ARROW 123
-// # define U_ARROW 126
-// # define R_ARROW 124
-// # define D_ARROW 125
+# define KEY_ESC 53
+# define KEY_ENTER 36
+# define L_ARROW 123
+# define U_ARROW 126
+# define R_ARROW 124
+# define D_ARROW 125
 
 # define PI 3.14159265
 
@@ -235,6 +236,7 @@ void    				multi_threading(t_env *env);
 int						key_menu(int keycode, t_env *env);
 void					init_menu(t_env *env);
 void					first_menu(t_env *env);
+void					third_menu(t_env *env);
 void					render_menu(t_env *env);
 
 #endif

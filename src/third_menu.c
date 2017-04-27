@@ -1,6 +1,7 @@
 #include "../rtv1.h"
 
-void	third_menu(t_env *env){
+void	third_menu(t_env *env)
+{
 	DIR				*flux;
 	struct dirent	*dir;
 	int 			y;
@@ -8,7 +9,7 @@ void	third_menu(t_env *env){
 	y = 300;
 	flux = opendir("./scenes");
 	mlx_string_put(env->mlx, env->win_menu, 352, 130, 0xF00D532, "Liste des scenes");
-	while(dir = readdir(flux))
+	while((dir = readdir(flux)))
 	{
 		if (ft_strcmp(dir->d_name, "..") != 0 && ft_strcmp(dir->d_name, ".") != 0)
 		{

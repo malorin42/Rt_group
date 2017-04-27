@@ -15,8 +15,8 @@ OBJ += obj/render_menu.o obj/first_menu.o obj/third_menu.o
 
 LIBFT = ./libft/libft.a
 
-LIBMLX = -L./minilibx/ -lmlx_Linux -L/usr/lib/x86_64-linux-gnu/ -lXext -lX11 -lm -lpthread
-# LIBMLX = ./libmlx.a -framework OPENGL -framework Appkit -lpthread
+# LIBMLX = -L./minilibx/ -lmlx_Linux -L/usr/lib/x86_64-linux-gnu/ -lXext -lX11 -lm -lpthread
+LIBMLX = ./libmlx.a -framework OPENGL -framework Appkit -lpthread
 
 all: obj $(NAME)
 
