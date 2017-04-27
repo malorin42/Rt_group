@@ -235,8 +235,7 @@ void    				multi_threading(t_env *env);
 
 int						key_menu(int keycode, t_env *env);
 void					init_menu(t_env *env);
-void					first_menu(t_env *env);
-void					third_menu(t_env *env);
+void					draw_menu(t_env *env);
 void					render_menu(t_env *env);
 
 #endif

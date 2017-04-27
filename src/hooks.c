@@ -49,13 +49,7 @@ int				loop_hook(t_env *env)
 	int 		i;
 
 	mlx_clear_window(env->mlx, env->win_menu);
-	// render_menu(env);
-	if(env->menu->menu_lvl == 0)
-		first_menu(env);
-	// if(env->menu->menu_lvl = 1)
-		// second_menu(env);
-	if(env->menu->menu_lvl == 2)
-		third_menu(env);
+	draw_menu(env);
 	if (env->render == 1)
 	{
 		i = 0;
