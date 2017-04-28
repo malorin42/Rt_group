@@ -91,8 +91,9 @@ typedef struct			s_object
 	double				reflex;
 	double				transparency;
 	int					dcp;
-	t_double3			dcp_min;
-	t_double3			dcp_max;
+	t_double2			dcp_x;
+	t_double2			dcp_y;
+	t_double2			dcp_z;
 	struct	s_object	*next;
 }						t_object;
 

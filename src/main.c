@@ -68,7 +68,7 @@ int				main(int argc, char const **argv)
 	env = env_init();
 	init_menu(env, argv[1]);
 	check_files(fd, env);
-	// print_object(&env->scene->object, &env->scene->light);
+	print_object(&env->scene->object, &env->scene->light);
 	close(fd);
 	mlx_loop(env->mlx);
 	return (0);

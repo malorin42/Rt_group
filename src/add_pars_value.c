@@ -23,7 +23,18 @@ void		add_value(t_env *env, t_double3 *values, int i)
 	else if (i == 2)
 		tmp->radius = values->x;
 	else if (i == 4)
-		tmp->dcp_min = *values;
+	{
+		tmp->dcp_x.x = values->x;
+		tmp->dcp_x.y = values->y;
+	}
 	else if (i == 5)
-		tmp->dcp_max = *values;
+	{
+		tmp->dcp_y.x = values->x;
+		tmp->dcp_y.y = values->y;
+	}
+	else if (i == 6)
+	{
+		tmp->dcp_z.x = values->x;
+		tmp->dcp_z.y = values->y;
+	}
 }

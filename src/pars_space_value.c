@@ -1,15 +1,29 @@
 #include "../rtv1.h"
 
+static void	pars_object_line4(t_env *env, t_buff line, int i)
+{
+	t_double3	values;
+
+	if (ft_strstr(line.data, "Z") != NULL)
+	{
+		check_pars_nbr_value(line, 2);
+		values = pick_values(line, 2);
+		add_value(env, &values, i);
+	}
+	else
+		ft_error("Error : Wrong Value Name.\n");
+}
+
 static void	pars_object_line3(t_env *env, t_buff line, int i)
 {
 	t_double3	values;
 
 	if (i == 4)
 	{
-		if (ft_strstr(line.data, "Min") != NULL)
+		if (ft_strstr(line.data, "X") != NULL)
 		{
-			check_pars_nbr_value(line, 3);
-			values = pick_values(line, 3);
+			check_pars_nbr_value(line, 2);
+			values = pick_values(line, 2);
 			add_value(env, &values, i);
 		}
 		else
@@ -17,15 +31,16 @@ static void	pars_object_line3(t_env *env, t_buff line, int i)
 	}
 	if (i == 5)
 	{
-		if (ft_strstr(line.data, "Max") != NULL)
+		if (ft_strstr(line.data, "Y") != NULL)
 		{
-			check_pars_nbr_value(line, 3);
-			values = pick_values(line, 3);
+			check_pars_nbr_value(line, 2);
+			values = pick_values(line, 2);
 			add_value(env, &values, i);
 		}
 		else
 			ft_error("Error : Wrong Value Name.\n");
 	}
+	i == 6 ? pars_object_line4(env, line, i) : 0;
 }
 
 static void	pars_object_line2(t_env *env, t_buff line, int i)
@@ -43,7 +58,7 @@ static void	pars_object_line2(t_env *env, t_buff line, int i)
 		else
 			ft_error("Error : Wrong Value Name.\n");
 	}
-	if (i == 3 || i == 6)
+	if (i == 3 || i == 7)
 		test_decoup_balise(line.data, i);
 	pars_object_line3(env, line, i);
 }
