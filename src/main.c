@@ -21,7 +21,6 @@ static t_env	*env_init(void)
 	env->scene->ambiant = 0.02;
 	env->scene->aliaising = 0;
 	env->scene->direct_light = 1;
-	env->render = 1;
 	pthread_mutex_init(&env->my_mutex, NULL);
     pthread_cond_init(&env->cond, NULL);
 	mlx_key_hook(env->win_scene, &key_hook, env);
@@ -67,9 +66,9 @@ int				main(int argc, char const **argv)
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		ft_error("Error : File not found.\n");
 	env = env_init();
-	init_menu(env);
+	init_menu(env, argv[1]);
 	check_files(fd, env);
-	print_object(&env->scene->object, &env->scene->light);
+	// print_object(&env->scene->object, &env->scene->light);
 	close(fd);
 	mlx_loop(env->mlx);
 	return (0);

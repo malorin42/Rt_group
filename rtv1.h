@@ -127,7 +127,8 @@ typedef struct 			s_menu
 {
 	int 				menu_lvl;
 	int 				index;
-	int 				render;
+	int					render;
+	char 				*path;
 }						t_menu;
 
 typedef struct          s_env
@@ -142,7 +143,6 @@ typedef struct          s_env
     pthread_mutex_t		my_mutex;
     pthread_cond_t		cond;
     int                 nbr_obj;
-    int                 render;
     int                 count;
 }                       t_env;
 
@@ -234,7 +234,7 @@ void    				multi_threading(t_env *env);
 */
 
 int						key_menu(int keycode, t_env *env);
-void					init_menu(t_env *env);
+void					init_menu(t_env *env, const char *argv);
 void					draw_menu(t_env *env);
 void					render_menu(t_env *env);
 

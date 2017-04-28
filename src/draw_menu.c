@@ -63,5 +63,7 @@ void			draw_menu(t_env *env)
 	else if (env->menu->menu_lvl == 2)
 		draw_scene_menu(env);
 	// else if (env->menu->menu_lvl == 3)
-		// draw_object_datas(t_object / t_light);
+		// draw_object_datas(t_object);
+	// else uf (env->menu->menu_lvl == 4)
+		// draw_light_datas(t_light)
 }
