@@ -55,7 +55,7 @@ static void		draw_main_menu(t_env *env)
 
 void			draw_menu(t_env *env)
 {
-	render_menu(env);
+	// render_menu(env);
 	if (env->menu->menu_lvl == 0)
 		draw_main_menu(env);
 	else if (env->menu->menu_lvl == 1)

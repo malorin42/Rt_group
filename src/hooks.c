@@ -118,10 +118,10 @@ int				loop_hook(t_env *env)
 	int 		i;
 
 	mlx_clear_window(env->mlx, env->win_menu);
+	mlx_put_image_to_window(env->mlx, env->win_menu, env->menu->img->img, 0, 0);
 	draw_menu(env);
 	if (env->menu->render == 1)
 	{
-		ft_putendl("LETS GOOOOO");
 		i = 0;
 		multi_threading(env);
 		while (i < THREAD)
@@ -129,7 +129,6 @@ int				loop_hook(t_env *env)
 			mlx_put_image_to_window(env->mlx, env->win_scene, env->img[i]->img, 0, (HEIGHT / THREAD) * i);
 			i++;
 		}
-		
 		env->menu->render = 0;
 	}
 	return (0);

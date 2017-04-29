@@ -128,8 +128,9 @@ typedef struct 			s_menu
 {
 	int 				menu_lvl;
 	int 				index;
-	int					render;
 	char 				*path;
+	int 				render;
+	t_image				*img;
 }						t_menu;
 
 typedef struct          s_env
@@ -138,7 +139,6 @@ typedef struct          s_env
     void                *win_scene;
     void				*win_menu;
     t_image             *img[THREAD];
-    t_image				*img_menu;
     t_scene             *scene;
     t_menu				*menu;
     pthread_mutex_t		my_mutex;
