@@ -8,6 +8,7 @@ void			init_menu(t_env *env, const char *argv)
 	env->menu->index = 0;
 	env->menu->render = 1;
 	env->menu->menu_lvl = 0;
+	env->menu->i_page = 0;
 	env->menu->path = (char*)malloc(sizeof(char) * strlen("./scenes/") + strlen(argv));
 	env->menu->path = ft_strcpy(env->menu->path, argv);
 	env->menu->img = ft_new_image(env->mlx, 800, 1200, 1);

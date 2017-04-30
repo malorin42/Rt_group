@@ -11,7 +11,7 @@ OBJ += obj/test_pars_tools2.o obj/color.o obj/cone.o obj/cylinder.o obj/plane.o 
 OBJ += obj/raytracer.o obj/rotation.o obj/render.o obj/intersect.o
 OBJ += obj/reflexion.o obj/refraction.o obj/hooks.o obj/pars_head_value.o
 OBJ += obj/intersect_tools.o obj/math.o obj/vector.o obj/multi_threading.o obj/init_menu.o obj/ft_new_image.o
-OBJ += obj/render_menu.o obj/draw_menu.o
+OBJ += obj/render_menu.o obj/draw_menu.o obj/draw_scene_menu.o
 
 LIBFT = ./libft/libft.a
 

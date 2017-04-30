@@ -54,11 +54,6 @@ static void		key_enter_menu(t_env *env)
 	}
 	else if (env->menu->menu_lvl == 1)
 	{
-		env->menu->index == 0 ? env->menu->menu_lvl = 3 : 0;
-		env->menu->index == 1 ? env->menu->menu_lvl = 4 : 0;
-	}
-	else if (env->menu->menu_lvl == 2)
-	{
 		change_scene(env);
 		env->menu->menu_lvl = 0;
 		env->menu->index = 0;
@@ -71,17 +66,10 @@ static void		key_UpDown_menu(t_env *env, int keycode)
 	{
 		if (keycode == U_ARROW && env->menu->index > 0)
 			env->menu->index--;
-		else if (keycode == D_ARROW && env->menu->index < 2)
-			env->menu->index++;
-	}
-	else if (env->menu->menu_lvl == 1)
-	{
-		if (keycode == U_ARROW && env->menu->index > 0)
-			env->menu->index--;
 		else if (keycode == D_ARROW && env->menu->index < 1)
 			env->menu->index++;
 	}
-	else if (env->menu->menu_lvl == 2)
+	else if (env->menu->menu_lvl == 1)
 	{
 		if (keycode == U_ARROW)
 			env->menu->index--;
@@ -96,8 +84,6 @@ static void		key_esc_menu(t_env *env)
 		exit (0);
 	else if (env->menu->menu_lvl == 1 || env->menu->menu_lvl == 2)
 		env->menu->menu_lvl = 0;
-	else if (env->menu->menu_lvl == 3 || env->menu->menu_lvl == 4)
-		env->menu->menu_lvl = 1;
 	env->menu->index = 0;
 }
 

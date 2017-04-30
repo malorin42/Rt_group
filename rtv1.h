@@ -128,6 +128,7 @@ typedef struct 			s_menu
 {
 	int 				menu_lvl;
 	int 				index;
+	int 				i_page;
 	char 				*path;
 	int 				render;
 	t_image				*img;
@@ -238,6 +239,7 @@ int						key_menu(int keycode, t_env *env);
 void					init_menu(t_env *env, const char *argv);
 void					draw_menu(t_env *env);
 void					render_menu(t_env *env);
+void					draw_scene_menu(t_env *env);
 
 #endif
 
