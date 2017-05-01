@@ -25,13 +25,12 @@ void			neg_obj_add(t_negobj **first, t_negobj *new)
 	*first = new;
 }
 
-t_negobj		*neg_obj_new(int type)
+t_negobj		*neg_obj_new()
 {
 	t_negobj	*object;
 
 	if ((object = (t_negobj*)malloc(sizeof(t_negobj))) == NULL)
 		ft_error("Error : malloc() failed.\n");
-	object->type = type;
 	object->pos = (t_double3){0, 0, 0};
 	object->rotation = (t_double3){0, 0, 0};
 	object->radius = 0;
@@ -67,14 +66,16 @@ void			object_add(t_object **first, t_object *new)
 	*first = new;
 }
 
-void			print_object(t_object **first, t_light **first_l)
+void			print_object(t_object **first, t_light **first_l, t_negobj **first_n)
 {
 	t_object	*tmp;
 	t_light		*tmp_l;
+	t_negobj	*tmp_n;
 	int			i;
 
 	tmp = *first;
 	tmp_l = *first_l;
+	tmp_n = *first_n;
 	i = 0;
 	while (tmp)
 	{
@@ -111,5 +112,14 @@ void			print_object(t_object **first, t_light **first_l)
 		printf("\tROTATION :\t(%.2f, %.2f, %.2f)\n", tmp_l->dir.x, tmp_l->dir.y, tmp_l->dir.z);
 		printf("\tCOLOR :\t\t(%.2f, %.2f, %.2f)\n", tmp_l->color.x, tmp_l->color.y, tmp_l->color.z);
 		tmp_l = tmp_l->next;
+	}
+	i = 0;
+	while (tmp_n)
+	{
+		printf("NEG_OBJ %d :\n", i++);		
+		printf("\tPOSITION :\t(%.2f, %.2f, %.2f)\n", tmp_n->pos.x, tmp_n->pos.y, tmp_n->pos.z);
+		printf("\tROTATION :\t(%.2f, %.2f, %.2f)\n", tmp_n->rotation.x, tmp_n->rotation.y, tmp_n->rotation.z);
+		printf("\tRADIUS :\t%.2f\n", tmp_n->radius);
+		tmp_n = tmp_n->next;
 	}
 }

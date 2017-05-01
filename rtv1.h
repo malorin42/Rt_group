@@ -81,7 +81,6 @@ typedef struct			s_light
 
 typedef struct 			s_negobj
 {
-	int 				type;
 	t_double3 			pos;
 	t_double3 			rotation;
 	double 				radius;
@@ -183,7 +182,7 @@ void					check_object_name(t_env *env, char *name, t_pars *pars);
 void					check_color_obj(t_object **object, char *value);
 void					check_color_light(t_light **light, char *value);
 void					check_plane_obj(t_env *env, t_buff line, int i);
-void					print_object(t_object **first, t_light **first_l);
+void					print_object(t_object **first, t_light **first_l, t_negobj **first_n);
 void					pars_camera_line(t_env *env, t_buff line, int i);
 void					pars_light_line(t_env *env, t_buff line, int i);
 void					pars_head_value(t_env *env, t_buff line);
@@ -192,11 +191,10 @@ void					pars_object_line(t_env *env, t_buff line, int i);
 void					pars_neg_obj_line(t_env *env, t_buff line, int i);
 
 void					neg_obj_add(t_negobj **first, t_negobj *new);
-t_negobj				*neg_obj_new(int type);
+t_negobj				*neg_obj_new();
 void					init_light_obj(t_env *env, t_pars *pars, int obj, t_light **light);
 void					init_object(t_env *env, t_pars *pars, int obj, t_object **object);
-void					init_neg_obj(t_env *env, t_pars *pars, int obj,
-						t_negobj **neg_obj);
+void					init_neg_obj(t_env *env, t_pars *pars, t_negobj **neg_obj);
 void					object_add(t_object **first, t_object *new);
 t_object				*object_new(int type);
 void					light_add(t_light **first, t_light *new);

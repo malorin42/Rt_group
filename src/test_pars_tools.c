@@ -33,22 +33,6 @@ t_double3		pick_values(t_buff line, int nbr)
 	return (values);
 }
 
-void			check_neg_obj_name(t_env *env, char *name, t_pars *pars)
-{
-	if (ft_strcmp(name, "Sphere") == 0)
-		init_neg_obj(env, pars, SPHERE, &env->scene->negobj);
-	else if (ft_strcmp(name, "Plane") == 0)
-		init_neg_obj(env, pars, PLANE, &env->scene->negobj);
-	else if (ft_strcmp(name, "Cylinder") == 0)
-		init_neg_obj(env, pars, CYLINDER, &env->scene->negobj);
-	else if (ft_strcmp(name, "Cone") == 0)
-		init_neg_obj(env, pars, CONE, &env->scene->negobj);
-	else
-		ft_error("Error : Wrong object name.\n");
-	if (name != NULL)
-		free(name);
-}
-
 void			check_object_name(t_env *env, char *name, t_pars *pars)
 {
 	if (ft_strcmp(name, "Sphere") == 0)

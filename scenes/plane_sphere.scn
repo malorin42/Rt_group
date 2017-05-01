@@ -1,11 +1,7 @@
-<Object> name=Cylinder; color=FFFFFF; gloss=0.8; decoupe=On;
+<Object> name=Cylinder; color=FFFFFF; gloss=0.8;
 	Pos 		{0.0 	0.0 	-15.0}
 	Rot			{-50.0	0.0		0.0}
 	Radius 		{2.0}
-	<decoupe>
-	Min			{0.15 	0.0		0.0}
-	Max			{0.0 	0.0		0.0}
-	<decoupe/>
 <Object/>
 
 <Object> name=Plane; color=blue; gloss=0.3;
