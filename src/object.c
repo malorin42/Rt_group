@@ -19,6 +19,25 @@ void			light_add(t_light **first, t_light *new)
 	*first = new;
 }
 
+void			neg_obj_add(t_negobj **first, t_negobj *new)
+{
+	new->next = *first;
+	*first = new;
+}
+
+t_negobj		*neg_obj_new(int type)
+{
+	t_negobj	*object;
+
+	if ((object = (t_negobj*)malloc(sizeof(t_negobj))) == NULL)
+		ft_error("Error : malloc() failed.\n");
+	object->type = type;
+	object->pos = (t_double3){0, 0, 0};
+	object->rotation = (t_double3){0, 0, 0};
+	object->radius = 0;
+	return (object);
+}
+
 t_object		*object_new(int type)
 {
 	t_object	*object;

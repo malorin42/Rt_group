@@ -117,6 +117,14 @@ void		check_object_balise(t_env *env, t_buff line, t_pars *pars)
 		pars->balise = 3;
 	else if (ft_strstr(line.data, "<Camera>") != NULL)
 		pars->balise = 4;
+	else if (ft_strstr(line.data, "<NegObj>") != NULL)
+	{
+		value = analyse_balise_lign(line.data, "name=");
+		if (value != NULL)
+			check_neg_obj_name(env, value, pars);
+		pars->nbr_lign = 3;
+		pars->balise = 5;
+	}
 	else
 		empty_lign(line);
 	if (pars->balise == 2 || pars->balise == 4)

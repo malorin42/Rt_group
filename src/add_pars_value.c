@@ -11,6 +11,19 @@ void		add_light_value(t_env *env, t_double3 *values, int i)
 		tmp->dir = *values;
 }
 
+void		add_value_neg(t_env *env, t_double3 *values, int i)
+{
+	t_negobj	*tmp;
+
+	tmp = env->scene->negobj;
+	if (i == 0)
+		tmp->pos = *values;
+	else if (i == 1)
+		tmp->rotation = *values;
+	else if (i == 2)
+		tmp->radius = values->x;
+}
+
 void		add_value(t_env *env, t_double3 *values, int i)
 {
 	t_object	*tmp;

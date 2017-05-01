@@ -18,6 +18,7 @@ static t_env	*env_init(void)
 	env->scene->camera = (t_vector){(t_double3){0, 0, 0}, (t_double3){0, 0, 0}};
 	env->scene->object = NULL;
 	env->scene->light = NULL;
+	env->scene->negobj = NULL;
 	env->scene->ambiant = 0.02;
 	env->scene->aliaising = 0;
 	env->scene->direct_light = 1;

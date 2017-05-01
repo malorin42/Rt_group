@@ -79,6 +79,15 @@ typedef struct			s_light
 	struct s_light		*next;
 }						t_light;
 
+typedef struct 			s_negobj
+{
+	int 				type;
+	t_double3 			pos;
+	t_double3 			rotation;
+	double 				radius;
+	struct s_negobj		*next;
+}						t_negobj;
+
 typedef struct			s_object
 {
 	int					type;
@@ -110,6 +119,7 @@ typedef struct			s_scene
 {
 	t_object			*object;
 	t_light				*light;
+	t_negobj			*negobj;
 	t_vector			camera;
 	double				ambiant;
 	int					aliaising;
@@ -155,6 +165,7 @@ t_double3				pick_values(t_buff line, int nbr);
 void					check_pars_nbr_value(t_buff line, int nbr);
 void					empty_lign(t_buff line);
 
+void					add_value_neg(t_env *env, t_double3 *values, int i);
 void					add_light_value(t_env *env, t_double3 *values, int i);
 void					add_double_param(t_buff line, char *type, t_object **object, char *value);
 void					add_OnOff_value(t_object **object, char *value, t_pars *pars);
@@ -162,6 +173,7 @@ void					add_value(t_env *env, t_double3 *values, int i);
 
 void					check_object_balise(t_env *env, t_buff line, t_pars *pars);
 void					check_files(int fd, t_env *env);
+void					check_neg_obj_name(t_env *env, char *name, t_pars *pars);
 void					check_sphere_obj(t_env *env, t_buff line, int i);
 void					check_cylinder_obj(t_env *env, t_buff line, int i);
 void					check_cone_obj(t_env *env, t_buff line, int i);
@@ -177,10 +189,14 @@ void					pars_light_line(t_env *env, t_buff line, int i);
 void					pars_head_value(t_env *env, t_buff line);
 void					test_decoup_balise(char *line, int i);
 void					pars_object_line(t_env *env, t_buff line, int i);
+void					pars_neg_obj_line(t_env *env, t_buff line, int i);
 
-
+void					neg_obj_add(t_negobj **first, t_negobj *new);
+t_negobj				*neg_obj_new(int type);
 void					init_light_obj(t_env *env, t_pars *pars, int obj, t_light **light);
 void					init_object(t_env *env, t_pars *pars, int obj, t_object **object);
+void					init_neg_obj(t_env *env, t_pars *pars, int obj,
+						t_negobj **neg_obj);
 void					object_add(t_object **first, t_object *new);
 t_object				*object_new(int type);
 void					light_add(t_light **first, t_light *new);

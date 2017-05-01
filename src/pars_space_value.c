@@ -120,6 +120,52 @@ void		pars_light_line(t_env *env, t_buff line, int i)
 	}
 }
 
+static void	pars_neg_obj_line2(t_env *env, t_buff line, int i)
+{
+	t_double3	values;
+
+	if (i == 1)
+	{
+		if (ft_strstr(line.data, "Rot") != NULL)
+		{
+			check_pars_nbr_value(line, 3);
+			values = pick_values(line, 3);
+			add_value_neg(env, &values, i);
+		}
+		else
+			ft_error("Error : Wrong Value Name.\n");
+	}
+}
+
+void		pars_neg_obj_line(t_env *env, t_buff line, int i)
+{
+	t_double3	values;
+
+	if (i == 0)
+	{
+		if (ft_strstr(line.data, "Pos") != NULL)
+		{
+			check_pars_nbr_value(line, 3);
+			values = pick_values(line, 3);
+			add_value_neg(env, &values, i);
+		}
+		else
+			ft_error("Error : Wrong Value Name.\n");
+	}
+	if (i == 2)
+	{
+		if (ft_strstr(line.data, "Radius") != NULL)
+		{
+			check_pars_nbr_value(line, 1);
+			values = pick_values(line, 1);
+			add_value_neg(env, &values, i);
+		}
+		else
+			ft_error("Error : Wrong Value Name.\n");
+	}
+	pars_neg_obj_line2(env, line, i);
+}
+
 void		pars_camera_line(t_env *env, t_buff line, int i)
 {
 	t_double3	values;
