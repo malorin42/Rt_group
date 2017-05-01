@@ -255,7 +255,6 @@ int						key_menu(int keycode, t_env *env);
 void					init_menu(t_env *env, const char *argv);
 void					draw_menu(t_env *env);
 void					render_menu(t_env *env);
-void					draw_scene_menu(t_env *env);
 
 #endif
 
