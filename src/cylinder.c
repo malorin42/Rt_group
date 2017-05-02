@@ -18,30 +18,20 @@ static int		intersect_cylinder(t_vector ray, t_object *cylinder,
 }
 
 void			get_nearest_cylinder(t_vector ray, t_object *cylinder,
-	t_surface *surface)
+	t_surface *surface, t_scene *scene)
 {
 	t_double2		distance;
 	t_surface		*tmp;
 
-	ray = transform_ray(ray, cylinder);
-	if (intersect_cylinder(ray, cylinder, &distance))
+	if (intersect_cylinder(transform_ray(ray, cylinder), cylinder, &distance))
 	{
-		if (cylinder->dcp)
+		tmp = cut_object(ray, cylinder, distance, scene);
+		if (tmp->object != NULL && (surface->distance == -1 || surface->distance > tmp->distance))
 		{
-			tmp = cut_object(ray, cylinder, &distance);
-			if (tmp->object != NULL && (surface->distance == -1 || surface->distance > tmp->distance))
-			{
-				surface->object = tmp->object;
-				surface->distance = tmp->distance;
-				surface->normal = tmp->normal;
-				free(tmp);
-			}
-		}
-		else if (surface->distance == -1 || surface->distance > min_positive(distance.x, distance.y))
-		{
-			surface->object = cylinder;
-			surface->distance = min_positive(distance.x, distance.y);
-			surface->normal = get_normal(cylinder, find_point(ray.pos, ray.dir, surface->distance));
+			surface->object = tmp->object;
+			surface->distance = tmp->distance;
+			surface->normal = tmp->normal;
+			free(tmp);
 		}
 	}
 }

@@ -4,6 +4,7 @@ t_double3			get_normal(t_object *object, t_double3 point)
 {
 	t_double3		normal;
 
+	normal = (t_double3){0, 0, 1};
 	if (object->type == SPHERE)
 		normal = point;
 	if (object->type == CYLINDER)
@@ -27,13 +28,13 @@ t_surface			*intersect(t_vector ray, t_scene *scene,
 	while (tmp)
 	{
 		if (tmp != to_ignore && tmp->type == SPHERE)
-			get_nearest_sphere(ray, tmp, surface);
+			get_nearest_sphere(ray, tmp, surface, scene);
 		if (tmp != to_ignore && tmp->type == PLANE)
-			get_nearest_plane(ray, tmp, surface);
+			get_nearest_plane(ray, tmp, surface, scene);
 		if (tmp != to_ignore && tmp->type == CYLINDER)
-			get_nearest_cylinder(ray, tmp, surface);
+			get_nearest_cylinder(ray, tmp, surface, scene);
 		if (tmp != to_ignore && tmp->type == CONE)
-			get_nearest_cone(ray, tmp, surface);
+			get_nearest_cone(ray, tmp, surface, scene);
 		tmp = tmp->next;
 	}
 	if (surface->object != NULL)

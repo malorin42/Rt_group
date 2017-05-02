@@ -21,30 +21,20 @@ static int			intersect_cone(t_vector ray, t_object *cone,
 }
 
 void				get_nearest_cone(t_vector ray, t_object *cone,
-	t_surface *surface)
+	t_surface *surface, t_scene *scene)
 {
 	t_double2			distance;
 	t_surface			*tmp;
 
-	ray = transform_ray(ray, cone);
-	if (intersect_cone(ray, cone, &distance))
+	if (intersect_cone(transform_ray(ray, cone), cone, &distance))
 	{
-		if (cone->dcp)
+		tmp = cut_object(ray, cone, distance, scene);
+		if (tmp->object != NULL && (surface->distance == -1 || surface->distance > tmp->distance))
 		{
-			tmp = cut_object(ray, cone, &distance);
-			if (tmp->object != NULL && (surface->distance == -1 || surface->distance > tmp->distance))
-			{
-				surface->object = tmp->object;
-				surface->distance = tmp->distance;
-				surface->normal = tmp->normal;
-				free(tmp);
-			}
-		}
-		else if (surface->distance == -1 || surface->distance > min_positive(distance.x, distance.y))
-		{
-			surface->object = cone;
-			surface->distance = min_positive(distance.x, distance.y);
-			surface->normal = get_normal(cone, find_point(ray.pos, ray.dir, surface->distance));
+			surface->object = tmp->object;
+			surface->distance = tmp->distance;
+			surface->normal = tmp->normal;
+			free(tmp);
 		}
 	}
 }

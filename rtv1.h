@@ -236,14 +236,14 @@ void					*render(void *env);
 void					color_standard(t_env *env, t_double3 color, int x, int y, int index);
 void					get_surface_normal(t_surface *surface);
 
-void					get_nearest_sphere(t_vector ray, t_object *sphere, t_surface *surface);
-void					get_nearest_plane(t_vector ray, t_object *plane, t_surface *surface);
-void					get_nearest_cylinder(t_vector ray, t_object *cylinder, t_surface *surface);
-void					get_nearest_cone(t_vector ray, t_object *cone, t_surface *surface);
+void					get_nearest_sphere(t_vector ray, t_object *sphere, t_surface *surface, t_scene *scene);
+void					get_nearest_plane(t_vector ray, t_object *plane, t_surface *surface, t_scene *scene);
+void					get_nearest_cylinder(t_vector ray, t_object *cylinder, t_surface *surface, t_scene *scene);
+void					get_nearest_cone(t_vector ray, t_object *cone, t_surface *surface, t_scene *scene);
 
 int						intersect_plane(t_vector ray, t_object *plane, double *distance);
-t_surface				*cut_object(t_vector ray, t_object *object, t_double2 *distance);
-int						is_between_cuts(t_double3 point, t_object *object);
+t_surface				*cut_object(t_vector ray_r, t_object *object, t_double2 distance, t_scene *scene);
+int						is_between_cuts(t_vector ray_s, double distance, t_object *object);
 t_double3				get_normal(t_object *object, t_double3 point);
 
 t_image					*ft_new_image(void *mlx, int width, int height, int thread);

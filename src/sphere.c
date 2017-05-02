@@ -16,30 +16,20 @@ static int			intersect_sphere(t_vector ray, t_object *sphere,
 }
 
 void				get_nearest_sphere(t_vector ray, t_object *sphere,
-	t_surface *surface)
+	t_surface *surface, t_scene *scene)
 {
 	t_double2		distance;
 	t_surface		*tmp;
 
-	ray = transform_ray(ray, sphere);
-	if (intersect_sphere(ray, sphere, &distance))
+	if (intersect_sphere(transform_ray(ray, sphere), sphere, &distance))
 	{
-		if (sphere->dcp)
+		tmp = cut_object(ray, sphere, distance, scene);
+		if (tmp->object != NULL && (surface->distance == -1 || surface->distance > tmp->distance))
 		{
-			tmp = cut_object(ray, sphere, &distance);
-			if (tmp->object != NULL && (surface->distance == -1 || surface->distance > tmp->distance))
-			{
-				surface->object = tmp->object;
-				surface->distance = tmp->distance;
-				surface->normal = tmp->normal;
-				free(tmp);
-			}
-		}
-		else if (surface->distance == -1 || surface->distance > min_positive(distance.x, distance.y))
-		{
-			surface->object = sphere;
-			surface->distance = min_positive(distance.x, distance.y);
-			surface->normal = get_normal(sphere, find_point(ray.pos, ray.dir, surface->distance));
+			surface->object = tmp->object;
+			surface->distance = tmp->distance;
+			surface->normal = tmp->normal;
+			free(tmp);
 		}
 	}
 }
