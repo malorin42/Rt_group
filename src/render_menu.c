@@ -22,15 +22,15 @@ static void		draw_background(t_env *env, int x, int y)
 	rgb_color.b.r = 34;
 	rgb_color.b.g = 45;
 	rgb_color.b.b = 74;
-	if (y <= 50 || x <= 50 || y >= 1150 || x >= 750)
+	if (y <= 25 || x <= 25 || y >= 575 || x >= 475)
 		color_pixel_menu_image(rgb_color, (800 * y + x) * env->menu->img->opp, env->menu->img);
-	if ((x >= 300 && x <= 305) && y >= 100 && y < 150)
+	if ((x >= 150 && x <= 155) && y >= 100 && y < 150)
 		color_pixel_menu_image(rgb_color, (800 * y + x) * env->menu->img->opp, env->menu->img);
-	if ((x >= 495 && x <= 500) && y >= 100 && y < 150)
+	if ((x >= 345 && x <= 350) && y >= 100 && y < 150)
 		color_pixel_menu_image(rgb_color, (800 * y + x) * env->menu->img->opp, env->menu->img);
-	if ((x >= 300 && x <= 500) && y >= 100 && y < 105)
+	if ((x >= 150 && x <= 350) && y >= 100 && y < 105)
 		color_pixel_menu_image(rgb_color, (800 * y + x) * env->menu->img->opp, env->menu->img);
-	if ((x >= 300 && x <= 500) && y >= 150 && y < 155)
+	if ((x >= 150 && x <= 350) && y >= 150 && y < 155)
 		color_pixel_menu_image(rgb_color, (800 * y + x) * env->menu->img->opp, env->menu->img);
 }
 
@@ -40,10 +40,10 @@ void	render_menu(t_env *env)
 	int 	y;
 
 	y = 0;
-	while(y < 1200)
+	while(y < 600)
 	{
 		x = 0;
-		while(x < 800)
+		while(x < 500)
 		{
 			draw_background(env, x, y);
 			x++;

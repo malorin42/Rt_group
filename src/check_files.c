@@ -65,11 +65,10 @@ void			check_files(int fd, t_env *env)
 	int			j;
 
 	j = 0;
-	ft_putendl("lol");
 	pars = init_parser();
 	while (get_next_line(fd, &line) > 0)
 	{
-		ft_putendl(line.data);
+		// ft_putendl(line.data);
 		if (pars->balise == 0)
 			check_object_balise(env, line, pars);
 		else if (pars->balise >= 1)

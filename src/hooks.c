@@ -32,7 +32,7 @@ static void		change_scene(t_env *env)
 	{
 		if (ft_strcmp(dir->d_name, "..") != 0 && ft_strcmp(dir->d_name, ".") != 0)
 			i++;
-		if (i == env->menu->index + 1)
+		if (i == env->menu->index + (env->menu->i_page * 5) + 1)
 		{
 			env->menu->path = (char*)malloc(sizeof(char) * strlen("./scenes/") + strlen(dir->d_name));
 			env->menu->path = ft_strcat(ft_strcat(env->menu->path, "./scenes/"), dir->d_name);
@@ -46,10 +46,11 @@ static void		key_enter_menu(t_env *env)
 	if (env->menu->menu_lvl == 0)
 	{
 		env->menu->index == 0 ? refresh(env) : 0;
-		if (env->menu->index > 0)
+		if (env->menu->index == 1)
 		{
-			env->menu->menu_lvl = env->menu->index;
+			env->menu->menu_lvl = 1;
 			env->menu->index = 0;
+			env->menu->i_page = 0;
 		}
 	}
 	else if (env->menu->menu_lvl == 1)
@@ -66,16 +67,23 @@ static void		key_UpDown_menu(t_env *env, int keycode)
 	{
 		if (keycode == U_ARROW && env->menu->index > 0)
 			env->menu->index--;
-		else if (keycode == D_ARROW && env->menu->index < 1)
+		else if (keycode == D_ARROW && env->menu->index < 2)
 			env->menu->index++;
 	}
 	else if (env->menu->menu_lvl == 1)
 	{
-		if (keycode == U_ARROW)
+		if (keycode == U_ARROW && env->menu->index > 0)
 			env->menu->index--;
-		else if (keycode == D_ARROW)
+		else if (keycode == D_ARROW && env->menu->i_page == env->menu->page_max)
+		{
+			if (env->menu->index < (env->menu->page_max * 5) - env->menu->nbr_scn)
+				env->menu->index++;
+		}
+		else if (keycode == D_ARROW && env->menu->index < 4)
 			env->menu->index++;
 	}
+	ft_putnbr(env->menu->index);
+	ft_putendl("");
 }
 
 static void		key_esc_menu(t_env *env)
@@ -87,6 +95,25 @@ static void		key_esc_menu(t_env *env)
 	env->menu->index = 0;
 }
 
+static void		key_LeftRight_menu(t_env *env, int keycode)
+{
+	if (env->menu->menu_lvl == 1)
+	{
+		if (keycode == R_ARROW && env->menu->i_page < env->menu->page_max)
+		{
+			env->menu->i_page++;
+			env->menu->index = 0;
+		}
+		else if (keycode == L_ARROW && env->menu->i_page > 0)
+		{
+			env->menu->i_page--;
+			env->menu->index = 0;
+		}
+	}
+	ft_putnbr(env->menu->index);
+	ft_putendl("");
+}
+
 int				key_hook(int keycode, t_env *env)
 {
 	// printf("%i\n", keycode);
@@ -96,6 +123,8 @@ int				key_hook(int keycode, t_env *env)
 		key_enter_menu(env);
 	if (keycode == U_ARROW || keycode == D_ARROW)
 		key_UpDown_menu(env, keycode);
+	if (keycode == L_ARROW || keycode == R_ARROW)
+		key_LeftRight_menu(env, keycode);
 	return (0);
 }
 
