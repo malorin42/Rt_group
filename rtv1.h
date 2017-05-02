@@ -138,6 +138,9 @@ typedef struct 			s_menu
 	int 				menu_lvl;
 	int 				index;
 	int 				i_page;
+	int 				page_max;
+	int 				nbr_scn;
+	char 				**tab_scn;
 	char 				*path;
 	int 				render;
 	t_image				*img;
@@ -249,6 +252,7 @@ void    				multi_threading(t_env *env);
 ** Fonction menu
 */
 
+int						wrong_files(char const *str);
 int						key_menu(int keycode, t_env *env);
 void					init_menu(t_env *env, const char *argv);
 void					draw_menu(t_env *env);
