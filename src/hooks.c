@@ -6,7 +6,6 @@ static void		refresh(t_env *env)
 	int		i;
 
 	i = 0;
-	ft_putendl(env->menu->path);
 	if ((fd = open(env->menu->path, O_RDONLY)) < 0)
 		ft_error("Error : File not found.\n");
 	env->scene->object = NULL;
@@ -22,23 +21,18 @@ static void		refresh(t_env *env)
 
 static void		change_scene(t_env *env)
 {
-	DIR				*flux;
-	struct dirent	*dir;
 	int 			i;
 
 	i = 0;
-	flux = opendir("./scenes");
-	while((dir = readdir(flux)))
+	while(env->menu->tab_scn[i] != NULL)
 	{
-		if (ft_strcmp(dir->d_name, "..") != 0 && ft_strcmp(dir->d_name, ".") != 0)
-			i++;
-		if (i == env->menu->index + (env->menu->i_page * 5) + 1)
+		if (i == env->menu->index + (env->menu->i_page * 5))
 		{
-			env->menu->path = (char*)malloc(sizeof(char) * strlen("./scenes/") + strlen(dir->d_name));
-			env->menu->path = ft_strcat(ft_strcat(env->menu->path, "./scenes/"), dir->d_name);
+			env->menu->path = (char*)malloc(sizeof(char) * (strlen("scenes/") + strlen(env->menu->tab_scn[i])));
+			env->menu->path = ft_strcat(ft_strcat(env->menu->path, "scenes/"), env->menu->tab_scn[i]);
 		}
+		i++;
 	}
-	closedir(flux);
 }
 
 static void		key_enter_menu(t_env *env)
@@ -52,6 +46,8 @@ static void		key_enter_menu(t_env *env)
 			env->menu->index = 0;
 			env->menu->i_page = 0;
 		}
+		else if (env->menu->index == 2)
+			save_img(env);
 	}
 	else if (env->menu->menu_lvl == 1)
 	{

@@ -5,8 +5,7 @@ static int		add_scene_to_tab(char **tab, char *scn, int i)
 	if (i < 0)
 	{
 		i = -i;
-		tab[i] = (char*)malloc(sizeof(char) * 5);
-		strcpy(tab[i], "FIN\0");
+		tab[i] = NULL;
 		return (1);
 	}
 	if (i < 49)
@@ -50,7 +49,7 @@ static void		draw_scene_menu(t_env *env, char **tab)
 	write_page_status(env);
 	while (i < imax)
 	{
-		if (ft_strcmp(tab[i], "FIN") == 0)
+		if (!tab[i])
 			return ;
 		mlx_string_put(env->mlx, env->win_menu, 150, y, 0xF00D532, tab[i]);
 		y += 50;
@@ -72,7 +71,7 @@ static void		setup_scene_menu(t_env *env)
 	mlx_string_put(env->mlx, env->win_menu, 175, 115, 0xF00D532, "Liste des scenes");
 	while ((dir = readdir(flux)))
 	{
-		if (ft_strcmp(dir->d_name, "..") != 0 && ft_strcmp(dir->d_name, ".") != 0)
+		if (ft_strcmp(dir->d_name, "..") != 0 && ft_strcmp(dir->d_name, ".") != 0 && ft_strcmp(dir->d_name, "saved") != 0)
 		{
 			if (add_scene_to_tab(env->menu->tab_scn, dir->d_name, i) == 1)
 				i++;

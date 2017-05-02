@@ -146,6 +146,29 @@ typedef struct 			s_menu
 	t_image				*img;
 }						t_menu;
 
+typedef struct			s_header
+{
+	char				type[2];
+	int					reserved;
+	int					file_size;
+	int 				offset;
+}						t_header;
+
+typedef struct			s_info
+{
+	int 				header_size;
+	int 				img_size;
+	int 				nb_color;
+	int 				important_color;
+	int 				compression;
+	int 				width;
+	int 				height;
+	int 				x_res;
+	int 				y_res;
+	short				panes;
+	short				bpp;
+}						t_info;
+
 typedef struct          s_env
 {
     void                *mlx;
@@ -154,6 +177,8 @@ typedef struct          s_env
     t_image             *img[THREAD];
     t_scene             *scene;
     t_menu				*menu;
+    t_header			header;
+	t_info				h_infos;
     pthread_mutex_t		my_mutex;
     pthread_cond_t		cond;
     int                 nbr_obj;
@@ -265,6 +290,12 @@ void					draw_menu(t_env *env);
 void					render_menu(t_env *env);
 void					ft_draw_right_arrow(t_env *env);
 void					ft_draw_left_arrow(t_env *env);
+
+/*
+** Fonction save image
+*/
+
+void					save_img(t_env *env);
 
 #endif
 
