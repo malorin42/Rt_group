@@ -9,8 +9,8 @@
 # include <pthread.h>
 # include <dirent.h>
 
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1200
+# define HEIGHT 800
 # define FOV 30
 # define DEPTH_MAX 5
 # define THREAD 8
@@ -221,8 +221,9 @@ t_vector				transform_ray(t_vector ray, t_object *object);
 double					length_v(t_double3 vec);
 double					max_double(double a, double b);
 double					min_double(double a, double b);
+double					min_positive(double a, double b);
 double					abs_double(double n);
-int						solve_quadratic(double a, double b, double c, double *distance);
+int						solve_quadratic(double a, double b, double c, t_double2 *distance);
 
 t_double3				rotation(t_double3 point, t_double3 angles, int inverse);
 
@@ -235,10 +236,15 @@ void					*render(void *env);
 void					color_standard(t_env *env, t_double3 color, int x, int y, int index);
 void					get_surface_normal(t_surface *surface);
 
-void					get_nearest_sphere(t_vector ray, t_object *sphere, t_surface **surface);
-void					get_nearest_plane(t_vector ray, t_object *plane, t_surface **surface);
-void					get_nearest_cylinder(t_vector ray, t_object *cylinder, t_surface **surface);
-void					get_nearest_cone(t_vector ray, t_object *cone, t_surface **surface);
+void					get_nearest_sphere(t_vector ray, t_object *sphere, t_surface *surface);
+void					get_nearest_plane(t_vector ray, t_object *plane, t_surface *surface);
+void					get_nearest_cylinder(t_vector ray, t_object *cylinder, t_surface *surface);
+void					get_nearest_cone(t_vector ray, t_object *cone, t_surface *surface);
+
+int						intersect_plane(t_vector ray, t_object *plane, double *distance);
+t_surface				*cut_object(t_vector ray, t_object *object, t_double2 *distance);
+int						is_between_cuts(t_double3 point, t_object *object);
+t_double3				get_normal(t_object *object, t_double3 point);
 
 t_image					*ft_new_image(void *mlx, int width, int height, int thread);
 
