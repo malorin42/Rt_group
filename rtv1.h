@@ -263,6 +263,8 @@ int						key_menu(int keycode, t_env *env);
 void					init_menu(t_env *env, const char *argv);
 void					draw_menu(t_env *env);
 void					render_menu(t_env *env);
+void					ft_draw_right_arrow(t_env *env);
+void					ft_draw_left_arrow(t_env *env);
 
 #endif
 

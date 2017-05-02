@@ -82,8 +82,6 @@ static void		key_UpDown_menu(t_env *env, int keycode)
 		else if (keycode == D_ARROW && env->menu->index < 4)
 			env->menu->index++;
 	}
-	ft_putnbr(env->menu->index);
-	ft_putendl("");
 }
 
 static void		key_esc_menu(t_env *env)
@@ -110,8 +108,6 @@ static void		key_LeftRight_menu(t_env *env, int keycode)
 			env->menu->index = 0;
 		}
 	}
-	ft_putnbr(env->menu->index);
-	ft_putendl("");
 }
 
 int				key_hook(int keycode, t_env *env)

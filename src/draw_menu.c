@@ -9,7 +9,10 @@ static int		add_scene_to_tab(char **tab, char *scn, int i)
 		strcpy(tab[i], "FIN\0");
 		return (1);
 	}
-	tab[i] = (char*)malloc(sizeof(char) * ft_strlen(scn) + 1);
+	if (i < 49)
+		tab[i] = (char*)malloc(sizeof(char) * ft_strlen(scn) + 1);
+	else
+		return (0);
 	if (wrong_files(scn) == 1)
 	{
 		strcpy(tab[i], scn);
@@ -29,6 +32,10 @@ static void		write_page_status(t_env *env)
 	str = ft_strjoin(str, " / ");
 	str = ft_strjoin(str, ft_itoa(env->menu->page_max));
 	mlx_string_put(env->mlx, env->win_menu, 50, 200, 0xF00D532, str);
+	if (env->menu->i_page == 0)
+		ft_draw_left_arrow(env);
+	if (env->menu->i_page == env->menu->page_max)
+		ft_draw_right_arrow(env);
 }
 
 static void		draw_scene_menu(t_env *env, char **tab)
@@ -50,19 +57,6 @@ static void		draw_scene_menu(t_env *env, char **tab)
 		i++;
 	}
 }
-
-// static void		free_tab_scn(char **tab)
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	while (tab[i])
-// 	{
-// 		free(tab[i]);
-// 		i++;
-// 	}
-// 	free(tab);
-// }
 
 static void		setup_scene_menu(t_env *env)
 {
@@ -91,7 +85,6 @@ static void		setup_scene_menu(t_env *env)
 	draw_scene_menu(env, env->menu->tab_scn);
 	i = env->menu->index;
 	mlx_string_put(env->mlx, env->win_menu, 130, 250 + (50 * i), 0xF00D532, "->");
-	// free_tab_scn(env->menu->tab_scn);
 }
 
 static void		draw_main_menu(t_env *env)
