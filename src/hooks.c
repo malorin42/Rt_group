@@ -40,6 +40,7 @@ static void		key_enter_menu(t_env *env)
 	if (env->menu->menu_lvl == 0)
 	{
 		env->menu->index == 0 ? refresh(env) : 0;
+		env->menu->index == 2 ? save_img(env) : 0;
 		if (env->menu->index == 1)
 		{
 			env->menu->menu_lvl = 1;

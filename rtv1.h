@@ -130,6 +130,7 @@ typedef struct			s_pars
 	int					balise;
 	int					nbr_lign;
 	int					error;
+	int					ligne;
 	char				**error_mess;
 }						t_pars;
  
@@ -207,8 +208,8 @@ void					check_cone_obj(t_env *env, t_buff line, int i);
 void					check_light_obj(t_env *env, t_buff line, int i);
 void					check_camera_obj(t_env *env, t_buff line, int i);
 void					check_object_name(t_env *env, char *name, t_pars *pars);
-void					check_color_obj(t_object **object, char *value);
-void					check_color_light(t_light **light, char *value);
+void					check_color_obj(t_env *env, t_pars *pars, t_object **object, char *value);
+void					check_color_light(t_env *env, t_pars *pars, t_light **light, char *value);
 void					check_plane_obj(t_env *env, t_buff line, int i);
 void					print_object(t_object **first, t_light **first_l, t_negobj **first_n);
 void					pars_camera_line(t_env *env, t_buff line, int i);
@@ -217,6 +218,7 @@ void					pars_head_value(t_env *env, t_buff line);
 void					test_decoup_balise(char *line, int i);
 void					pars_object_line(t_env *env, t_buff line, int i);
 void					pars_neg_obj_line(t_env *env, t_buff line, int i);
+int						pars_error(t_env *env, t_pars *pars, char *message, int act);
 
 void					neg_obj_add(t_negobj **first, t_negobj *new);
 t_negobj				*neg_obj_new();
