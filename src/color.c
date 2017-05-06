@@ -1,19 +1,5 @@
 #include "../rtv1.h"
 
-static void		color_pixel_image(t_color color, int pixel_start,
-	t_image *image)
-{
-	int			pixel_end;
-
-	pixel_end = pixel_start + image->opp;
-	while (pixel_start < pixel_end)
-	{
-		image->data[pixel_start] = color.b.b;
-		color.u >>= 8;
-		pixel_start++;
-	}
-}
-
 void			color_standard(t_env *env, t_double3 color, int x, int y, int index)
 {
 	t_color		rgb_color;
