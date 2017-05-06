@@ -13,7 +13,7 @@
 # define HEIGHT 800
 # define FOV 30
 # define DEPTH_MAX 5
-# define THREAD 8
+# define THREAD 32
 
 	 // Key pour Linux 
 // # define KEY_ESC 65307
@@ -123,6 +123,7 @@ typedef struct			s_scene
 	double				ambiant;
 	int 				effect;
 	int					aliaising;
+	int 				cell_shading;
 	int					direct_light;
 }						t_scene;
 
@@ -265,6 +266,7 @@ void					color_standard(t_env *env, t_double3 color, int x, int y, int index);
 void					color_sepia(t_env *env, t_double3 color, int x, int y, int index);
 void					color_sepia_neg(t_env *env, t_double3 color, int x, int y, int index);
 void					color_neg(t_env *env, t_double3 color, int x, int y, int index);
+void					cel_shading(double *dot_light);
 void					color_pixel_image(t_color color, int pixel_start, t_image *image);
 void					get_surface_normal(t_surface *surface);
 

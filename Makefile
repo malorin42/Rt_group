@@ -13,7 +13,7 @@ OBJ += obj/raytracer.o obj/rotation.o obj/render.o obj/intersect.o obj/cut.o
 OBJ += obj/reflexion.o obj/refraction.o obj/hooks.o obj/pars_head_value.o
 OBJ += obj/intersect_tools.o obj/math.o obj/vector.o obj/multi_threading.o obj/init_menu.o obj/ft_new_image.o
 OBJ += obj/render_menu.o obj/draw_menu.o obj/draw_tools.o obj/save_img.o obj/parse_error.o
-OBJ += obj/color_pixel_image.o obj/color_sepia.o obj/color_neg.o obj/color_sepia_neg.o
+OBJ += obj/color_pixel_image.o obj/color_sepia.o obj/color_neg.o obj/color_sepia_neg.o obj/cel_shading.o
 
 LIBFT = ./libft/libft.a
 
