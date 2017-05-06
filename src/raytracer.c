@@ -29,6 +29,8 @@ t_surface			*is_in_light(t_surface *surface, t_scene *scene,
 		dot_light_dir = max_double(0, dot_light_dir);
 		*dot_light *= dot_light_dir;
 	}
+	if (scene->cell_shading)
+		cel_shading(dot_light);
 	light_intersect = intersect(light_ray, scene, surface->object);
 	if (light_intersect->object != NULL)
 		light_intersect->distance -= length_v(light_distance);
