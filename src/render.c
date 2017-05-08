@@ -50,7 +50,7 @@ static t_double3        pixel_ray_init_aa(t_double3 camera_dir, int x, int y, in
     return (pixel_ray);
 }
 
-static void            init_de_merde(void *env, int *index)
+static void            init_index(void *env, int *index)
 {
     pthread_mutex_lock(&((t_env*)env)->my_mutex);
     *index = ((t_env*)env)->count;
@@ -67,7 +67,7 @@ void            *render(void *env)
     int         index;
     int         i;
  
-    init_de_merde(env, &index);
+    init_index(env, &index);
     y = 0;
     while (y < HEIGHT / THREAD)
     {

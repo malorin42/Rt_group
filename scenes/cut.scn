@@ -66,4 +66,5 @@
 <HEAD>
 	<Direct Light>		ON;
 	<Ambiant>			{0.1}
+	<Cartoon>			OFF;
 <HEAD/>

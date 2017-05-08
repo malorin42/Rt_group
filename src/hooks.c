@@ -74,7 +74,7 @@ static void		key_UpDown_menu(t_env *env, int keycode)
 			env->menu->index--;
 		else if (keycode == D_ARROW && env->menu->i_page == env->menu->page_max)
 		{
-			if (env->menu->index < (env->menu->page_max * 5) - env->menu->nbr_scn)
+			if (env->menu->index < ((env->menu->page_max + 1) * 5) - env->menu->nbr_scn)
 				env->menu->index++;
 		}
 		else if (keycode == D_ARROW && env->menu->index < 4)

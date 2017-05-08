@@ -21,6 +21,7 @@ static t_env	*env_init(void)
 	env->scene->negobj = NULL;
 	env->scene->ambiant = 0.02;
 	env->scene->aliaising = 0;
+	env->scene->cell_shading = 0;
 	env->scene->direct_light = 1;
 	pthread_mutex_init(&env->my_mutex, NULL);
     pthread_cond_init(&env->cond, NULL);

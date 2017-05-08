@@ -1,6 +1,6 @@
 #include "../rtv1.h"
 
-static int		pars_OffOn_line(t_buff line)
+static int		pars_OffOn_line(t_buff line, int ret)
 {
 	char	*str;
 	int		i;
@@ -19,7 +19,7 @@ static int		pars_OffOn_line(t_buff line)
 	}
 	str[i] = '\0';
 	if (ft_strcmp(str, "ON") == 0)
-		i = 1;
+		i = ret;
 	else if (ft_strcmp(str, "OFF") == 0)
 		i = 0;
 	else
@@ -60,9 +60,13 @@ void			pars_head_value(t_env *env, t_buff line)
 		env->scene->ambiant = value.x;
 	}
 	else if (ft_strcmp(type, "Aliaising") == 0)
-		env->scene->aliaising = pars_OffOn_line(line);
+		env->scene->aliaising = pars_OffOn_line(line, 1);
 	else if (ft_strcmp(type, "Direct Light") == 0)
-		env->scene->direct_light = pars_OffOn_line(line);
+		env->scene->direct_light = pars_OffOn_line(line, 1);
+	else if (ft_strcmp(type, "Cartoon") == 0)
+		env->scene->effect = pars_OffOn_line(line, 1);
+	else if (ft_strcmp(type, "Sepia") == 0)
+		env->scene->effect = pars_OffOn_line(line, 2);
 	else
 		ft_error("Error : Unknow Head Value.\n");
 	free(type);

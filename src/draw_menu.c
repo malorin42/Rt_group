@@ -80,7 +80,7 @@ static void		setup_scene_menu(t_env *env)
 	add_scene_to_tab(env->menu->tab_scn, "", -i);
 	closedir(flux);
 	env->menu->nbr_scn = i;
-	env->menu->page_max = i % 5;
+	env->menu->page_max = i / 5;
 	draw_scene_menu(env, env->menu->tab_scn);
 	i = env->menu->index;
 	mlx_string_put(env->mlx, env->win_menu, 130, 250 + (50 * i), 0xF00D532, "->");

@@ -25,6 +25,7 @@
 # define U_ARROW 126
 # define R_ARROW 124
 # define D_ARROW 125
+# define A_Key	 0
 
 # define PI 3.14159265
 
