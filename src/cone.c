@@ -25,8 +25,10 @@ void				get_nearest_cone(t_vector ray, t_object *cone,
 {
 	t_double2			distance;
 	t_surface			*tmp;
+	t_vector			ray_s;
 
-	if (intersect_cone(transform_ray(ray, cone), cone, &distance))
+	ray_s = transform_ray(ray, cone);
+	if (intersect_cone(ray_s, cone, &distance))
 	{
 		tmp = cut_object(ray, cone, distance, scene);
 		if (tmp->object != NULL && (surface->distance == -1 || surface->distance > tmp->distance))
@@ -34,6 +36,9 @@ void				get_nearest_cone(t_vector ray, t_object *cone,
 			surface->object = tmp->object;
 			surface->distance = tmp->distance;
 			surface->normal = tmp->normal;
+			surface->color = tmp->object->color;
+			if (tmp->object->texture != NULL)
+				surface->color = cylindrical_mapping(surface, ray_s, cone);
 			free(tmp);
 		}
 	}

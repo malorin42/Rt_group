@@ -22,8 +22,10 @@ void			get_nearest_cylinder(t_vector ray, t_object *cylinder,
 {
 	t_double2		distance;
 	t_surface		*tmp;
+	t_vector		ray_s;
 
-	if (intersect_cylinder(transform_ray(ray, cylinder), cylinder, &distance))
+	ray_s = transform_ray(ray, cylinder);
+	if (intersect_cylinder(ray_s, cylinder, &distance))
 	{
 		tmp = cut_object(ray, cylinder, distance, scene);
 		if (tmp->object != NULL && (surface->distance == -1 || surface->distance > tmp->distance))
@@ -31,6 +33,9 @@ void			get_nearest_cylinder(t_vector ray, t_object *cylinder,
 			surface->object = tmp->object;
 			surface->distance = tmp->distance;
 			surface->normal = tmp->normal;
+			surface->color = tmp->object->color;
+			if (tmp->object->texture != NULL)
+				surface->color = cylindrical_mapping(surface, ray_s, cylinder);
 			free(tmp);
 		}
 	}

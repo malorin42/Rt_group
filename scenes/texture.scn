@@ -1,0 +1,74 @@
+<Object> type=Plane; color=FFFFFF; gloss=0.3; texture=meluche;
+	<Pos> 		{0.0 	0.0 	-50.0}
+	<Rot>			{20.0	0.0		0.0}
+	<Radius> 		{0.0}
+<Object/>
+
+<Object> type=Plane; color=FFFFFF; gloss=0.3; decoupe=On; texture=meluche;
+	<Pos> 		{-15.0 	10.0 	-30.0}
+	<Rot>			{20.0	20.0		0.0}
+	<Radius> 		{0.0}
+	<Decoupe.X>		{-7.0	7.0}
+	<Decoupe.Y>		{-7.0	7.0}
+	<Decoupe.Z>		{-20.0	20.0}
+<Object/>
+
+<Object> type=Plane; color=FFFFFF; gloss=0.3; decoupe=On; texture=meluche;
+	<Pos> 		{15.0 	-10.0 	-30.0}
+	<Rot>			{-20.0	-20.0		0.0}
+	<Radius> 		{0.0}
+	<Decoupe.X>		{-7.0	7.0}
+	<Decoupe.Y>		{-7.0	7.0}
+	<Decoupe.Z>		{-20.0	20.0}
+<Object/>
+
+<Object> type=Sphere; color=FFFFFF; gloss=0.2; texture=meluche;
+	<Pos> 		{0.0 	0.0 	-10.0}
+	<Rot>			{-90.0	0.0		0.0}
+	<Radius> 		{7.0}
+<Object/>
+
+<Object> type=Cylinder; color=FFFFFF; gloss=0.2; texture=meluche;
+	<Pos> 		{30.0 	0.0 	-10.0}
+	<Rot>			{-90.0	0.0		0.0}
+	<Radius> 		{5.0}
+<Object/>
+
+<Object> type=Cone; color=FFFFFF; gloss=0.2; texture=meluche;
+	<Pos> 		{-30.0 	0.0 	-10.0}
+	<Rot>			{-90.0	0.0		0.0}
+	<Radius> 		{12.0}
+<Object/>
+
+<Object> type=Cone; color=FFFFFF; gloss=0.2; decoupe=On; texture=meluche;
+	<Pos> 		{-15.0 	-10.0 	-10.0}
+	<Rot>			{-60.0	0.0		0.0}
+	<Radius>		{20.0}
+	<Decoupe.X>		{-50.0	50.0}
+	<Decoupe.Y>		{-50.0	50.0}
+	<Decoupe.Z>		{-7.0	7.0}
+<Object/>
+
+<Object> type=Cylinder; color=FFFFFF; gloss=0.2; decoupe=On; texture=meluche;
+	<Pos> 		{15.0 	10.0 	-10.0}
+	<Rot>			{-120.0	0.0		0.0}
+	<Radius> 		{8.0}
+	<Decoupe.X>		{-10.0	10.0}
+	<Decoupe.Y>		{-10.0	10.0}
+	<Decoupe.Z>		{-7.0	7.0}
+<Object/>
+
+<LightObj> color=FFD700;
+	<Pos> 		{0.0 	0.0 	50.0}
+	<Dir>			{0.0	0.0		0.0}
+<LightObj/>
+
+<Camera>
+	<Pos>			{0.0	0.0		80.0}
+	<Dir>			{0.0	0.0		0.0}
+<Camera/>
+
+<HEAD>
+	<Aliasing>		ON;
+	<Ambiant>			{0.1}
+<HEAD/>

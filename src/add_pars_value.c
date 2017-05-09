@@ -37,8 +37,9 @@ void		add_value(t_env *env, t_double3 *values, int i)
 	t_object	*tmp;
 
 	tmp = env->scene->object;
-	tmp->pos = (i == 1 ? *values : (t_double3){0, 0, 0});
-	if (i == 2)
+	if (i == 1)
+		tmp->pos = *values;
+	else if (i == 2)
 		tmp->rotation = *values;
 	else if (i == 3)
 		tmp->radius = values->x;

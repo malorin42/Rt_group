@@ -22,7 +22,7 @@ static t_env	*env_init(void)
 	env->scene->ambiant = 0.02;
 	env->scene->aliaising = 0;
 	env->scene->cell_shading = 0;
-	env->scene->direct_light = 1;
+	env->scene->direct_light = 0;
 	env->scene->sepia = 0;
 	env->scene->neg = 0;
 	pthread_mutex_init(&env->my_mutex, NULL);
@@ -72,7 +72,7 @@ int				main(int argc, char const **argv)
 	env = env_init();
 	init_menu(env, argv[1]);
 	check_files(fd, env);
-	// print_object(&env->scene->object, &env->scene->light, &env->scene->negobj);
+	print_object(&env->scene->object, &env->scene->light, &env->scene->negobj);
 	mlx_string_put(((t_env*)env)->mlx, ((t_env*)env)->win_scene, 100, 100, 0xF00D532, "Loading...");
 	close(fd);
 	mlx_loop(env->mlx);

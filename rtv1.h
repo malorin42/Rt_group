@@ -113,7 +113,7 @@ typedef struct			s_surface
 	double				distance;
 	t_double3			point;
 	t_double3			normal;
-	t_double3			simple;
+	t_double3			color;
 }						t_surface;
 
 typedef struct			s_scene
@@ -250,6 +250,7 @@ t_light					*light_new();
 
 void					swap(double *t0, double *t1);
 double					dot_product(t_double3 vec1, t_double3 vec2);
+t_double3				cross_product(t_double3 vec1, t_double3 vec2);
 t_double3				normalize(t_double3 vec);
 t_double3				find_point(t_double3 origin, t_double3 dir, double scalar);
 t_double3				vec_minus_vec(t_double3 vec1, t_double3 vec2);
@@ -293,6 +294,10 @@ int						is_between_cuts(t_vector ray_s, double distance, t_object *object);
 t_double3				get_normal(t_object *object, t_double3 point);
 
 t_image					*ft_new_image(void *mlx, int width, int height, int thread);
+
+t_double3				cylindrical_mapping(t_surface *surface, t_vector ray, t_object *object);
+t_double3				spherical_mapping(t_surface *surface, t_vector ray, t_object *object);
+t_double3				planar_mapping(t_surface *surface, t_vector ray, t_object *object);
 
 /*
 ** Fonction multi_thread

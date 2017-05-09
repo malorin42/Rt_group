@@ -56,7 +56,7 @@ t_double3			color_diffused(t_scene *scene, t_surface *surface, t_vector ray)
 		{
 			color_hit = v_plus_v(color_hit, color_mix(scale_v(light->color,
 				dot_light), surface->object->gloss,
-				scale_v(surface->object->color, dot_light)));
+				scale_v(surface->color, dot_light)));
 			reflected = reflect(scale_v(normalize(v_minus_v(light->pos, surface->point)), -1), surface->normal);
 			color_hit = v_plus_v(color_hit, scale_v(light->color, pow(max_double(0, -dot_product(reflected, ray.dir) * surface->object->gloss), 2)));
 		}
@@ -108,7 +108,7 @@ t_double3			raytracer(t_vector ray, t_scene *scene,
 	else
 	{
 		color_hit = (t_double3){0, 0, 0};
-		color_hit = color_mix(surface->object->color, scene->ambiant, color_diffused(scene, surface, ray));
+		color_hit = color_mix(surface->color, scene->ambiant, color_diffused(scene, surface, ray));
 		if (surface->object->reflex > 0.01)
 			color_hit = color_mix(color_reflected(ray, scene, surface, depth),
 				surface->object->reflex, color_hit);

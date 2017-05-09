@@ -20,7 +20,9 @@ void				get_nearest_sphere(t_vector ray, t_object *sphere,
 {
 	t_double2		distance;
 	t_surface		*tmp;
+	t_vector		ray_s;
 
+	ray_s = transform_ray(ray, sphere);
 	if (intersect_sphere(transform_ray(ray, sphere), sphere, &distance))
 	{
 		tmp = cut_object(ray, sphere, distance, scene);
@@ -29,7 +31,11 @@ void				get_nearest_sphere(t_vector ray, t_object *sphere,
 			surface->object = tmp->object;
 			surface->distance = tmp->distance;
 			surface->normal = tmp->normal;
+			surface->color = tmp->object->color;
+			if (tmp->object->texture != NULL)
+				surface->color = spherical_mapping(surface, ray_s, sphere);
 			free(tmp);
 		}
 	}
 }
+
