@@ -1,193 +1,104 @@
 #include "../rtv1.h"
 
-static void	pars_object_line4(t_env *env, t_buff line, int i)
+static int		pars_value(t_env *env, t_pars *pars, t_buff line, int i)
 {
-	t_double3	values;
+	t_double3 	values;
+	int			nbr;
 
-	if (ft_strstr(line.data, "Z") != NULL)
+	if (i == 1 || i == 2 || i == 7)
+		nbr = 3;
+	else if (i == 3)
+		nbr = 1;
+	else if (i == 4 || i == 5 || i == 6)
+		nbr = 2;
+	if (check_pars_nbr_value(env, pars, line, nbr) == 1)
 	{
-		check_pars_nbr_value(line, 2);
-		values = pick_values(line, 2);
-		add_value(env, &values, i);
+		values = pick_values(line, nbr);
+		if (pars->balise == 1)
+			add_value(env, &values, i);
+		else if (pars->balise == 2)
+			add_light_value(env, &values, i);
+		else if (pars->balise == 5)
+			add_value_neg(env, &values, i);
+		else if (pars->balise == 4)
+			add_camera_value(env, &values, i);
+		return (1);
+	}
+	return (0);
+}
+
+static int 		lookat_decoupe(t_pars *pars, char *type, t_buff line)
+{
+	char 	*dcp;
+	int 	i;
+	int 	ret;
+
+	i = 0;
+	dcp = "Decoupe\0";
+	if (ft_strstr(type, "Decoupe") == NULL)
+		return (0);
+	while (type[i] != '\0' && dcp[i] != '\0' && type[i] == dcp[i])
+		i++;
+	if (type[i] != '.')
+		return (pars_error(pars, "Error : Decoupe Balise need a X/Y/Z value name.", line.data));
+	i++;
+	if (type[i] == 'X' || type[i] == 'Y' || type[i] == 'Z' || type[i + 1] == '\0')
+	{
+		if (type[i] == 'X')
+			i = 4;
+		else if (type[i] == 'Y')
+			i = 5;
+		else if (type[i] == 'Z')
+			i = 6;
 	}
 	else
-		ft_error("Error : Wrong Value Name.\n");
+		return (pars_error(pars, "Error : Not a X/Y/Z value name.", line.data));
+	return (i);
 }
 
-static void	pars_object_line3(t_env *env, t_buff line, int i)
+static int 		lookat_type_condition(t_env *env, t_pars *pars, t_buff line, char *type)
 {
-	t_double3	values;
+	int 		i;
 
-	if (i == 4)
-	{
-		if (ft_strstr(line.data, "X") != NULL)
-		{
-			check_pars_nbr_value(line, 2);
-			values = pick_values(line, 2);
-			add_value(env, &values, i);
-		}
-		else
-			ft_error("Error : Wrong Value Name.\n");
-	}
-	if (i == 5)
-	{
-		if (ft_strstr(line.data, "Y") != NULL)
-		{
-			check_pars_nbr_value(line, 2);
-			values = pick_values(line, 2);
-			add_value(env, &values, i);
-		}
-		else
-			ft_error("Error : Wrong Value Name.\n");
-	}
-	i == 6 ? pars_object_line4(env, line, i) : 0;
+	if (ft_strcmp(type, "Pos") == 0 && pars->i_pos == 0)
+		return (1);
+	else if ((!ft_strcmp(type, "Rot") || !ft_strcmp(type, "Dir")) && pars->i_dir == 0)
+		return (2);
+	else if (ft_strcmp(type, "Radius") == 0 && pars->i_radius == 0)
+		return (3);
+	else if ((i = lookat_decoupe(pars, type, line)) != 0 && pars->i_dcp < 2 && pars->dcp == 1)
+		return (i);
+	else if (ft_strcmp(type, "Rot_text") == 0 && pars->texture == 1)
+		return (7);
+	else
+		return (pars_error(pars, "Error : Unknow Value Name.", line.data));
 }
 
-static void	pars_object_line2(t_env *env, t_buff line, int i)
+static void		incr_i_type(t_pars *pars, int i)
 {
-	t_double3	values;
-
 	if (i == 1)
-	{
-		if (ft_strstr(line.data, "Rot") != NULL)
-		{
-			check_pars_nbr_value(line, 3);
-			values = pick_values(line, 3);
-			add_value(env, &values, i);
-		}
-		else
-			ft_error("Error : Wrong Value Name.\n");
-	}
-	if (i == 3 || i == 7)
-		test_decoup_balise(line.data, i);
-	pars_object_line3(env, line, i);
+		pars->i_pos++;
+	else if (i == 2)
+		pars->i_dir++;
+	else if (i == 3)
+		pars->i_radius++;
+	else if (i == 4)
+		pars->i_dcp++;
 }
 
-void		pars_object_line(t_env *env, t_buff line, int i)
+void			pars_in_balise(t_env *env, t_pars *pars, t_buff line)
 {
-	t_double3	values;
+	char 		*type;
+	int			i;
 
-	if (i == 0)
+	i = 0;
+	type = check_line_type(env, pars, line);
+	if (type != NULL)
 	{
-		if (ft_strstr(line.data, "Pos") != NULL)
+		if ((i = lookat_type_condition(env, pars, line, type)) != 0)
 		{
-			check_pars_nbr_value(line, 3);
-			values = pick_values(line, 3);
-			add_value(env, &values, i);
+			if (pars_value(env, pars, line, i) == 1)
+				incr_i_type(pars, i);
 		}
-		else
-			ft_error("Error : Wrong Value Name.\n");
-	}
-	if (i == 2)
-	{
-		if (ft_strstr(line.data, "Radius") != NULL)
-		{
-			check_pars_nbr_value(line, 1);
-			values = pick_values(line, 1);
-			add_value(env, &values, i);
-		}
-		else
-			ft_error("Error : Wrong Value Name.\n");
-	}
-	pars_object_line2(env, line, i);
-}
-
-void		pars_light_line(t_env *env, t_buff line, int i)
-{
-	t_double3	values;
-
-	if (i == 0)
-	{
-		if (ft_strstr(line.data, "Pos") != NULL)
-		{
-			check_pars_nbr_value(line, 3);
-			values = pick_values(line, 3);
-			add_light_value(env, &values, i);
-		}
-		else
-			ft_error("Error : Wrong Value Name.\n");
-	}
-	if (i == 1)
-	{
-		if (ft_strstr(line.data, "Dir") != NULL)
-		{
-			check_pars_nbr_value(line, 3);
-			values = pick_values(line, 3);
-			add_light_value(env, &values, i);
-		}
-		else
-			ft_error("Error : Wrong Value Name.\n");
-	}
-}
-
-static void	pars_neg_obj_line2(t_env *env, t_buff line, int i)
-{
-	t_double3	values;
-
-	if (i == 1)
-	{
-		if (ft_strstr(line.data, "Rot") != NULL)
-		{
-			check_pars_nbr_value(line, 3);
-			values = pick_values(line, 3);
-			add_value_neg(env, &values, i);
-		}
-		else
-			ft_error("Error : Wrong Value Name.\n");
-	}
-}
-
-void		pars_neg_obj_line(t_env *env, t_buff line, int i)
-{
-	t_double3	values;
-
-	if (i == 0)
-	{
-		if (ft_strstr(line.data, "Pos") != NULL)
-		{
-			check_pars_nbr_value(line, 3);
-			values = pick_values(line, 3);
-			add_value_neg(env, &values, i);
-		}
-		else
-			ft_error("Error : Wrong Value Name.\n");
-	}
-	if (i == 2)
-	{
-		if (ft_strstr(line.data, "Radius") != NULL)
-		{
-			check_pars_nbr_value(line, 1);
-			values = pick_values(line, 1);
-			add_value_neg(env, &values, i);
-		}
-		else
-			ft_error("Error : Wrong Value Name.\n");
-	}
-	pars_neg_obj_line2(env, line, i);
-}
-
-void		pars_camera_line(t_env *env, t_buff line, int i)
-{
-	t_double3	values;
-
-	if (i == 0)
-	{
-		if (ft_strstr(line.data, "Pos") != NULL)
-		{
-			check_pars_nbr_value(line, 3);
-			env->scene->camera.pos = pick_values(line, 3);
-		}
-		else
-			ft_error("Error : Wrong Value Name.\n");
-	}
-	if (i == 1)
-	{
-		if (ft_strstr(line.data, "Dir") != NULL)
-		{
-			check_pars_nbr_value(line, 3);
-			env->scene->camera.dir = pick_values(line, 3);
-		}
-		else
-			ft_error("Error : Wrong Value Name.\n");
 	}
 }

@@ -12,7 +12,7 @@
 
 #include "../rtv1.h"
 
-void			sepia(t_color rgb_color;, int *r, int *g, int *b)
+static void			sepia(t_color rgb_color, int *r, int *g, int *b)
 {
 	*r = (int)(rgb_color.b.r * 0.393) + (rgb_color.b.g * 0.769) +
 		(rgb_color.b.b * 0.189);
@@ -33,6 +33,9 @@ void			color_standard(t_env *env, t_double3 color, int *xy, int index)
 	r = 255 * max_double(0, min_double(1, color.x));
 	g = 255 * max_double(0, min_double(1, color.y));
 	b = 255 * max_double(0, min_double(1, color.z));
+	rgb_color.b.r = r;
+	rgb_color.b.g = g;
+	rgb_color.b.b = b;
 	if (env->scene->sepia)
 		sepia(rgb_color, &r, &g ,&b);
 	if (env->scene->neg)

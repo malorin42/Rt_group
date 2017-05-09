@@ -1,32 +1,34 @@
 #include "../rtv1.h"
 
-static char	*take_balise_value(t_env *env, t_pars *pars, char *line, int i)
+static char	*take_balise_value(t_env *env, t_pars *pars, t_buff line, int i)
 {
 	int		j;
 	char	*value;
 
 	j = 0;
-	value = (char*)malloc(sizeof(char) * (ft_strlen(line) + 1));
-	if (line[i - 1] == '=')
+	value = (char*)malloc(sizeof(char) * (ft_strlen(line.data) + 1));
+	if (line.data[i - 1] == '=')
 	{
-		while (line[i] != '\0' && line[i] != ';')
+		while (line.data[i] != '\0' && line.data[i] != ';')
 		{
-			value[j] = line[i];
+			value[j] = line.data[i];
 			i++;
 			j++;
 		}
 		value[j] = '\0';
-		if (line[i] != ';')
-			pars_error(env, pars, "Syntax Error : Close type value with ';'.", 1);
+		if (line.data[i] != ';')
+			pars_error(pars, "Syntax Error : Close type value with ';'.", line.data);
 		else
 			return (value);
 	}
 	else
-		pars_error(env, pars, "Syntax Error.\n", 1);
+		pars_error(pars, "Syntax Error.\n", line.data);
+	if (value != NULL)
+		free (value);
 	return (NULL);
 }
 
-static char	*value_of_balise(t_env *env, t_pars *pars, char *line, char *type)
+static char	*value_of_balise(t_env *env, t_pars *pars, t_buff line, char *type)
 {
 	int		i;
 	int		j;
@@ -34,27 +36,32 @@ static char	*value_of_balise(t_env *env, t_pars *pars, char *line, char *type)
 
 	i = 0;
 	j = 0;
-	while (line[i] != '\0' && line[i] != '\n')
+	while (line.data[i] != '\0' && line.data[i] != '\n')
 	{
-		if (line[i] == type[j] && type[j] != '\0')
+		while (line.data[i] != '\0' && line.data[i] != '\n' &&
+			line.data[i] == type[j] && type[j] != '\0')
+		{
 			j++;
+			i++;
+		}
 		if (type[j] == '\0')
 		{
-			i++;
 			value = take_balise_value(env, pars, line, i);
 			return (value);
 		}
+		else
+			j = 0;
 		i++;
 	}
-	pars_error(env, pars, "Error : Bad Type Value.", 1);
+	pars_error(pars, "Error : Bad Type Value.", line.data);
 	return (NULL);
 }
 
-static char	*analyse_balise_lign(t_env *env, t_pars *pars, char *line, char *type)
+static char	*analyse_balise_lign(t_env *env, t_pars *pars, t_buff line, char *type)
 {
 	char	*value;
 
-	if (ft_strstr(line, type) != NULL)
+	if (ft_strstr(line.data, type) != NULL)
 	{
 		if ((value = value_of_balise(env, pars, line, type)) == NULL)
 			return (NULL);
@@ -64,103 +71,129 @@ static char	*analyse_balise_lign(t_env *env, t_pars *pars, char *line, char *typ
 	return (NULL);
 }
 
-static void	add_texture(t_pars *pars, t_object **object, char *value)
+static t_image         *init_texture(void *mlx, char *file)
 {
-	int 		dcp;
-	int 		i;
-	int 		j;
-	t_object	*obj;
-
-	obj = *object;
-	i = 0;
-	j = 0;
-	obj->texture = (char*)malloc(sizeof(char) * ft_strlen(value) + 1);
-	while (value[i] != '\0' && value[i] != '.')
-	{
-		obj->texture[j] = value[i];
-		i++;
-		j++;
-	}
-	dcp = 0;
-	if (value[i] == '.')
-	{
-		if (value[i + 1] == 'd')
-			dcp = 1;
-		if (dcp == 1 && value[i + 2] != 'c')
-			dcp = 0;
-		if (dcp == 1 && value[i + 3] != 'p')
-			dcp = 0;
-		if (dcp == 1 && value[i + 4] != '\0')
-			dcp = 0;
-	}
-	if (dcp == 1)
-		pars->dcp_text = 1;
+    t_image     *texture;
+    int         width;
+    int         height;
+ 
+  	ft_putendl(file);
+    if ((texture = (t_image*)malloc(sizeof(t_image))) == NULL)
+        ft_error("Error: malloc failed.\n");
+    texture->img = mlx_xpm_file_to_image(mlx, file, &width, &height);
+    texture->data = (unsigned char*)mlx_get_data_addr(texture->img, &texture->opp,
+        &texture->l_size, &texture->endian);
+    texture->opp = texture->opp / 8;
+    texture->width = width;
+    texture->height = height;
+    return (texture);
 }
 
-static void	pars_balise_obj(t_env *env, t_buff line, t_pars *pars)
+static int 		lookat_texture_path(char *path, t_pars *pars, t_buff line)
+{
+	if (open(path, O_RDONLY) < 0)
+		return (pars_error(pars, "Error : No xpm.file in ./texture .", line.data));
+	pars->texture = 1;
+	return (1);
+}
+
+static void		add_texture_image(t_env *env, t_object **object, char *path)
+{
+	t_object	*tmp;
+
+	tmp = *object;
+	tmp->texture = init_texture(env->mlx, path);
+	if (path != NULL)
+		free (path);
+}
+
+static void		add_texture(t_env *env, char *value, t_pars *pars, t_buff line)
+{
+	char	*path;
+
+	path = (char*)malloc(sizeof(char) * ft_strlen(value) + 16);
+	ft_strcpy(path, "./texture/");
+	path = ft_strjoin(path, value);
+	path = ft_strjoin(path, ".xpm");
+	if (lookat_texture_path(path, pars, line) == 0)
+		return ;
+	add_texture_image(env, &env->scene->object, path);
+}
+
+static void		pars_balise_type(t_env *env, t_buff line, t_pars *pars)
 {
 	char	*value;
-
-	value = analyse_balise_lign(env, pars, line.data, "name=");
+	
+	value = analyse_balise_lign(env, pars, line, "color=");
 	if (value != NULL)
-		check_object_name(env, value, pars);
-	value = analyse_balise_lign(env, pars, line.data, "color=");
-	if (value != NULL)
-		check_color_obj(env, pars, &env->scene->object, value);
-	value = analyse_balise_lign(env, pars, line.data, "gloss=");
+		check_color_obj(line, pars, &env->scene->object, value);
+	value = analyse_balise_lign(env, pars, line, "gloss=");
 	if (value != NULL)
 		add_double_param(line, "gloss", &env->scene->object, value);
-	value = analyse_balise_lign(env, pars, line.data, "transp=");
+	value = analyse_balise_lign(env, pars, line, "transp=");
 	if (value != NULL)
 		add_double_param(line, "transp", &env->scene->object, value);
-	value = analyse_balise_lign(env, pars, line.data, "reflex=");
+	value = analyse_balise_lign(env, pars, line, "reflex=");
 	if (value != NULL)
 		add_double_param(line, "reflex", &env->scene->object, value);
-	value = analyse_balise_lign(env, pars, line.data, "refraction=");
+	value = analyse_balise_lign(env, pars, line, "refraction=");
 	if (value != NULL)
 		add_double_param(line, "refraction", &env->scene->object, value);
-	value = analyse_balise_lign(env, pars, line.data, "texture=");
+	value = analyse_balise_lign(env, pars, line, "decoupe=");
 	if (value != NULL)
-		add_texture(pars, &env->scene->object, value);
-	value = analyse_balise_lign(env, pars, line.data, "decoupe=");
+		pars->dcp = add_OnOff_value(&env->scene->object, value, pars, line);
+	value = analyse_balise_lign(env, pars, line, "texture=");
 	if (value != NULL)
-		add_OnOff_value(&env->scene->object, value, pars);
-	if (value != NULL)
-		free(value);
+		add_texture(env, value, pars, line);
 }
 
-void		check_object_balise(t_env *env, t_buff line, t_pars *pars)
+static int 		is_balise_type(t_env *env, t_pars *pars, t_buff line)
 {
 	char	*value;
 
-	if (ft_strstr(line.data, "<Object>") != NULL)
+	value = analyse_balise_lign(env, pars, line, "type=");
+	if (value == NULL)
+		return (pars_error(pars, "Error : Object Need a Type.", line.data));
+	if (check_object_type(env, value, pars, line) == 1)
 	{
-		pars->nbr_lign = 3;
-		pars_balise_obj(env, line, pars);
 		pars->balise = 1;
+		return (1);
 	}
-	else if (ft_strstr(line.data, "<LightObj>") != NULL)
+	return (0);
+}
+
+static void 	pars_type_light(t_env *env, t_pars *pars, t_buff line)
+{
+	char	*value;
+
+	init_light_obj(env, pars, &env->scene->light);
+	pars->balise = 2;
+	value = analyse_balise_lign(env, pars, line, "color=");
+	if (value != NULL)
+		check_color_light(line, pars, &env->scene->light, value);
+}
+
+void			check_if_balise(t_env *env, t_buff line, t_pars *pars)
+{
+	if (line.data[0] == '<')
 	{
-		value = analyse_balise_lign(env, pars, line.data, "name=");
-		if (value != NULL)
-			check_object_name(env, value, pars);
-		value = analyse_balise_lign(env, pars, line.data, "color=");
-		if (value != NULL)
-			check_color_light(env, pars, &env->scene->light, value);
-		pars->balise = 2;
-	}
-	else if (ft_strstr(line.data, "<HEAD>") != NULL)
-		pars->balise = 3;
-	else if (ft_strstr(line.data, "<Camera>") != NULL)
-		pars->balise = 4;
-	else if (ft_strstr(line.data, "<NegObj>") != NULL)
-	{
-		init_neg_obj(env, pars, &env->scene->negobj);
-		pars->nbr_lign = 3;
-		pars->balise = 5;
+		if (ft_strstr(line.data, "<Object>") != NULL)
+			is_balise_type(env, pars, line) == 1 ?
+			pars_balise_type(env, line, pars) : pars_error(pars, "Error : Unknow Type.", line.data);
+		else if (ft_strstr(line.data, "<LightObj>") != NULL)
+			pars_type_light(env, pars, line);
+		else if (ft_strstr(line.data, "<HEAD>") != NULL)
+			pars->balise = 3;
+		else if (ft_strstr(line.data, "<Camera>") != NULL)
+			pars->balise = 4;
+		else if (ft_strstr(line.data, "<NegObj>") != NULL)
+		{
+			init_neg_obj(env, pars, &env->scene->negobj);
+			pars->balise = 5;
+		}
+		else
+			pars_error(pars, "Error : Unknow Balise", line.data);
 	}
 	else
-		empty_lign(line);
-	if (pars->balise == 2 || pars->balise == 4)
-		pars->nbr_lign = 2;
+		empty_lign(env, pars, line);
 }

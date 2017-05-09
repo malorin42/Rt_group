@@ -93,14 +93,7 @@ void            *render(void *env)
                 color = raytracer((t_vector){((t_env*)env)->scene->camera.pos, 
                 pixel_ray[0]}, ((t_env*)env)->scene, NULL, 0);
             }
-            if (((t_env*)env)->scene->effect == 1)
-                color_sepia((t_env*)env, color, xy, index);
-            else if (((t_env*)env)->scene->effect == 3)
-                color_sepia_neg((t_env*)env, color, xy, index);
-            else if (((t_env*)env)->scene->effect == 3)
-                color_neg((t_env*)env, color, xy, index);
-            else
-                color_standard((t_env*)env, color, xy, index);
+            color_standard((t_env*)env, color, xy, index);
             xy[0]++;
         }
         xy[1]++;

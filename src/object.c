@@ -1,12 +1,11 @@
 #include "../rtv1.h"
 
-t_light			*light_new(int type)
+t_light			*light_new()
 {
 	t_light		*light;
 
 	if ((light = (t_light*)malloc(sizeof(t_light))) == NULL)
 		ft_error("Error : malloc() failed.\n");
-	light->type = type;
 	light->pos = (t_double3){0, 0, 0};
 	light->dir = (t_double3){0, 0, 0};
 	light->color = (t_double3){0, 0, 0};
@@ -43,9 +42,11 @@ t_object		*object_new(int type)
 
 	if ((object = (t_object*)malloc(sizeof(t_object))) == NULL)
 		ft_error("Error : malloc() failed.\n");
+	object->texture = NULL;
 	object->type = type;
 	object->pos = (t_double3){0, 0, 0};
 	object->rotation = (t_double3){0, 0, 0};
+	object->text_rot = (t_double3){0, 0, 0};
 	object->radius = 0;
 	object->dcp_x = (t_double2){0, 0};
 	object->dcp_y = (t_double2){0, 0};
@@ -106,8 +107,7 @@ void			print_object(t_object **first, t_light **first_l, t_negobj **first_n)
 	while (tmp_l)
 	{
 		printf("LIGHT %d :\t", i++);
-		if (tmp_l->type == SPOTLIGHT)
-			printf("SPOTLIGHT\n");
+		printf("SPOTLIGHT\n");
 		printf("\tPOSITION :\t(%.2f, %.2f, %.2f)\n", tmp_l->pos.x, tmp_l->pos.y, tmp_l->pos.z);
 		printf("\tROTATION :\t(%.2f, %.2f, %.2f)\n", tmp_l->dir.x, tmp_l->dir.y, tmp_l->dir.z);
 		printf("\tCOLOR :\t\t(%.2f, %.2f, %.2f)\n", tmp_l->color.x, tmp_l->color.y, tmp_l->color.z);

@@ -1,79 +1,83 @@
-<Object> name=Sphere; name=Sphere1; color=green; refraction=1;
-	Pos 		{0.0 	0.0 	-15.0}
-	Rot			{0.0	0.0		0.0}
-	Radius 		{2.0}
+<Object> type=Sphere; color=green; refraction=1;
+	<Pos> 		{0.0 	0.0 	-15.0}
+	<Rot>			{0.0	0.0		0.0}
+	<Radius> 		{2.0}
 <Object/>
 
-<Object> name=Sphere; color=red;
-	Pos 		{1.0 	-1.0 	-20.0}
-	Rot			{0.0	0.0		0.0}
-	Radius 		{2.0}
+<Object> type=Sphere; color=red;
+	<Pos> 		{1.0 	-1.0 	-20.0}
+	<Rot>			{0.0	0.0		0.0}
+	<Radius> 		{2.0}
 <Object/>
 
 <NegObj>
-	Pos			{0.0	0.0		2.0}
-	Rot			{0.20 	21.90 	0.0}
-	Radius		{2.0}
+	<Pos>			{0.0	0.0		2.0}
+	<Rot>			{0.20 	21.90 	0.0}
+	<Radius>		{2.0}
 <NegObj/>
 
-<Object> name=Sphere; color=red; decoupe=On; texture=lol.dcp;
-	Pos 		{-1.0 	1.0 	-20.0}
-	Rot			{0.0	0.0		0.0}
-	Radius 		{2.0}
-	<decoupe>
-	X			{2.6	5.5}
-	Y			{3.3 	42.0}
-	Z			{3.0 	0.0}
-	<decoupe/>
+<Object> type=Cylinder; color=purple; gloss=0.0 decoupe=On; texture=meluche;
+	<Pos> 		{-1.0 	1.0 	-20.0}
+	<Rot>		{0.0	0.0		0.0}
+	<Radius> 	{2.0}
+	<Decoupe.X>			{2.6	5.5}
+	<Decoupe.Y>			{3.3 	42.0}
+	<Decoupe.Z>			{3.0 	0.0}
+	<Rot_text>			{3.0	0.35 	6.5}
 <Object/>
 
-<Object> name=Plane; color=blue;
-	Pos 		{0.0 	0.0 	-35.0}
-	Rot			{0.0	0.0		0.0}
-	Radius 		{0.0}
+<Object> type=Plane; color=blue;
+	<Pos> 		{0.0 	0.0 	-35.0}
+	<Rot>			{0.0	0.0		0.0}
+	<Radius> 		{0.0}
 <Object/>
 
-<Object> name=Plane; color=green;
-	Pos 		{-8.0 	0.0 	0.0}
-	Rot			{0.0	90.0	0.0}
-	Radius 		{0.0}
+<Object> type=Plane; color=green;
+	<Pos> 		{-8.0 	0.0 	0.0}
+	<Rot>			{0.0	90.0	0.0}
+	<Radius> 		{0.0}
 <Object/>
 
-<Object> name=Plane; color=pink;
-	Pos 		{8.0 	0.0 	0.0}
-	Rot			{0.0	-90.0	0.0}
-	Radius 		{0.0}
+<Object> type=Plane; color=pink;
+	<Pos> 		{8.0 	0.0 	0.0}
+	<Rot>			{0.0	-90.0	0.0}
+	<Radius> 		{2.0}
 <Object/>
 
-<Object> name=Plane; color=orange;
-	Pos 		{0.0 	6.0 	0.0}
-	Rot			{90.0	0.0		0.0}
-	Radius 		{0.0}
+<Object> type=Plane; color=orange;
+	<Pos> 		{0.0 	6.0 	0.0}
+	<Rot>			{90.0	0.0		0.0}
+	<Radius> 		{0.0}
 <Object/>
 
-<Object> name=Plane; color=purple;
-	Pos 		{0.0 	-6.0 	0.0}
-	Rot			{-90.0	0.0		0.0}
-	Radius 		{0.0}
+<Object> type=Plane; color=purple;
+	<Pos> 		{0.0 	-6.0 	0.0}
+	<Rot>			{-90.0	0.0		0.0}
+	<Radius> 		{0.0}
 <Object/>
 
-<LightObj> name=Spotlight; color=FFFFFF;
-	Pos 		{2.0 	5.0 	-5.0}
-	Dir			{0.0	0.0		0.0}
+<LightObj> color=FFFFFF;
+	<Pos> 		{2.0 	5.0 	-5.0}
+	<Dir>			{0.0	0.0		0.0}
 <LightObj/>
 
-<LightObj> name=Spotlight; color=FFFFFF;
-	Pos 		{-5.5 	-1.0 	-12.0}
-	Dir			{0.0	0.0		0.0}
+<LightObj> color=FFFFFF;
+	<Pos> 		{0.0 	3.0 	0.0}
+	<Dir>			{0.0	0.0		0.0}
 <LightObj/>
 
-<NegObj>
-	Pos			{0.0	35.20 	0.0}
-	Rot			{56.20 	235.0	0.5}
-	Radius		{0.0}
-<NegObj/>
+<LightObj> color=FFFFFF;
+	<Pos> 		{-3.5 	-2.0 	-5.0}
+	<Dir>			{0.0	0.0		0.0}
+<LightObj/>
 
 <Camera>
-	Pos			{3.0	0.0		0.0}
-	Dir			{0.0	8.0		0.0}
+	<Pos>			{0.0	0.0		0.0}
+	<Dir>			{0.0	0.0		0.0}
 <Camera/>
+
+<HEAD>
+	<Sepia>		OFF;
+	<Negative>	OFF;
+	<Cartoon>	OFF;
+<HEAD/>

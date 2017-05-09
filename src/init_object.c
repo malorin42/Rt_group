@@ -1,11 +1,10 @@
 #include "../rtv1.h"
 
-void			init_light_obj(t_env *env, t_pars *pars, int obj,
-	t_light **light)
+void			init_light_obj(t_env *env, t_pars *pars, t_light **light)
 {
 	t_light		*new_obj;
 
-	new_obj = light_new(obj);
+	new_obj = light_new();
 	light_add(light, new_obj);
 }
 

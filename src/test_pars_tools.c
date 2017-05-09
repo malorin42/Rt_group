@@ -19,7 +19,8 @@ t_double3		pick_values(t_buff line, int nbr)
 	values.z = 0;
 	ft_parse_not(&line, "{");
 	line.i++;
-	values.x = ft_parse_double(&line);
+	if (nbr >= 1)
+		values.x = ft_parse_double(&line);
 	if (nbr >= 2)
 	{
 		ft_parse_not(&line, "-0123456789");
@@ -33,30 +34,29 @@ t_double3		pick_values(t_buff line, int nbr)
 	return (values);
 }
 
-void			check_object_name(t_env *env, char *name, t_pars *pars)
+int				check_object_type(t_env *env, char *type, t_pars *pars, t_buff line)
 {
-	if (ft_strcmp(name, "Sphere") == 0)
+	if (ft_strcmp(type, "Sphere") == 0)
 		init_object(env, pars, SPHERE, &env->scene->object);
-	else if (ft_strcmp(name, "Plane") == 0)
+	else if (ft_strcmp(type, "Plane") == 0)
 		init_object(env, pars, PLANE, &env->scene->object);
-	else if (ft_strcmp(name, "Cylinder") == 0)
+	else if (ft_strcmp(type, "Cylinder") == 0)
 		init_object(env, pars, CYLINDER, &env->scene->object);
-	else if (ft_strcmp(name, "Cone") == 0)
+	else if (ft_strcmp(type, "Cone") == 0)
 		init_object(env, pars, CONE, &env->scene->object);
-	else if (ft_strcmp(name, "Spotlight") == 0)
-		init_light_obj(env, pars, SPOTLIGHT, &env->scene->light);
 	else
-		ft_error("Error : Wrong object name.\n");
-	if (name != NULL)
-		free(name);
+		return (pars_error(pars, "Error : Wrong object type.", line.data)); // return (0)
+	// if (type != NULL)
+	// 	free(type);
+	return (1);
 }
 
-static int		check_pars_nbr_value2(char *line, int i)
+static int		check_pars_nbr_value2(t_env *env, t_pars *pars, char *line, int i)
 {
 	while (ft_isdigit(line[i]) == 1)
 		i++;
 	if (line[i] != '.' && line[i] != '}')
-		ft_error("Error : Problem in Bracket.");
+		pars_error(pars, "Error : Problem in Bracket.", line);
 	else
 		i++;
 	while (ft_isdigit(line[i]) == 1)
@@ -64,7 +64,7 @@ static int		check_pars_nbr_value2(char *line, int i)
 	return (i);
 }
 
-void			check_pars_nbr_value(t_buff line, int nbr)
+int				check_pars_nbr_value(t_env *env, t_pars *pars, t_buff line, int nbr)
 {
 	int		i;
 
@@ -72,20 +72,21 @@ void			check_pars_nbr_value(t_buff line, int nbr)
 	while (line.data[i] != '{' && line.data[i] != '\0')
 		i++;
 	if (line.data[i] != '{')
-		ft_error("Error : Bracket Problem.\n");
+		pars_error(pars, "Error : Bracket Problem.", line.data);
 	i++;
 	while (line.data[i] != '\0')
 	{
 		if (ft_isdigit(line.data[i]) == 1)
 		{
-			i = check_pars_nbr_value2(line.data, i);
+			i = check_pars_nbr_value2(env, pars, line.data, i);
 			if (ft_isspace(line.data[i]) == 1 || line.data[i] == '}')
 				nbr--;
 			else
-				ft_error("Error : Problem in Bracket.\n");
+				pars_error(pars, "Error : Problem in Bracket.", line.data);
 		}
 		i++;
 	}
 	if (nbr > 0 || nbr < 0)
-		ft_error("Error : Wrong Numbers of Values in a Line.\n");
+		return(pars_error(pars, "Error : Wrong Numbers of Values in a Line.", line.data));
+	return (1);
 }

@@ -10,6 +10,7 @@ static void		refresh(t_env *env)
 		ft_error("Error : File not found.\n");
 	env->scene->object = NULL;
 	env->scene->light = NULL;
+	env->scene->negobj = NULL;
 	check_files(fd, env);
 	while(i < THREAD)
 	{
@@ -78,7 +79,7 @@ static void		key_UpDown_menu(t_env *env, int keycode)
 				env->menu->index++;
 		}
 		else if (keycode == D_ARROW && env->menu->index < 4)
-			env->menu->index++;
+		 	env->menu->index++;
 	}
 }
 

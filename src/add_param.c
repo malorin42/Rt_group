@@ -1,19 +1,23 @@
 #include "../rtv1.h"
 
-void			add_OnOff_value(t_object **object, char *value, t_pars *pars)
+int			add_OnOff_value(t_object **object, char *value, t_pars *pars, t_buff line)
 {
 	t_object	*tmp;
 
 	tmp = *object;
 	if (strcmp(value, "On") == 0)
 	{
-		pars->nbr_lign = 8;
 		tmp->dcp = 1;
+		return (1);
 	}
 	else if (strcmp(value, "Off") == 0)
+	{
 		tmp->dcp = 0;
+		return (0);
+	}
 	else
-		ft_error("Error : Wrong Off/On Value.\n");
+		pars_error(pars, "Error : Wrong Off/On Value.", line.data);
+	return (0);
 }
 
 static int	search_param(char *line, char *type)
@@ -52,6 +56,4 @@ void		add_double_param(t_buff line, char *type, t_object **object, char *value)
 		tmp->refraction = ft_parse_double(&line);
 	else if (ft_strcmp(type, "reflex") == 0)
 		tmp->reflex = ft_parse_double(&line);
-	if (value != NULL)
-		free(value);
 }

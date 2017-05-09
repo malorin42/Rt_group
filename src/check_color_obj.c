@@ -10,7 +10,7 @@ static t_double3 	reinit_double()
 	return (rgb);
 }
 
-static t_double3	hex_to_double(t_env *env, t_pars *pars, char *str)
+static t_double3	hex_to_double(t_buff line, t_pars *pars, char *str)
 {
 	char		*tmp;
 	t_double3	rgb;
@@ -29,7 +29,7 @@ static t_double3	hex_to_double(t_env *env, t_pars *pars, char *str)
 			hex[i] = tmp[i] - 55;
 		else
 		{
-			pars_error(env, pars, "Mauvais typage hexadecimal.", 1);
+			pars_error(pars, "Mauvais typage hexadecimal.", line.data);
 			return (reinit_double());
 		}
 		i++;
@@ -40,56 +40,56 @@ static t_double3	hex_to_double(t_env *env, t_pars *pars, char *str)
 	return (rgb);
 }
 
-void				check_color_light(t_env *env, t_pars *pars, t_light **light, char *value)
+void				check_color_light(t_buff line, t_pars *pars, t_light **light, char *value)
 {
 	t_light		*tmp;
 
 	tmp = *light;
 	if (ft_strcmp(value, "red") == 0)
-		tmp->color = hex_to_double(env, pars, RED);
+		tmp->color = hex_to_double(line, pars, RED);
 	else if (ft_strcmp(value, "blue") == 0)
-		tmp->color = hex_to_double(env, pars, BLUE);
+		tmp->color = hex_to_double(line, pars, BLUE);
 	else if (ft_strcmp(value, "green") == 0)
-		tmp->color = hex_to_double(env, pars, GREEN);
+		tmp->color = hex_to_double(line, pars, GREEN);
 	else if (ft_strcmp(value, "lightblue") == 0)
-		tmp->color = hex_to_double(env, pars, LIGHT_BLUE);
+		tmp->color = hex_to_double(line, pars, LIGHT_BLUE);
 	else if (ft_strcmp(value, "lightgreen") == 0)
-		tmp->color = hex_to_double(env, pars, LIGHT_GREEN);
+		tmp->color = hex_to_double(line, pars, LIGHT_GREEN);
 	else if (ft_strcmp(value, "orange") == 0)
-		tmp->color = hex_to_double(env, pars, ORANGE);
+		tmp->color = hex_to_double(line, pars, ORANGE);
 	else if (ft_strcmp(value, "pink") == 0)
-		tmp->color = hex_to_double(env, pars, PINK);
+		tmp->color = hex_to_double(line, pars, PINK);
 	else if (ft_strcmp(value, "purple") == 0)
-		tmp->color = hex_to_double(env, pars, PURPLE);
+		tmp->color = hex_to_double(line, pars, PURPLE);
 	else
-		tmp->color = hex_to_double(env, pars, value);
+		tmp->color = hex_to_double(line, pars, value);
 	if (value != NULL)
 		free(value);
 }
 
-void				check_color_obj(t_env *env, t_pars *pars, t_object **object, char *value)
+void				check_color_obj(t_buff line, t_pars *pars, t_object **object, char *value)
 {
 	t_object	*tmp;
 
 	tmp = *object;
 	if (ft_strcmp(value, "red") == 0)
-		tmp->color = hex_to_double(env, pars, RED);
+		tmp->color = hex_to_double(line, pars, RED);
 	else if (ft_strcmp(value, "blue") == 0)
-		tmp->color = hex_to_double(env, pars, BLUE);
+		tmp->color = hex_to_double(line, pars, BLUE);
 	else if (ft_strcmp(value, "green") == 0)
-		tmp->color = hex_to_double(env, pars, GREEN);
+		tmp->color = hex_to_double(line, pars, GREEN);
 	else if (ft_strcmp(value, "lightblue") == 0)
-		tmp->color = hex_to_double(env, pars, LIGHT_BLUE);
+		tmp->color = hex_to_double(line, pars, LIGHT_BLUE);
 	else if (ft_strcmp(value, "lightgreen") == 0)
-		tmp->color = hex_to_double(env, pars, LIGHT_GREEN);
+		tmp->color = hex_to_double(line, pars, LIGHT_GREEN);
 	else if (ft_strcmp(value, "orange") == 0)
-		tmp->color = hex_to_double(env, pars, ORANGE);
+		tmp->color = hex_to_double(line, pars, ORANGE);
 	else if (ft_strcmp(value, "pink") == 0)
-		tmp->color = hex_to_double(env, pars, PINK);
+		tmp->color = hex_to_double(line, pars, PINK);
 	else if (ft_strcmp(value, "purple") == 0)
-		tmp->color = hex_to_double(env, pars, PURPLE);
+		tmp->color = hex_to_double(line, pars, PURPLE);
 	else
-		tmp->color = hex_to_double(env, pars, value);
+		tmp->color = hex_to_double(line, pars, value);
 	if (value != NULL)
 		free(value);
 }

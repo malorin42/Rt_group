@@ -4,19 +4,19 @@
 	Radius 		{4.0}
 <Object/>
 
-<Object> name=Sphere; color=red;
+<Object> type=Sphere; color=red;
 	Pos 		{2.0 	0.0 	-40.0}
 	Rot			{0.0	0.0		0.0}
 	Radius 		{1.0}
 <Object/>
 
-<Object> name=Plane; color=FFFFFF;
+<Object> type=Plane; color=FFFFFF;
 	Pos 		{0.0 	-5.0 	0.0}
 	Rot			{-90.0	0.0		0.0}
 	Radius 		{0.0}
 <Object/>
 
-<LightObj> name=Spotlight; color=red;
+<LightObj> type=Spotlight; color=red;
 	Pos 		{-3.0 	0.0 	-5.0}
 	Dir			{0.0	0.0		0.0}
 <LightObj/>

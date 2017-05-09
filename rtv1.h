@@ -76,7 +76,6 @@ typedef struct			s_light
 	t_double3			pos;
 	t_double3			dir;
 	t_double3			color;
-	int					type;
 	struct s_light		*next;
 }						t_light;
 
@@ -99,11 +98,12 @@ typedef struct			s_object
 	double				refraction;
 	double				reflex;
 	double				transparency;
-	char 				*texture;
 	int					dcp;
 	t_double2			dcp_x;
 	t_double2			dcp_y;
 	t_double2			dcp_z;
+	t_double3 			text_rot;
+	t_image				*texture;
 	struct	s_object	*next;
 }						t_object;
 
@@ -127,16 +127,29 @@ typedef struct			s_scene
 	int					aliaising;
 	int 				cell_shading;
 	int					direct_light;
+	int 				sepia;
+	int 				neg;
 }						t_scene;
 
 typedef struct			s_pars
 {
 	int					balise;
-	int					nbr_lign;
-	int					error;
 	int					ligne;
 	int 				dcp_text;
 	char				**error_mess;
+	char 				*actual_line;
+	int 				i_pos;
+	int 				i_dir;
+	int 				i_radius;
+	int 				dcp;
+	int 				i_dcp;
+	int 				i_ambiant;
+	int 				i_aliai;
+	int 				i_dir_light;
+	int 				i_sepia;
+	int 				i_negative;
+	int 				texture;
+	int 				error;
 }						t_pars;
  
 typedef struct 			s_menu
@@ -195,45 +208,44 @@ int						loop_hook(t_env *env);
 int						key_hook(int keycode, t_env *env);
 
 t_double3				pick_values(t_buff line, int nbr);
-void					check_pars_nbr_value(t_buff line, int nbr);
-void					empty_lign(t_buff line);
+int						check_pars_nbr_value(t_env *env, t_pars *pars, t_buff line, int nbr);
+void					empty_lign(t_env *env, t_pars *pars, t_buff line);
 
 void					add_value_neg(t_env *env, t_double3 *values, int i);
 void					add_light_value(t_env *env, t_double3 *values, int i);
 void					add_double_param(t_buff line, char *type, t_object **object, char *value);
-void					add_OnOff_value(t_object **object, char *value, t_pars *pars);
+void					add_camera_value(t_env *env, t_double3 *values, int i);
+int 					add_OnOff_value(t_object **object, char *value, t_pars *pars, t_buff line);
 void					add_value(t_env *env, t_double3 *values, int i);
 
-void					check_object_balise(t_env *env, t_buff line, t_pars *pars);
+void					check_if_balise(t_env *env, t_buff line, t_pars *pars);
 void					check_files(int fd, t_env *env);
 void					check_neg_obj_name(t_env *env, char *name, t_pars *pars);
 void					check_sphere_obj(t_env *env, t_buff line, int i);
 void					check_cylinder_obj(t_env *env, t_buff line, int i);
 void					check_cone_obj(t_env *env, t_buff line, int i);
+char 					*check_line_type(t_env *env, t_pars *pars, t_buff line);
 void					check_light_obj(t_env *env, t_buff line, int i);
 void					check_camera_obj(t_env *env, t_buff line, int i);
-void					check_object_name(t_env *env, char *name, t_pars *pars);
-void					check_color_obj(t_env *env, t_pars *pars, t_object **object, char *value);
-void					check_color_light(t_env *env, t_pars *pars, t_light **light, char *value);
+int						check_object_type(t_env *env, char *type, t_pars *pars, t_buff line);
+void					check_color_obj(t_buff line, t_pars *pars, t_object **object, char *value);
+void					check_color_light(t_buff line, t_pars *pars, t_light **light, char *value);
 void					check_plane_obj(t_env *env, t_buff line, int i);
 void					print_object(t_object **first, t_light **first_l, t_negobj **first_n);
-void					pars_camera_line(t_env *env, t_buff line, int i);
-void					pars_light_line(t_env *env, t_buff line, int i);
-void					pars_head_value(t_env *env, t_buff line);
-void					test_decoup_balise(char *line, int i);
-void					pars_object_line(t_env *env, t_buff line, int i);
-void					pars_neg_obj_line(t_env *env, t_buff line, int i);
-int						pars_error(t_env *env, t_pars *pars, char *message, int act);
+void					test_decoup_balise(t_env *env, t_pars *pars, char *line);
+void					pars_in_balise(t_env *env, t_pars *pars, t_buff line);
+void					pars_head_balise(t_env *env, t_pars *pars, t_buff line);
+int						pars_error(t_pars *pars, char *message, char *line);
 
 void					neg_obj_add(t_negobj **first, t_negobj *new);
 t_negobj				*neg_obj_new();
-void					init_light_obj(t_env *env, t_pars *pars, int obj, t_light **light);
+void					init_light_obj(t_env *env, t_pars *pars, t_light **light);
 void					init_object(t_env *env, t_pars *pars, int obj, t_object **object);
 void					init_neg_obj(t_env *env, t_pars *pars, t_negobj **neg_obj);
 void					object_add(t_object **first, t_object *new);
 t_object				*object_new(int type);
 void					light_add(t_light **first, t_light *new);
-t_light					*light_new(int type);
+t_light					*light_new();
 
 
 void					swap(double *t0, double *t1);
@@ -266,9 +278,6 @@ t_double3				raytracer(t_vector ray, t_scene *scene, t_object *to_ignore, int de
 t_surface				*intersect(t_vector ray, t_scene *scene, t_object *to_ignore);
 void					*render(void *env);
 void					color_standard(t_env *env, t_double3 color, int *xy, int index);
-void					color_sepia(t_env *env, t_double3 color, int *xy, int index);
-void					color_sepia_neg(t_env *env, t_double3 color, int *xy, int index);
-void					color_neg(t_env *env, t_double3 color, int *xy, int index);
 void					cel_shading(double *dot_light);
 void					color_pixel_image(t_color color, int pixel_start, t_image *image);
 void					get_surface_normal(t_surface *surface);
@@ -312,9 +321,9 @@ void					save_img(t_env *env);
 #endif
 
 /* 
-typage camera : fov;
-
-object limite :
+negatif 1
+sepia 2
+sepia + negatif
 
 
 */
