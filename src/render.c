@@ -62,25 +62,24 @@ void            *render(void *env)
 {
     t_double3   pixel_ray[4];
     t_double3   color;
-    int         x;
-    int         y;
+    int         xy[2];
     int         index;
     int         i;
  
     init_index(env, &index);
-    y = 0;
-    while (y < HEIGHT / THREAD)
+    xy[1] = 0;
+    while (xy[1] < HEIGHT / THREAD)
     {
-        x = 0;
-        while (x < WIDTH)
+        xy[0] = 0;
+        while (xy[0] < WIDTH)
         {
              i = 0;
             if (((t_env*)env)->scene->aliaising)
             {
                 while(i < 4)
                 {
-                    pixel_ray[i] = pixel_ray_init_aa(((t_env*)env)->scene->camera.dir, x,
-                    y + ((HEIGHT / THREAD) * (index)), i);
+                    pixel_ray[i] = pixel_ray_init_aa(((t_env*)env)->scene->camera.dir, xy[0],
+                    xy[1] + ((HEIGHT / THREAD) * (index)), i);
                     color = v_plus_v(color, raytracer((t_vector){((t_env*)env)->scene->camera.pos, 
                     pixel_ray[i]}, ((t_env*)env)->scene, NULL, 0));
                     color = scale_v(color, 0.50);
@@ -89,22 +88,22 @@ void            *render(void *env)
             }
             else
             {
-                pixel_ray[0] = pixel_ray_init(((t_env*)env)->scene->camera.dir, x,
-                y + ((HEIGHT / THREAD) * (index)));
+                pixel_ray[0] = pixel_ray_init(((t_env*)env)->scene->camera.dir, xy[0],
+                xy[1] + ((HEIGHT / THREAD) * (index)));
                 color = raytracer((t_vector){((t_env*)env)->scene->camera.pos, 
                 pixel_ray[0]}, ((t_env*)env)->scene, NULL, 0);
             }
             if (((t_env*)env)->scene->effect == 1)
-                color_sepia((t_env*)env, color, x, y, index);
+                color_sepia((t_env*)env, color, xy, index);
             else if (((t_env*)env)->scene->effect == 3)
-                color_sepia_neg((t_env*)env, color, x, y, index);
+                color_sepia_neg((t_env*)env, color, xy, index);
             else if (((t_env*)env)->scene->effect == 3)
-                color_neg((t_env*)env, color, x, y, index);
+                color_neg((t_env*)env, color, xy, index);
             else
-                color_standard((t_env*)env, color, x, y, index);
-            x++;
+                color_standard((t_env*)env, color, xy, index);
+            xy[0]++;
         }
-        y++;
+        xy[1]++;
     }
     pthread_exit(0);
 }

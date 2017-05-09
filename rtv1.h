@@ -265,10 +265,10 @@ t_double3				color_refracted(t_vector ray, t_scene *scene,t_surface *surface, in
 t_double3				raytracer(t_vector ray, t_scene *scene, t_object *to_ignore, int depth);
 t_surface				*intersect(t_vector ray, t_scene *scene, t_object *to_ignore);
 void					*render(void *env);
-void					color_standard(t_env *env, t_double3 color, int x, int y, int index);
-void					color_sepia(t_env *env, t_double3 color, int x, int y, int index);
-void					color_sepia_neg(t_env *env, t_double3 color, int x, int y, int index);
-void					color_neg(t_env *env, t_double3 color, int x, int y, int index);
+void					color_standard(t_env *env, t_double3 color, int *xy, int index);
+void					color_sepia(t_env *env, t_double3 color, int *xy, int index);
+void					color_sepia_neg(t_env *env, t_double3 color, int *xy, int index);
+void					color_neg(t_env *env, t_double3 color, int *xy, int index);
 void					cel_shading(double *dot_light);
 void					color_pixel_image(t_color color, int pixel_start, t_image *image);
 void					get_surface_normal(t_surface *surface);
