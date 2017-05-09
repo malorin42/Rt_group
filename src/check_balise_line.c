@@ -64,6 +64,39 @@ static char	*analyse_balise_lign(t_env *env, t_pars *pars, char *line, char *typ
 	return (NULL);
 }
 
+static void	add_texture(t_pars *pars, t_object **object, char *value)
+{
+	int 		dcp;
+	int 		i;
+	int 		j;
+	t_object	*obj;
+
+	obj = *object;
+	i = 0;
+	j = 0;
+	obj->texture = (char*)malloc(sizeof(char) * ft_strlen(value) + 1);
+	while (value[i] != '\0' && value[i] != '.')
+	{
+		obj->texture[j] = value[i];
+		i++;
+		j++;
+	}
+	dcp = 0;
+	if (value[i] == '.')
+	{
+		if (value[i + 1] == 'd')
+			dcp = 1;
+		if (dcp == 1 && value[i + 2] != 'c')
+			dcp = 0;
+		if (dcp == 1 && value[i + 3] != 'p')
+			dcp = 0;
+		if (dcp == 1 && value[i + 4] != '\0')
+			dcp = 0;
+	}
+	if (dcp == 1)
+		pars->dcp_text = 1;
+}
+
 static void	pars_balise_obj(t_env *env, t_buff line, t_pars *pars)
 {
 	char	*value;
@@ -86,6 +119,9 @@ static void	pars_balise_obj(t_env *env, t_buff line, t_pars *pars)
 	value = analyse_balise_lign(env, pars, line.data, "refraction=");
 	if (value != NULL)
 		add_double_param(line, "refraction", &env->scene->object, value);
+	value = analyse_balise_lign(env, pars, line.data, "texture=");
+	if (value != NULL)
+		add_texture(pars, &env->scene->object, value);
 	value = analyse_balise_lign(env, pars, line.data, "decoupe=");
 	if (value != NULL)
 		add_OnOff_value(&env->scene->object, value, pars);

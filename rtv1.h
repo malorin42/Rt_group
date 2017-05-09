@@ -99,6 +99,7 @@ typedef struct			s_object
 	double				refraction;
 	double				reflex;
 	double				transparency;
+	char 				*texture;
 	int					dcp;
 	t_double2			dcp_x;
 	t_double2			dcp_y;
@@ -134,6 +135,7 @@ typedef struct			s_pars
 	int					nbr_lign;
 	int					error;
 	int					ligne;
+	int 				dcp_text;
 	char				**error_mess;
 }						t_pars;
  
