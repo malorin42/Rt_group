@@ -80,4 +80,5 @@
 	<Sepia>		OFF;
 	<Negative>	OFF;
 	<Cartoon>	OFF;
+	<Ambiant>	0.5;
 <HEAD/>

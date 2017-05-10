@@ -80,11 +80,14 @@ static void		key_UpDown_menu(t_env *env, int keycode)
 	{
 		if (keycode == U_ARROW && env->menu->index > 0)
 			env->menu->index--;
-		else if (keycode == D_ARROW && env->menu->i_page == 0 && env->menu->index < 4)
-		 	env->menu->index++;
-		else if (keycode == D_ARROW && env->menu->i_page > 0)
+		else if (keycode == D_ARROW && env->menu->i_page != env->menu->page_max)
 		{
-			if (env->menu->index < (env->menu->nbr_scn - (env->menu->i_page) * 5 - 1))
+			if (env->menu->index < 4)
+				env->menu->index++;
+		}
+		else if (keycode == D_ARROW && env->menu->i_page == env->menu->page_max)
+		{
+			if (env->menu->index < env->menu->nbr_scn % 5 - 1)
 				env->menu->index++;
 		}
 	}
