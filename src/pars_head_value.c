@@ -71,6 +71,7 @@ static void 	pars_head_value(t_env *env, t_pars *pars, t_buff line, int i)
 
 static int		lookat_head_condition(t_env *env, t_pars *pars, t_buff line, char *type)
 {
+	printf("%d\n", pars->i_dir_light);
 	if (ft_strcmp(type, "Ambiant") == 0 && pars->i_ambiant == 0)
 		return (1);
 	else if (ft_strcmp(type, "Aliasing") == 0 && pars->i_aliai == 0)

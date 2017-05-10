@@ -28,7 +28,8 @@ void			get_nearest_cylinder(t_vector ray, t_object *cylinder,
 	if (intersect_cylinder(ray_s, cylinder, &distance))
 	{
 		tmp = cut_object(ray, cylinder, distance, scene);
-		if (tmp->object != NULL && (surface->distance == -1 || surface->distance > tmp->distance))
+		if (tmp->object != NULL && (surface->distance == -1 ||
+			surface->distance > tmp->distance))
 		{
 			surface->object = tmp->object;
 			surface->distance = tmp->distance;

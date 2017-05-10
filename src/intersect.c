@@ -10,8 +10,19 @@ t_double3			get_normal(t_object *object, t_double3 point)
 	if (object->type == CYLINDER)
 		normal = (t_double3){point.x, point.y, 0};
 	if (object->type == CONE)
-		normal = (t_double3){point.x, point.y, -1 * point.z * object->radius * (M_PI / 180.0)};
+		normal = (t_double3){point.x, point.y, -1 *
+			point.z * object->radius * (M_PI / 180.0)};
 	return (normalize(normal));
+}
+
+static void			surface_fill(t_surface *surface, t_vector ray)
+{
+	surface->point = find_point(ray.pos, ray.dir, surface->distance);
+	surface->normal = rotation(surface->normal, surface->object->rotation,
+		REGULAR_MATRIX);
+	surface->normal = normalize(surface->normal);
+	if (dot_product(surface->normal, ray.dir) > 0)
+		surface->normal = scale_v(surface->normal, -1);
 }
 
 t_surface			*intersect(t_vector ray, t_scene *scene,
@@ -38,12 +49,6 @@ t_surface			*intersect(t_vector ray, t_scene *scene,
 		tmp = tmp->next;
 	}
 	if (surface->object != NULL)
-	{
-		surface->point = find_point(ray.pos, ray.dir, surface->distance);
-		surface->normal = rotation(surface->normal, surface->object->rotation, REGULAR_MATRIX);
-		surface->normal = normalize(surface->normal);
-		if (dot_product(surface->normal, ray.dir) > 0)
-			surface->normal = scale_v(surface->normal, -1);
-	}
+		surface_fill(surface, ray);
 	return (surface);
 }

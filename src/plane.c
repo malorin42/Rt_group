@@ -36,10 +36,12 @@ void			get_nearest_plane(t_vector ray, t_object *plane,
 	ray_s = transform_ray(ray, plane);
 	if (intersect_plane(ray_s, plane, &distance))
 	{
-		if (plane->radius > 0.00001 && length_v(find_point(ray_s.pos, ray_s.dir, distance)) > plane->radius)
-				return;
+		if (plane->radius > 0.00001 && length_v(find_point(ray_s.pos,
+			ray_s.dir, distance)) > plane->radius)
+			return ;
 		tmp = cut_object(ray, plane, (t_double2){distance, -1}, scene);
-		if (tmp->object != NULL && (surface->distance == -1 || surface->distance > tmp->distance))
+		if (tmp->object != NULL && (surface->distance == -1 ||
+			surface->distance > tmp->distance))
 		{
 			surface->object = tmp->object;
 			surface->distance = tmp->distance;

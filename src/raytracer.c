@@ -58,7 +58,8 @@ t_double3			color_diffused(t_scene *scene, t_surface *surface, t_vector ray)
 				dot_light), surface->object->gloss,
 				scale_v(surface->color, dot_light)));
 			reflected = reflect(scale_v(normalize(v_minus_v(light->pos, surface->point)), -1), surface->normal);
-			color_hit = v_plus_v(color_hit, scale_v(light->color, pow(max_double(0, -dot_product(reflected, ray.dir) * surface->object->gloss), 2)));
+			color_hit = v_plus_v(color_hit, scale_v(light->color,
+				pow(max_double(0, -dot_product(reflected, ray.dir) * surface->object->gloss), 2)));
 		}
 		free(light_intersect);
 		light_nb++;
@@ -81,8 +82,9 @@ t_double3			direct_light(t_vector ray, t_scene *scene,
 	while (light)
 	{
 		light_vector = v_minus_v(light->pos, ray.pos);
-		dot_light = dot_product(normalize(light_vector), ray.dir);
+		// dot_light = dot_product(normalize(light_vector), ray.dir);
 		dot_light = max_double(0, exp(dot_light +  7.51745) -5000);
+		dot_light = max_double(0, 0.8 * pow(dot_light, 0.8));
 		light_intersect = intersect((t_vector){scene->camera.pos,
 			normalize(light_vector)}, scene, NULL);
 		if (light_intersect->object == NULL || (light_intersect->distance >

@@ -8,7 +8,8 @@ static int			intersect_sphere(t_vector ray, t_object *sphere,
 	double		c;
 
 	a = dot_product(ray.dir, ray.dir);
-	b = 2 * (ray.pos.x * ray.dir.x + ray.pos.y * ray.dir.y + ray.pos.z * ray.dir.z);
+	b = 2 * (ray.pos.x * ray.dir.x + ray.pos.y * ray.dir.y + ray.pos.z *
+		ray.dir.z);
 	c = dot_product(ray.pos, ray.pos) - sphere->radius * sphere->radius;
 	if (solve_quadratic(a, b, c, distance))
 		return (1);
@@ -26,7 +27,8 @@ void				get_nearest_sphere(t_vector ray, t_object *sphere,
 	if (intersect_sphere(transform_ray(ray, sphere), sphere, &distance))
 	{
 		tmp = cut_object(ray, sphere, distance, scene);
-		if (tmp->object != NULL && (surface->distance == -1 || surface->distance > tmp->distance))
+		if (tmp->object != NULL && (surface->distance == -1 ||
+			surface->distance > tmp->distance))
 		{
 			surface->object = tmp->object;
 			surface->distance = tmp->distance;
@@ -38,4 +40,3 @@ void				get_nearest_sphere(t_vector ray, t_object *sphere,
 		}
 	}
 }
-

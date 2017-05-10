@@ -1,6 +1,6 @@
 #include "../rtv1.h"
 
-t_image	*ft_new_image(void *mlx, int width, int height, int thread)
+t_image			*ft_new_image(void *mlx, int width, int height, int thread)
 {
 	t_image		*img;
 

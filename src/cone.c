@@ -31,7 +31,8 @@ void				get_nearest_cone(t_vector ray, t_object *cone,
 	if (intersect_cone(ray_s, cone, &distance))
 	{
 		tmp = cut_object(ray, cone, distance, scene);
-		if (tmp->object != NULL && (surface->distance == -1 || surface->distance > tmp->distance))
+		if (tmp->object != NULL && (surface->distance == -1 ||
+			surface->distance > tmp->distance))
 		{
 			surface->object = tmp->object;
 			surface->distance = tmp->distance;
