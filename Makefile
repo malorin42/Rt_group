@@ -42,11 +42,11 @@ obj/%.o: src/%.c
 
 clean:
 	@rm -rf obj/
-#	@$(MAKE) -s clean -C ./libft/
+	@$(MAKE) -s clean -C ./libft/
 
 fclean: clean
 	@rm -f $(NAME)
-#	@$(MAKE) -s fclean -C ./libft/
+	@$(MAKE) -s fclean -C ./libft/
 
 re: fclean all
 

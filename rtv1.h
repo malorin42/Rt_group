@@ -104,6 +104,7 @@ typedef struct			s_object
 	t_double2			dcp_z;
 	t_double3 			text_rot;
 	t_image				*texture;
+	int					perturbation;
 	struct	s_object	*next;
 }						t_object;
 
