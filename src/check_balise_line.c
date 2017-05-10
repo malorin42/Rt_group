@@ -120,6 +120,8 @@ static void		add_texture(t_env *env, char *value, t_pars *pars, t_buff line)
 	add_texture_image(env, &env->scene->object, path);
 }
 
+// static void		add_perturbation(t_env *)
+
 static void		pars_balise_type(t_env *env, t_buff line, t_pars *pars)
 {
 	char	*value;
@@ -145,6 +147,9 @@ static void		pars_balise_type(t_env *env, t_buff line, t_pars *pars)
 	value = analyse_balise_lign(env, pars, line, "texture=");
 	if (value != NULL)
 		add_texture(env, value, pars, line);
+	// value = analyse_balise_lign(env, pars, line, "Perturb=");
+	// if (value != NULL)
+	// 	add_perturbation(env, value, pars, line);
 }
 
 static int 		is_balise_type(t_env *env, t_pars *pars, t_buff line)

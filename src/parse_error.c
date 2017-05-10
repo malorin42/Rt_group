@@ -15,7 +15,6 @@ int			pars_error(t_pars *pars, char *message, char *line)
 	if (pars->error == 0)
 		ft_putendl(line);
 	pars->error++;
-	ft_putendl(line);
 	ft_putendl(str);
 	if (str != NULL)
 		free(str);

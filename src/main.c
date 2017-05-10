@@ -72,7 +72,7 @@ int				main(int argc, char const **argv)
 	env = env_init();
 	init_menu(env, argv[1]);
 	check_files(fd, env);
-	print_object(&env->scene->object, &env->scene->light, &env->scene->negobj);
+	// print_object(&env->scene->object, &env->scene->light, &env->scene->negobj);
 	mlx_string_put(((t_env*)env)->mlx, ((t_env*)env)->win_scene, 100, 100, 0xF00D532, "Loading...");
 	close(fd);
 	mlx_loop(env->mlx);

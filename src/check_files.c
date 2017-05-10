@@ -27,6 +27,7 @@ static void		init_ivar(t_pars *pars)
 	pars->i_radius = 0;
 	pars->i_dcp = 0;
 	pars->dcp = 0;
+	pars->i_dir_light = 0;
 	pars->balise = 0;
 }
 

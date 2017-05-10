@@ -75,7 +75,7 @@ static int		lookat_head_condition(t_env *env, t_pars *pars, t_buff line, char *t
 		return (1);
 	else if (ft_strcmp(type, "Aliasing") == 0 && pars->i_aliai == 0)
 		return (2);
-	else if (ft_strcmp(type, "Direct Light") == 0 && pars->i_dir_light == 0)
+	else if (ft_strcmp(type, "Dir_light") == 0 && pars->i_dir_light == 0)
 		return (3);
 	else if (ft_strcmp(type, "Sepia") == 0 && pars->i_sepia == 0)
 		return (4);
