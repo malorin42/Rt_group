@@ -153,7 +153,7 @@ static void		pars_balise_type(t_env *env, t_buff line, t_pars *pars)
 		add_double_param(line, "refraction", &env->scene->object, value);
 	value = analyse_balise_lign(env, pars, line, "decoupe=");
 	if (value != NULL)
-		pars->dcp = add_OnOff_value(&env->scene->object, value, pars, line);
+		pars->dcp = add_on_off_value(&env->scene->object, value, pars, line);
 	value = analyse_balise_lign(env, pars, line, "texture=");
 	if (value != NULL)
 		add_texture(env, value, pars, line);

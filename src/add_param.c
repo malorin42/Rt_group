@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   add_param.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/10 16:13:40 by malorin           #+#    #+#             */
+/*   Updated: 2017/05/10 21:04:56 by malorin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../rtv1.h"
 
-int			add_OnOff_value(t_object **object, char *value, t_pars *pars, t_buff line)
+int			add_on_off_value(t_object **object,
+	char *value, t_pars *pars, t_buff line)
 {
 	t_object	*tmp;
 
@@ -42,7 +55,8 @@ static int	search_param(char *line, char *type)
 	return (-1);
 }
 
-void		add_double_param(t_buff line, char *type, t_object **object, char *value)
+void		add_double_param(t_buff line, char *type, t_object **object,
+	char *value)
 {
 	t_object	*tmp;
 

@@ -216,7 +216,7 @@ void					add_value_neg(t_env *env, t_double3 *values, int i);
 void					add_light_value(t_env *env, t_double3 *values, int i);
 void					add_double_param(t_buff line, char *type, t_object **object, char *value);
 void					add_camera_value(t_env *env, t_double3 *values, int i);
-int 					add_OnOff_value(t_object **object, char *value, t_pars *pars, t_buff line);
+int 					add_on_off_value(t_object **object, char *value, t_pars *pars, t_buff line);
 void					add_value(t_env *env, t_double3 *values, int i);
 
 void					check_if_balise(t_env *env, t_buff line, t_pars *pars);
@@ -229,6 +229,7 @@ char 					*check_line_type(t_env *env, t_pars *pars, t_buff line);
 void					check_light_obj(t_env *env, t_buff line, int i);
 void					check_camera_obj(t_env *env, t_buff line, int i);
 int						check_object_type(t_env *env, char *type, t_pars *pars, t_buff line);
+int						is_end_balise(t_env *env, t_pars *pars, t_buff line);
 void					check_color_obj(t_buff line, t_pars *pars, t_object **object, char *value);
 void					check_color_light(t_buff line, t_pars *pars, t_light **light, char *value);
 void					check_plane_obj(t_env *env, t_buff line, int i);
