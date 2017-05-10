@@ -30,11 +30,17 @@ static void		change_scene(t_env *env)
 	{
 		if (i == env->menu->index + (env->menu->i_page * 5))
 		{
+			if (env->menu->path)
+				free(env->menu->path);
+			env->menu->path = NULL;
 			env->menu->path = (char*)malloc(sizeof(char) * (strlen("scenes/") + strlen(env->menu->tab_scn[i])));
-			env->menu->path = ft_strcat(ft_strcat(env->menu->path, "scenes/"), env->menu->tab_scn[i]);
+			env->menu->path = ft_strcpy(env->menu->path, "scenes/");
+			env->menu->path = ft_strjoin(env->menu->path, env->menu->tab_scn[i]);
 		}
 		i++;
 	}
+	ft_putstr("Path modified : ");
+	ft_putendl(env->menu->path);
 }
 
 static void		key_enter_menu(t_env *env)
@@ -62,6 +68,7 @@ static void		key_enter_menu(t_env *env)
 
 static void		key_UpDown_menu(t_env *env, int keycode)
 {
+
 	if (env->menu->menu_lvl == 0)
 	{
 		if (keycode == U_ARROW && env->menu->index > 0)
@@ -73,13 +80,13 @@ static void		key_UpDown_menu(t_env *env, int keycode)
 	{
 		if (keycode == U_ARROW && env->menu->index > 0)
 			env->menu->index--;
-		else if (keycode == D_ARROW && env->menu->i_page == env->menu->page_max)
+		else if (keycode == D_ARROW && env->menu->i_page == 0 && env->menu->index < 4)
+		 	env->menu->index++;
+		else if (keycode == D_ARROW && env->menu->i_page > 0)
 		{
-			if (env->menu->index < ((env->menu->page_max + 1) * 5) - env->menu->nbr_scn)
+			if (env->menu->index < (env->menu->nbr_scn - (env->menu->i_page) * 5 - 1))
 				env->menu->index++;
 		}
-		else if (keycode == D_ARROW && env->menu->index < 4)
-		 	env->menu->index++;
 	}
 }
 
