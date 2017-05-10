@@ -30,11 +30,17 @@ static void		change_scene(t_env *env)
 	{
 		if (i == env->menu->index + (env->menu->i_page * 5))
 		{
+			if (env->menu->path)
+				free(env->menu->path);
+			env->menu->path = NULL;
 			env->menu->path = (char*)malloc(sizeof(char) * (strlen("scenes/") + strlen(env->menu->tab_scn[i])));
-			env->menu->path = ft_strcat(ft_strcat(env->menu->path, "scenes/"), env->menu->tab_scn[i]);
+			env->menu->path = ft_strcpy(env->menu->path, "scenes/");
+			env->menu->path = ft_strjoin(env->menu->path, env->menu->tab_scn[i]);
 		}
 		i++;
 	}
+	ft_putstr("Path modified : ");
+	ft_putendl(env->menu->path);
 }
 
 static void		key_enter_menu(t_env *env)

@@ -1,163 +1,149 @@
-<Object> name=Plane; color=FFFFFF;
-	Pos 		{0.0 	-20.0 	50.0}
-	Rot			{90.0	0.0		0.0}
-	Radius 		{0.0}
+<Object> type=Plane; color=FFFFFF;
+	<Pos> 		{0.0 	-20.0 	50.0}
+	<Rot>			{90.0	0.0		0.0}
+	<Radius> 		{0.0}
 <Object/>
 
-<Object> name=Plane; color=FFFFFF; reflex=0.9;
-	Pos 		{0.0 	00.0 	-100.0}
-	Rot			{0.0	0.0		90.0}
-	Radius 		{0.0}
+<Object> type=Plane; color=FFFFFF; reflex=0.9;
+	<Pos> 		{0.0 	00.0 	-100.0}
+	<Rot>			{0.0	0.0		90.0}
+	<Radius> 		{0.0}
 <Object/>
 
-<Object> name=Plane; color=blue; reflex=0.0; gloss=0.8;
-	Pos 		{-50.0 	00.0 	-100.0}
-	Rot			{0.0	-80.0		90.0}
-	Radius 		{0.0}
+<Object> type=Plane; color=blue; reflex=0.0; gloss=0.8;
+	<Pos> 		{-50.0 	00.0 	-100.0}
+	<Rot>			{0.0	-80.0		90.0}
+	<Radius> 		{0.0}
 <Object/>
 
-<Object> name=Plane; color=blue; reflex=0.0; gloss=0.8;
-	Pos 		{50.0 	00.0 	-100.0}
-	Rot			{0.0	80.0		90.0}
-	Radius 		{0.0}
+<Object> type=Plane; color=blue; reflex=0.0; gloss=0.8;
+	<Pos> 		{50.0 	00.0 	-100.0}
+	<Rot>			{0.0	80.0		90.0}
+	<Radius> 		{0.0}
 <Object/>
 
-<Object> name=Plane; color=FFFFFF;
-	Pos 		{0.0 	11.0 	50.0}
-	Rot			{90.0	0.0		0.0}
-	Radius 		{0.0}
+<Object> type=Plane; color=FFFFFF;
+	<Pos> 		{0.0 	11.0 	50.0}
+	<Rot>			{90.0	0.0		0.0}
+	<Radius> 		{0.0}
 <Object/>
 
-<LightObj> name=Spotlight; color=red;
-	Pos 		{0.0 	11.8 	30.0}
-	Dir			{0.0	0.0		0.0}
+<LightObj> type=Spotlight; color=red;
+	<Pos> 		{0.0 	11.8 	30.0}
+	<Dir>			{0.0	0.0		0.0}
 <LightObj/>
 
 <NegObj>
-	Pos			{0.0	10.0		30.0}
-	Rot			{0.0 	0.0 	0.0}
-	Radius		{4.0}
+	<Pos>			{0.0	10.0		30.0}
+	<Rot>			{0.0 	0.0 	0.0}
+	<Radius>		{4.0}
 <NegObj/>
 
-<Object> name=Sphere; color=FFFFFF; gloss=0.0;
-	Pos 		{20.0 	0.0 	0.0}
-	Rot			{0.0	0.0		0.0}
-	Radius 		{2.0}
+<Object> type=Sphere; color=FFFFFF; gloss=0.0;
+	<Pos> 		{20.0 	0.0 	0.0}
+	<Rot>			{0.0	0.0		0.0}
+	<Radius> 		{2.0}
 <Object/>
 
-<Object> name=Sphere; color=FFFFFF; gloss=0.0;
-	Pos 		{25.0 	-4.0 	1.0}
-	Rot			{0.0	0.0		0.0}
-	Radius 		{0.4}
+<Object> type=Sphere; color=FFFFFF; gloss=0.0;
+	<Pos> 		{25.0 	-4.0 	1.0}
+	<Rot>			{0.0	0.0		0.0}
+	<Radius> 		{0.4}
 <Object/>
 
 <NegObj>
-	Pos			{-36.0	0.0		-25.0}
-	Rot			{0.0 	0.0 	0.0}
-	Radius		{4.0}
+	<Pos>			{-36.0	0.0		-25.0}
+	<Rot>			{0.0 	0.0 	0.0}
+	<Radius>		{4.0}
 <NegObj/>
 
-<Object> name=Cylinder; color=FFFFFF; decoupe=On;
-	Pos 		{20.0 	-2.0 	0.0}
-	Rot			{90.0	0.0		0.0}
-	Radius 		{0.4}
-	<decoupe>
-		X		{-1.0	1.0}
-		Y		{-1.0	1.0}
-		Z		{-1.0	1.0}
-	<decoupe/>
+<Object> type=Cylinder; color=FFFFFF; decoupe=On;
+	<Pos> 		{20.0 	-2.0 	0.0}
+	<Rot>			{90.0	0.0		0.0}
+	<Radius> 		{0.4}
+	<Decoupe.X>		{-1.0	1.0}
+	<Decoupe.Y>		{-1.0 	1.0}
+	<Decoupe.Z>		{-1.0 	1.0}
 <Object/>
 
-<Object> name=Cylinder; color=FFFFFF; decoupe=On;
-	Pos 		{22.0 	-4.0 	1.0}
-	Rot			{0.0	90.0	45.0}
-	Radius 		{0.4}
-	<decoupe>
-		X		{-3.0	3.0}
-		Y		{-3.0	3.0}
-		Z		{-3.0	3.0}
-	<decoupe/>
+<Object> type=Cylinder; color=FFFFFF; decoupe=On;
+	<Pos> 		{22.0 	-4.0 	1.0}
+	<Rot>			{0.0	90.0	45.0}
+	<Radius> 		{0.4}
+	<Decoupe.X>		{-3.0	3.0}
+	<Decoupe.Y>		{-3.0 	3.0}
+	<Decoupe.Z>		{-3.0 	3.0}
 <Object/>
 
-<Object> name=Cylinder; color=FFFFFF; decoupe=On;
-	Pos 		{23.2 	-3.75 	1.0}
-	Rot			{0.0	90.0	45.0}
-	Radius 		{0.3}
-	<decoupe>
-		X		{-0.7	0.7}
-		Y		{-0.7	0.7}
-		Z		{-0.7	0.7}
-	<decoupe/>
+<Object> type=Cylinder; color=FFFFFF; decoupe=On;
+	<Pos> 		{23.2 	-3.75 	1.0}
+	<Rot>			{0.0	90.0	45.0}
+	<Radius> 		{0.3}
+	<Decoupe.X>		{-0.7	0.7}
+	<Decoupe.Y>		{-0.7 	0.7}
+	<Decoupe.Z>		{-0.7 	0.7}
 <Object/>
 
-<Object> name=Sphere; color=FFFFFF; gloss=0.0;
-	Pos 		{22.5 	-3.75 	1.0}
-	Rot			{0.0	0.0		0.0}
-	Radius 		{0.3}
+<Object> type=Sphere; color=FFFFFF; gloss=0.0;
+	<Pos> 		{22.5 	-3.75 	1.0}
+	<Rot>			{0.0	0.0		0.0}
+	<Radius> 		{0.3}
 <Object/>
 
-<Object> name=Sphere; color=FFFFFF; gloss=0.0;
-	Pos 		{23.9 	-3.75 	1.0}
-	Rot			{0.0	0.0		0.0}
-	Radius 		{0.3}
+<Object> type=Sphere; color=FFFFFF; gloss=0.0;
+	<Pos> 		{23.9 	-3.75 	1.0}
+	<Rot>			{0.0	0.0		0.0}
+	<Radius> 		{0.3}
 <Object/>
 
-<Object> name=Cylinder; color=FFFFFF; decoupe=On;
-	Pos 		{24.0 	-2.3 	1.0}
-	Rot			{90.0	30.0	0.0}
-	Radius 		{0.4}
-	<decoupe>
-		X		{-2.0	2.0}
-		Y		{-2.0	2.0}
-		Z		{-2.0	2.0}
-	<decoupe/>
+<Object> type=Cylinder; color=FFFFFF; decoupe=On;
+	<Pos> 		{24.0 	-2.3 	1.0}
+	<Rot>			{90.0	30.0	0.0}
+	<Radius> 		{0.4}
+	<Decoupe.X>		{-2.0	2.0}
+	<Decoupe.Y>		{-2.0 	2.0}
+	<Decoupe.Z>		{-2.0 	2.0}
 <Object/>
 
-<Object> name=Cylinder; color=FFFFFF; decoupe=On;
-	Pos 		{20.0 	-6.0 	0.0}
-	Rot			{90.0	0.0		0.0}
-	Radius 		{2.0}
-	<decoupe>
-		X		{-3.0	3.0}
-		Y		{-3.0	3.0}
-		Z		{-3.0	3.0}
-	<decoupe/>
+<Object> type=Cylinder; color=FFFFFF; decoupe=On;
+	<Pos> 		{20.0 	-6.0 	0.0}
+	<Rot>			{90.0	0.0		0.0}
+	<Radius> 		{2.0}
+	<Decoupe.X>		{-3.0	3.0}
+	<Decoupe.Y>		{-3.0 	3.0}
+	<Decoupe.Z>		{-3.0 	3.0}
 <Object/>
 
-<Object> name=Cylinder; color=FFFFFF; decoupe=On;
-	Pos 		{19.0 	-12.0 	0.0}
-	Rot			{90.0	0.0		0.0}
-	Radius 		{0.4}
-	<decoupe>
-		X		{-3.0	3.0}
-		Y		{-3.0	3.0}
-		Z		{-3.0	3.0}
-	<decoupe/>
+<Object> type=Cylinder; color=FFFFFF; decoupe=On;
+	<Pos> 		{19.0 	-12.0 	0.0}
+	<Rot>			{90.0	0.0		0.0}
+	<Radius> 		{0.4}
+	<Decoupe.X>		{-3.0	3.0}
+	<Decoupe.Y>		{-3.0 	3.0}
+	<Decoupe.Z>		{-3.0 	3.0}
 <Object/>
 
-<Object> name=Cylinder; color=FFFFFF; decoupe=On;
-	Pos 		{21.0 	-12.0 	0.0}
-	Rot			{90.0	0.0		0.0}
-	Radius 		{0.4}
-	<decoupe>
-		X		{-3.0	3.0}
-		Y		{-3.0	3.0}
-		Z		{-3.0	3.0}
-	<decoupe/>
+<Object> type=Cylinder; color=FFFFFF; decoupe=On;
+	<Pos> 		{21.0 	-12.0 	0.0}
+	<Rot>			{90.0	0.0		0.0}
+	<Radius> 		{0.4}
+	<Decoupe.X>		{-3.0	3.0}
+	<Decoupe.Y>		{-3.0 	3.0}
+	<Decoupe.Z>		{-3.0 	3.0}
 <Object/>
 
-<Object> name=Sphere; color=purple; transp=0.5; refraction=1.0; gloss=0.5;
-	Pos 		{0.0 	0.0 	0.0}
-	Rot			{0.0	0.0		0.0}
-	Radius 		{3.0}
+<Object> type=Sphere; color=purple; transp=0.5; refraction=1.0; gloss=0.5;
+	<Pos> 		{0.0 	0.0 	0.0}
+	<Rot>			{0.0	0.0		0.0}
+	<Radius> 		{3.0}
 <Object/>
 
-<LightObj> name=Spotlight; color=purple;
-	Pos 		{-39.0 	0.0 	-25.0}
-	Dir			{0.0	0.0		0.0}
+<LightObj> type=Spotlight; color=purple;
+	<Pos> 		{-39.0 	0.0 	-25.0}
+	<Dir>			{0.0	0.0		0.0}
 <LightObj/>
 
 <Camera>
-	Pos			{0.0	0.0		100.0}
-	Dir			{0.0	0.0		0.0}
+	<Pos>			{0.0	0.0		100.0}
+	<Dir>			{0.0	0.0		0.0}
 <Camera/>

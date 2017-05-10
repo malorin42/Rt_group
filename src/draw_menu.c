@@ -14,7 +14,7 @@ static int		add_scene_to_tab(char **tab, char *scn, int i)
 		return (0);
 	if (wrong_files(scn) == 1)
 	{
-		strcpy(tab[i], scn);
+		tab[i] = ft_strcpy(tab[i], scn);
 		return (1);
 	}
 	else
@@ -31,6 +31,7 @@ static void		write_page_status(t_env *env)
 	str = ft_strjoin(str, " / ");
 	str = ft_strjoin(str, ft_itoa(env->menu->page_max));
 	mlx_string_put(env->mlx, env->win_menu, 50, 200, 0xF00D532, str);
+	free(str);
 	if (env->menu->i_page == 0)
 		ft_draw_left_arrow(env);
 	if (env->menu->i_page == env->menu->page_max)
@@ -73,6 +74,7 @@ static void		setup_scene_menu(t_env *env)
 	{
 		if (ft_strcmp(dir->d_name, "..") != 0 && ft_strcmp(dir->d_name, ".") != 0 && ft_strcmp(dir->d_name, "saved") != 0)
 		{
+			//tab->scn deja malloc ??
 			if (add_scene_to_tab(env->menu->tab_scn, dir->d_name, i) == 1)
 				i++;
 		}
