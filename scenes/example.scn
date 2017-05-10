@@ -26,7 +26,7 @@
 	<Rot_text>			{3.0	0.35 	6.5}
 <Object/>
 
-<Object> type=Plane; color=blue;
+<Object> type=Plane; color=blue; perturb=damier;
 	<Pos> 		{0.0 	0.0 	-35.0}
 	<Rot>			{0.0	0.0		0.0}
 	<Radius> 		{0.0}

@@ -56,6 +56,7 @@ t_object		*object_new(int type)
 	object->transparency = 0;
 	object->gloss = 0;
 	object->refraction = 1.2;
+	object->perturbation = 0;
 	object->next = NULL;
 	object->dcp = 0;
 	return (object);

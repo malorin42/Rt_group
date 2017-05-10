@@ -77,7 +77,6 @@ static t_image         *init_texture(void *mlx, char *file)
     int         width;
     int         height;
  
-  	ft_putendl(file);
     if ((texture = (t_image*)malloc(sizeof(t_image))) == NULL)
         ft_error("Error: malloc failed.\n");
     texture->img = mlx_xpm_file_to_image(mlx, file, &width, &height);
@@ -120,7 +119,18 @@ static void		add_texture(t_env *env, char *value, t_pars *pars, t_buff line)
 	add_texture_image(env, &env->scene->object, path);
 }
 
-// static void		add_perturbation(t_env *)
+static void		add_perturbation(t_object **object, char *value, t_pars *pars, t_buff line)
+{
+	t_object 	*tmp;
+
+	tmp = *object;
+	if (ft_strcmp(value, "damier") == 0)
+		tmp->perturbation = 1;
+	else if (ft_strcmp(value, "perlin") == 0)
+		tmp->perturbation = 2;
+	else
+		pars_error(pars, "Error : Unknow Perturbation name.", line.data);
+}
 
 static void		pars_balise_type(t_env *env, t_buff line, t_pars *pars)
 {
@@ -147,9 +157,9 @@ static void		pars_balise_type(t_env *env, t_buff line, t_pars *pars)
 	value = analyse_balise_lign(env, pars, line, "texture=");
 	if (value != NULL)
 		add_texture(env, value, pars, line);
-	// value = analyse_balise_lign(env, pars, line, "Perturb=");
-	// if (value != NULL)
-	// 	add_perturbation(env, value, pars, line);
+	value = analyse_balise_lign(env, pars, line, "Perturb=");
+	if (value != NULL)
+		add_perturbation(&env->scene->object, value, pars, line);
 }
 
 static int 		is_balise_type(t_env *env, t_pars *pars, t_buff line)
