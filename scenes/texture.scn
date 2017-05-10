@@ -22,8 +22,8 @@
 	<Decoupe.Z>		{-20.0	20.0}
 <Object/>
 
-<Object> type=Sphere; color=FFFFFF; gloss=0.2; texture=meluche;
-	<Pos> 		{0.0 	0.0 	-10.0}
+<Object> type=Sphere; color=FFFFFF; gloss=0.2; transp=0.6; texture=meluche;
+	<Pos> 		{0.0 	0.0 	30.0}
 	<Rot>			{-90.0	0.0		0.0}
 	<Radius> 		{7.0}
 <Object/>
@@ -57,6 +57,11 @@
 	<Decoupe.Y>		{-10.0	10.0}
 	<Decoupe.Z>		{-7.0	7.0}
 <Object/>
+
+<LightObj> color=FFD700;
+	<Pos> 		{-10.0 	0.0 	-5.0}
+	<Dir>			{0.0	0.0		0.0}
+<LightObj/>
 
 <LightObj> color=FFD700;
 	<Pos> 		{0.0 	0.0 	50.0}
