@@ -62,6 +62,7 @@ static void		key_enter_menu(t_env *env)
 
 static void		key_UpDown_menu(t_env *env, int keycode)
 {
+
 	if (env->menu->menu_lvl == 0)
 	{
 		if (keycode == U_ARROW && env->menu->index > 0)
@@ -73,13 +74,13 @@ static void		key_UpDown_menu(t_env *env, int keycode)
 	{
 		if (keycode == U_ARROW && env->menu->index > 0)
 			env->menu->index--;
-		else if (keycode == D_ARROW && env->menu->i_page == env->menu->page_max)
+		else if (keycode == D_ARROW && env->menu->i_page == 0 && env->menu->index < 4)
+		 	env->menu->index++;
+		else if (keycode == D_ARROW && env->menu->i_page > 0)
 		{
-			if (env->menu->index < ((env->menu->page_max + 1) * 5) - env->menu->nbr_scn)
+			if (env->menu->index < (env->menu->nbr_scn - (env->menu->i_page) * 5 - 1))
 				env->menu->index++;
 		}
-		else if (keycode == D_ARROW && env->menu->index < 4)
-		 	env->menu->index++;
 	}
 }
 
