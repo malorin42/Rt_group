@@ -1,5 +1,5 @@
 <Object> type=Sphere; color=FFFFFF; gloss=0.6; decoupe=On;
-	<Pos> 			{-5.0 	0.0 	-20.0}
+	<Pos> 			{-5.0 	-2.0 	-20.0}
 	<Rot>			{0.0	75.0		0.0}
 	<Radius> 		{1.5}
 	<Decoupe.X>		{-1.3	1.3}
@@ -11,27 +11,33 @@
 	<Pos> 			{0.0 	-2.0 	-20.0}
 	<Rot>			{45.0	45.0		0.0}
 	<Radius> 		{12.0}
-	<Decoupe.X>		{-1.0	1.0}
+	<Decoupe.X>		{-1.2	1.2}
 	<Decoupe.Y>		{-1.0 	1.0}
 	<Decoupe.Z>		{-3.0 	3.0}
 <Object/>
 
 <Object> type=Cylinder; color=FFFFFF; gloss=0.6; decoupe=On;
-	<Pos> 			{5.0 	0.0 	-20.0}
+	<Pos> 			{5.0 	-2.0 	-20.0}
 	<Rot>			{90.0	0.0		0.0}
 	<Radius> 		{1.5}
-	<Decoupe.X>		{-20.0	20.0}
-	<Decoupe.Y>		{-20.0 	20.0}
+	<Decoupe.X>		{-1.45 	1.45}
+	<Decoupe.Y>		{-1.45 	1.45}
 	<Decoupe.Z>		{-3.0 	3.0}
 <Object/>
 
-<Object> type=Plane; color=blue; gloss=0.3; decoupe=On;
-	<Pos> 			{0.0 	3.0 	-20.0}
+<Object> type=Plane; color=FFFFFF; gloss=0.6; decoupe=On;
+	<Pos> 			{-4.0 	3.0 	-20.0}
 	<Rot>			{20.0	0.0		0.0}
 	<Radius> 		{0.0}
 	<Decoupe.X>		{-2.0	2.0}
 	<Decoupe.Y>		{-1.49 	1.49}
 	<Decoupe.Z>		{-20.0 	20.0}
+<Object/>
+
+<Object> type=Plane; color=FFFFFF; gloss=0.6;
+	<Pos> 			{2.0 	3.0 	-20.0}
+	<Rot>			{20.0	0.0		0.0}
+	<Radius> 		{2.0}
 <Object/>
 
 <Object> type=Plane; color=blue; gloss=0.4;
@@ -45,13 +51,8 @@
 	<Dir>		{0.0	0.0		0.0}
 <LightObj/>
 
-<LightObj> type=Spotlight; color=FFD700;
-	<Pos> 		{-7.0 	-3.0 	0.0}
-	<Dir>		{0.0	0.0		0.0}
-<LightObj/>
-
 <Camera>
-	<Pos>		{0.0	0.0		20.0}
+	<Pos>		{0.0	0.0		0.0}
 	<Dir>		{0.0	0.0		0.0}
 <Camera/>
 

@@ -27,8 +27,8 @@
 <Camera/>
 
 <HEAD>
-	<Sepia>			ON;
-	<DirectLight>	ON;
+	<Sepia>			OFF;
+	<Dir_light>		ON;
 	<Aliasing>		ON;
 	<Ambiant>		{0.2}
 <HEAD/>

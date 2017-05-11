@@ -10,7 +10,7 @@
 	<Radius> 		{0.0}
 <Object/>
 
-<Object> type=Cylinder; color=green; gloss=1; decoupe=On; reflex=0.1;
+<Object> type=Cylinder; color=green; gloss=1.0; decoupe=On; reflex=0.1;
 	<Pos> 			{10.0 	0.0 	-20.0}
 	<Rot>			{90.0	0.0		0.0}
 	<Radius> 		{1.5}
@@ -19,7 +19,7 @@
 	<Decoupe.Z>		{-5.0 	5.0}
 <Object/>
 
-<Object> type=Cylinder; color=green; gloss=1; decoupe=On; reflex=0.1;
+<Object> type=Cylinder; color=green; gloss=1.0; decoupe=On; reflex=0.1;
 	<Pos> 			{10.0 	0.0 	-10.0}
 	<Rot>			{90.0	0.0		0.0}
 	<Radius> 		{1.5}
@@ -28,7 +28,7 @@
 	<Decoupe.Z>		{-5.0 	5.0}
 <Object/>
 
-<Object> type=Cylinder; color=green; gloss=1; decoupe=On; reflex=0.1;
+<Object> type=Cylinder; color=green; gloss=1.0; decoupe=On; reflex=0.1;
 	<Pos> 		{-10.0 	0.0 	-20.0}
 	<Rot>			{90.0	0.0		0.0}
 	<Radius> 		{1.5}
@@ -37,7 +37,7 @@
 	<Decoupe.Z>		{-5.0 	5.0}
 <Object/>
 
-<Object> type=Cylinder; color=green; gloss=1; decoupe=On; reflex=0.1;
+<Object> type=Cylinder; color=green; gloss=1.0; decoupe=On; reflex=0.1;
 	<Pos> 		{-10.0 	0.0 	-10.0}
 	<Rot>			{90.0	0.0		0.0}
 	<Radius> 		{1.5}
@@ -64,6 +64,12 @@
 	<Radius>		{1.5}
 <NegObj/>
 
+<NegObj>
+	<Pos>			{0.0	5.0	-10.0}
+	<Rot>			{0.0 	0.0 	0.0}
+	<Radius>		{1.5}
+<NegObj/>
+
 <Object> type=Sphere; color=purple; gloss=0.95; reflex=0.7;
 	<Pos> 		{0.0 	-3.5 	-10.0}
 	<Rot>			{0.0	0.0		0.0}
@@ -80,8 +86,8 @@
 	<Dir>			{0.0	0.0		0.0}
 <LightObj/>
 
-<LightObj> type=Spotlight; color=red;
-	<Pos> 		{0.0 	-4.0 	-10.0}
+<LightObj> type=Spotlight; color=orange;
+	<Pos> 		{0.0 	6.0 	-10.0}
 	<Dir>			{0.0	0.0		0.0}
 <LightObj/>
 
@@ -94,3 +100,10 @@
 	<Pos>			{0.0	0.0		20.0}
 	<Dir>			{0.0	0.0		0.0}
 <Camera/>
+
+<HEAD>
+	<Ambiant>	{0.0};
+	<Sepia>		OFF;
+	<Negative>	OFF;
+	<Cartoon>	OFF;
+<HEAD/>

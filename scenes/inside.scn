@@ -1,0 +1,39 @@
+<Object> type=Plane; color=FFFFFF; gloss=0.6;
+	<Pos> 			{0.0 	0.0 	-200.0}
+	<Rot>			{20.0	0.0		0.0}
+	<Radius> 		{0.0}
+<Object/>
+
+<Object> type=Cylinder; color=red; gloss=0.6;
+	<Pos> 			{0.0 	0.0 	-150.0}
+	<Rot>			{90.0	0.0		0.0}
+	<Radius> 		{60.0}
+<Object/>
+
+<Object> type=Sphere; color=FFFFFF; transp=0.8; refract=1.4
+	<Pos> 			{0.0 	0.0 	0.0}
+	<Rot>			{0.0	0.0		0.0}
+	<Radius> 		{1.0}
+<Object/>
+
+<LightObj> type=Spotlight; color=FFD700;
+	<Pos> 		{2.0 	0.0 	0.0}
+	<Dir>		{0.0	0.0		0.0}
+<LightObj/>
+
+<LightObj> type=Spotlight; color=blue;
+	<Pos> 		{5.0 	0.0 	-1.0}
+	<Dir>		{0.0	0.0		0.0}
+<LightObj/>
+
+<Camera>
+	<Pos>		{0.0	0.0		0.8}
+	<Dir>		{0.0	0.0		0.0}
+<Camera/>
+
+<HEAD>
+	<Sepia>		OFF;
+	<Negative>	OFF;
+	<Cartoon>	OFF;
+	<Aliasing> OFF;
+<HEAD/>

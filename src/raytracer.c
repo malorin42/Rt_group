@@ -104,8 +104,8 @@ t_double3			direct_light(t_vector ray, t_scene *scene,
 	while (light)
 	{
 		light_vector = v_minus_v(light->pos, ray.pos);
+		dot_light = dot_product(normalize(light_vector), ray.dir);
 		dot_light = max_double(0, exp(dot_light + 7.51745) - 5000);
-		dot_light = max_double(0, 0.8 * pow(dot_light, 0.8));
 		light_intersect = intersect((t_vector){scene->camera.pos,
 			normalize(light_vector)}, scene, NULL);
 		if (light_intersect->object == NULL || (light_intersect->distance >

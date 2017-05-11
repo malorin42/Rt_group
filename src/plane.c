@@ -25,7 +25,7 @@ int				intersect_plane(t_vector ray, t_object *plane,
 	return (1);
 }
 
-t_double3		damier(t_double3 point)
+t_double3		damier(t_double3 point, t_double3 color)
 {
 	if (point.x < 0)
 		point.x--;
@@ -35,7 +35,7 @@ t_double3		damier(t_double3 point)
 		((int)point.x % 2 != 0 && (int)point.y % 2 != 0))
 		return ((t_double3){1, 1, 1});
 	else
-		return ((t_double3){0, 0, 0});
+		return (color);
 }
 
 void			get_nearest_plane(t_vector ray, t_object *plane,
@@ -62,7 +62,7 @@ void			get_nearest_plane(t_vector ray, t_object *plane,
 			if (tmp->object->texture != NULL)
 				surface->color = planar_mapping(surface, ray_s, plane);
 			surface->color = (tmp->object->perturbation == 1 ? damier(
-				find_point(ray_s.pos, ray_s.dir, distance)) : surface->color);
+find_point(ray_s.pos, ray_s.dir, distance), surface->color) : surface->color);
 			free(tmp);
 		}
 	}

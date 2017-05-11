@@ -10,23 +10,7 @@
 	<Radius> 		{2.0}
 <Object/>
 
-<NegObj>
-	<Pos>			{0.0	0.0		2.0}
-	<Rot>			{0.20 	21.90 	0.0}
-	<Radius>		{2.0}
-<NegObj/>
-
-<Object> type=Cylinder; color=purple; gloss=0.0 decoupe=On; texture=meluche;
-	<Pos> 		{-1.0 	1.0 	-20.0}
-	<Rot>		{0.0	0.0		0.0}
-	<Radius> 	{2.0}
-	<Decoupe.X>			{2.6	5.5}
-	<Decoupe.Y>			{3.3 	42.0}
-	<Decoupe.Z>			{3.0 	0.0}
-	<Rot_text>			{3.0	0.35 	6.5}
-<Object/>
-
-<Object> type=Plane; color=blue; perturb=damier;
+<Object> type=Plane; color=blue; Perturb=damier;
 	<Pos> 		{0.0 	0.0 	-35.0}
 	<Rot>			{0.0	0.0		0.0}
 	<Radius> 		{0.0}
@@ -39,35 +23,25 @@
 <Object/>
 
 <Object> type=Plane; color=pink;
-	<Pos> 		{4.0 	0.0 	0.0}
+	<Pos> 			{6.0 	0.0 	0.0}
 	<Rot>			{0.0	-90.0	0.0}
-	<Radius> 		{2.0}
+	<Radius> 		{0.0}
 <Object/>
 
 <Object> type=Plane; color=orange;
-	<Pos> 		{0.0 	6.0 	0.0}
+	<Pos> 			{0.0 	6.0 	0.0}
 	<Rot>			{90.0	0.0		0.0}
 	<Radius> 		{0.0}
 <Object/>
 
 <Object> type=Plane; color=purple;
-	<Pos> 		{0.0 	-6.0 	0.0}
+	<Pos> 			{0.0 	-6.0 	0.0}
 	<Rot>			{-90.0	0.0		0.0}
 	<Radius> 		{0.0}
 <Object/>
 
 <LightObj> color=FFFFFF;
-	<Pos> 		{2.0 	5.0 	-5.0}
-	<Dir>			{0.0	0.0		0.0}
-<LightObj/>
-
-<LightObj> color=FFFFFF;
-	<Pos> 		{0.0 	3.0 	0.0}
-	<Dir>			{0.0	0.0		0.0}
-<LightObj/>
-
-<LightObj> color=FFFFFF;
-	<Pos> 		{-3.5 	-2.0 	-5.0}
+	<Pos> 			{-5.0 	-3.0 	-18.0}
 	<Dir>			{0.0	0.0		0.0}
 <LightObj/>
 
