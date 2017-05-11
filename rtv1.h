@@ -315,6 +315,8 @@ t_double3				color_refracted(t_vector ray, t_scene *scene,
 							t_surface *surface, int depth);
 t_double3				raytracer(t_vector ray, t_scene *scene,
 							t_object *to_ignore, int depth);
+t_double3				color_mix(t_double3 color1, double ratio,
+							t_double3 color2);
 t_surface				*intersect(t_vector ray, t_scene *scene,
 							t_object *to_ignore);
 void					*render(void *env);

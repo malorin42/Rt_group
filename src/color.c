@@ -22,6 +22,16 @@ static void		sepia(t_color rgb_color, int *r, int *g, int *b)
 		(rgb_color.b.b * 0.131);
 }
 
+t_double3			color_mix(t_double3 color1, double ratio, t_double3 color2)
+{
+	t_double3		mix;
+
+	mix.x = color1.x * ratio + color2.x * (1 - ratio);
+	mix.y = color1.y * ratio + color2.y * (1 - ratio);
+	mix.z = color1.z * ratio + color2.z * (1 - ratio);
+	return (mix);
+}
+
 void			color_standard(t_env *env, t_double3 color, int *xy, int index)
 {
 	t_color		rgb_color;
