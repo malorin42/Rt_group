@@ -207,6 +207,8 @@ typedef struct          s_env
 
 int						loop_hook(t_env *env);
 int						key_hook(int keycode, t_env *env);
+int						key_hook(int keycode, t_env *env);
+void					key_enter_menu(t_env *env);
 
 t_double3				pick_values(t_buff line, int nbr);
 int						check_pars_nbr_value(t_env *env, t_pars *pars, t_buff line, int nbr);
@@ -280,6 +282,7 @@ t_double3				color_refracted(t_vector ray, t_scene *scene,t_surface *surface, in
 t_double3				raytracer(t_vector ray, t_scene *scene, t_object *to_ignore, int depth);
 t_surface				*intersect(t_vector ray, t_scene *scene, t_object *to_ignore);
 void					*render(void *env);
+t_double3				aa(t_env *env, t_double3 color, int *xy, int *i);
 void					color_standard(t_env *env, t_double3 color, int *xy, int index);
 void					cel_shading(double *dot_light);
 void					color_pixel_image(t_color color, int pixel_start, t_image *image);

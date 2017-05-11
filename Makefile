@@ -13,8 +13,8 @@ OBJ += obj/raytracer.o obj/rotation.o obj/render.o obj/intersect.o obj/cut.o
 OBJ += obj/reflexion.o obj/refraction.o obj/hooks.o obj/pars_head_value.o
 OBJ += obj/intersect_tools.o obj/math.o obj/vector.o obj/multi_threading.o obj/init_menu.o obj/ft_new_image.o
 OBJ += obj/render_menu.o obj/draw_menu.o obj/draw_tools.o obj/save_img.o obj/parse_error.o
-OBJ += obj/color_pixel_image.o obj/cel_shading.o
-OBJ += obj/texture.o obj/check_end_balise.o
+OBJ += obj/color_pixel_image.o obj/cel_shading.o src/key_enter.o src/key_hook.o
+OBJ += obj/texture.o obj/check_end_balise.o src/anti_aliasing.o
 
 LIBFT = ./libft/libft.a
 
