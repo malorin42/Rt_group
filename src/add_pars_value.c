@@ -6,7 +6,7 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 16:13:40 by malorin           #+#    #+#             */
-/*   Updated: 2017/05/10 21:00:52 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 16:33:03 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,17 @@ void		add_value_neg(t_env *env, t_double3 *values, int i)
 		tmp->radius = values->x;
 }
 
+static void	add_value2(t_object *tmp, t_double3 *values, int i)
+{
+	if (i == 6)
+	{
+		tmp->dcp_z.x = values->x;
+		tmp->dcp_z.y = values->y;
+	}
+	else if (i == 7)
+		tmp->text_rot = *values;
+}
+
 void		add_value(t_env *env, t_double3 *values, int i)
 {
 	t_object	*tmp;
@@ -65,11 +76,5 @@ void		add_value(t_env *env, t_double3 *values, int i)
 		tmp->dcp_y.x = values->x;
 		tmp->dcp_y.y = values->y;
 	}
-	else if (i == 6)
-	{
-		tmp->dcp_z.x = values->x;
-		tmp->dcp_z.y = values->y;
-	}
-	else if (i == 7)
-		tmp->text_rot = *values;
+	add_value2(tmp, values, i);
 }
