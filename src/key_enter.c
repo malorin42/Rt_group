@@ -12,6 +12,33 @@
 
 #include "../rt.h"
 
+void	free_obj(t_object *obj)
+{
+	if (obj->next)
+		free_obj(obj->next);
+	free(obj->texture);
+	free(obj);
+}
+
+void	free_light(t_light *light)
+{
+	if (light->next)
+		free_light(light->next);
+	free(light->texture);
+	free(light);
+}
+
+void	init_scene_2(t_env *env)
+{
+	if (env->scene->object)
+		free_obj(env->scene->object);
+	if (env->scene->light)
+		free_light(env->scene->light);
+	if (env->scene->negobj)
+		free(env->scene->negobj);
+	init_scene(env);
+}
+
 static void		refresh(t_env *env)
 {
 	int		fd;
@@ -20,7 +47,7 @@ static void		refresh(t_env *env)
 	i = 0;
 	if ((fd = open(env->menu->path, O_RDONLY)) < 0)
 		ft_error("Error : File not found.\n");
-	init_scene(env);
+	init_scene_2(env);
 	check_files(fd, env);
 	while (i < THREAD)
 	{
