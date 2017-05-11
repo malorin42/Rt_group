@@ -43,11 +43,24 @@ t_surface			*is_in_light(t_surface *surface, t_scene *scene,
 t_double3			specular(t_surface *surface, t_light *light,
 	t_vector ray, t_double3 color_hit)
 {
-	color_hit = v_plus_v(color_hit, scale_v(light->color,
+	t_double3		specular_color;
+
+	if (surface->object->type != PLANE)
+	{
+		specular_color = scale_v(light->color,
 			pow(max_double(0, -dot_product(reflect(scale_v(
 				normalize(v_minus_v(light->pos, surface->point)), -1),
-			surface->normal), ray.dir) * surface->object->gloss), 2)));
+			surface->normal), ray.dir)), 50));
+		specular_color = scale_v(specular_color, 2);
+	}
+	else
+		specular_color = scale_v(light->color,
+			pow(max_double(0, -dot_product(reflect(scale_v(
+				normalize(v_minus_v(light->pos, surface->point)), -1),
+			surface->normal), ray.dir)), 150));
+	color_hit = v_plus_v(color_hit, specular_color);
 	return (color_hit);
+
 }
 
 t_double3			color_diffused(t_scene *scene, t_surface *surface,
