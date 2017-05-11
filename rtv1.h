@@ -326,6 +326,7 @@ void					draw_menu(t_env *env);
 void					render_menu(t_env *env);
 void					ft_draw_right_arrow(t_env *env);
 void					ft_draw_left_arrow(t_env *env);
+void					setup_scene_menu(t_env *env);
 
 /*
 ** Fonction save image
