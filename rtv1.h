@@ -6,7 +6,7 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 17:11:36 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 18:37:19 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 19:04:39 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,6 +275,7 @@ void					init_object(t_env *env, t_pars *pars, int obj,
 							t_object **object);
 void					init_neg_obj(t_env *env, t_pars *pars,
 							t_negobj **neg_obj);
+void					init_scene(t_env *env);
 void					object_add(t_object **first, t_object *new);
 t_object				*object_new(int type);
 void					light_add(t_light **first, t_light *new);

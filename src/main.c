@@ -6,7 +6,7 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 17:08:04 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 18:36:59 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 19:52:00 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int				red_cross(t_env env)
 	return (0);
 }
 
-static void		init(t_env *env)
+void			init_scene(t_env *env)
 {
 	env->scene->object = NULL;
 	env->scene->light = NULL;
 	env->scene->negobj = NULL;
-	env->scene->ambiant = 0.02;
+	env->scene->ambiant = 0.2;
 	env->scene->aliaising = 0;
 	env->scene->cell_shading = 0;
 	env->scene->direct_light = 0;
@@ -48,7 +48,7 @@ static t_env	*env_init(void)
 	env->scene = (t_scene*)malloc(sizeof(t_scene));
 	env->win_menu = mlx_new_window(env->mlx, 500, 600, "Menu");
 	env->scene->camera = (t_vector){(t_double3){0, 0, 0}, (t_double3){0, 0, 0}};
-	init(env);
+	init_scene(env);
 	pthread_mutex_init(&env->my_mutex, NULL);
 	pthread_cond_init(&env->cond, NULL);
 	mlx_key_hook(env->win_scene, &key_hook, env);

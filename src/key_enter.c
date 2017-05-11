@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_enter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbahus <jbahus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 13:38:28 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 14:03:42 by jbahus           ###   ########.fr       */
+/*   Updated: 2017/05/11 19:05:09 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ static void		refresh(t_env *env)
 	i = 0;
 	if ((fd = open(env->menu->path, O_RDONLY)) < 0)
 		ft_error("Error : File not found.\n");
-	env->scene->object = NULL;
-	env->scene->light = NULL;
+	init_scene(env);
 	check_files(fd, env);
 	while (i < THREAD)
 	{
