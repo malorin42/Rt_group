@@ -6,7 +6,7 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 21:25:17 by malorin           #+#    #+#             */
-/*   Updated: 2017/05/11 15:31:07 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 18:23:29 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void		pars_type_light(t_env *env, t_pars *pars, t_buff line)
 {
 	char	*value;
 
-	init_light_obj(env, pars, &env->scene->light);
+	init_light_obj(env, pars, &env->scene->light, line);
 	pars->balise = 2;
 	value = analyse_balise_lign(env, pars, line, "color=");
 	if (value != NULL)

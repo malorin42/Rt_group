@@ -6,17 +6,18 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 16:13:40 by malorin           #+#    #+#             */
-/*   Updated: 2017/05/11 15:54:14 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 18:22:47 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../rtv1.h"
 
-void			init_light_obj(t_env *env, t_pars *pars, t_light **light)
+void			init_light_obj(t_env *env, t_pars *pars,
+	t_light **light, t_buff line)
 {
 	t_light		*new_obj;
 
-	new_obj = light_new();
+	new_obj = light_new(env, pars, line);
 	light_add(light, new_obj);
 }
 

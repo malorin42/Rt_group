@@ -1,14 +1,22 @@
 #include "../rtv1.h"
 
-t_light			*light_new()
+t_light			*light_new(t_env *env, t_pars *pars, t_buff line)
 {
 	t_light		*light;
 
 	if ((light = (t_light*)malloc(sizeof(t_light))) == NULL)
 		ft_error("Error : malloc() failed.\n");
+	if (open("./texture/light.xpm", O_RDONLY) < 0)
+	{
+		light->texture = NULL;
+		pars_error(pars, "Error : No texture.xpm for light.", line.data);
+	}
+	else
+		light->texture = init_texture(env->mlx, "./texture/light.xpm");
 	light->pos = (t_double3){0, 0, 0};
 	light->dir = (t_double3){0, 0, 0};
 	light->color = (t_double3){0, 0, 0};
+	light->dot_light = 0;
 	return (light);
 }
 

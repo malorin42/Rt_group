@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbahus <jbahus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 17:11:36 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 17:22:50 by jbahus           ###   ########.fr       */
+/*   Updated: 2017/05/11 18:25:31 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ typedef struct			s_light
 	t_double3			pos;
 	t_double3			dir;
 	t_double3			color;
+	t_image				*texture;
+	double				dot_light;
 	struct s_light		*next;
 }						t_light;
 
@@ -225,6 +227,7 @@ int						check_pars_nbr_value(t_env *env, t_pars *pars,
 							t_buff line, int nbr);
 void					empty_lign(t_env *env, t_pars *pars, t_buff line);
 
+t_image					*init_texture(void *mlx, char *file);
 void					add_value_neg(t_env *env, t_double3 *values, int i);
 void					add_light_value(t_env *env, t_double3 *values, int i);
 void					add_double_param(t_buff line, char *type,
@@ -270,7 +273,7 @@ int						pars_error(t_pars *pars, char *message, char *line);
 void					neg_obj_add(t_negobj **first, t_negobj *new);
 t_negobj				*neg_obj_new();
 void					init_light_obj(t_env *env, t_pars *pars,
-							t_light **light);
+							t_light **light, t_buff line);
 void					init_object(t_env *env, t_pars *pars, int obj,
 							t_object **object);
 void					init_neg_obj(t_env *env, t_pars *pars,
@@ -278,7 +281,7 @@ void					init_neg_obj(t_env *env, t_pars *pars,
 void					object_add(t_object **first, t_object *new);
 t_object				*object_new(int type);
 void					light_add(t_light **first, t_light *new);
-t_light					*light_new();
+t_light					*light_new(t_env *env, t_pars *pars, t_buff line);
 
 void					swap(double *t0, double *t1);
 double					dot_product(t_double3 vec1, t_double3 vec2);

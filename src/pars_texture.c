@@ -6,13 +6,13 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:28:58 by malorin           #+#    #+#             */
-/*   Updated: 2017/05/11 15:33:57 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 18:14:25 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../rtv1.h"
 
-static t_image		*init_texture(void *mlx, char *file)
+t_image				*init_texture(void *mlx, char *file)
 {
 	t_image		*texture;
 	int			width;
