@@ -1,0 +1,39 @@
+<Balise> : <Object> <Light> <NegObj> <HEAD>
+<Balise/> : <Object/> <Light/> <NegObj/> <HEAD/>
+
+Les typages pour la balise <Object>
+	- type=Sphere/Plane/Cylinder/Cone;
+	- color=FFFFFF;
+	- gloss=0-1;
+	- tranps=0-1;
+	- refraction=0-1;
+	- reflex=0-1;
+	- texture=nomdelatexture;
+	- perturb=damier;
+	- decoupe=On/Off;
+
+Typage pour <Light>
+	- color=FFFFFF;
+
+<HEAD>
+	<Ambiant>		{0-1};
+	<Dir_light>		ON;
+	<Sepia>			OFF;
+	<Negative>		OFF;
+	<Cartoon>		OFF;
+<HEAD/>
+
+<Object>
+	<Pos> 			{-1.0 	-0.8 	-10.0}
+	<Rot>			{180.0	90.0	0.0}
+	<Radius> 		{0.2}
+	<Decoupe.X>		{0.1	0.2}
+	<Decoupe.Y>		{-1.0 	1.0}
+	<Decoupe.Z>		{0.5 	1.5}
+	<Rot_text>		{3.0	0.35 	6.5}
+<Object/>
+
+<Light>
+	<Pos> 			{-1.0 	-0.8 	-10.0}
+	<Dir>			{180.0	90.0	0.0}
+<Light/>
