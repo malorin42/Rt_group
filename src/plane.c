@@ -61,7 +61,8 @@ void			get_nearest_plane(t_vector ray, t_object *plane,
 			surface->color = tmp->object->color;
 			if (tmp->object->texture != NULL)
 				surface->color = planar_mapping(surface, ray_s, plane);
-			surface->color = damier(find_point(ray_s.pos, ray_s.dir, distance));
+			surface->color = (tmp->object->perturbation == 1 ? damier(
+				find_point(ray_s.pos, ray_s.dir, distance)) : surface->color);
 			free(tmp);
 		}
 	}
