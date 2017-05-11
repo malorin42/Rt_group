@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   save_img.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbahus <jbahus@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/11 14:02:50 by jbahus            #+#    #+#             */
+/*   Updated: 2017/05/11 16:47:46 by jbahus           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../rtv1.h"
 
 static void		create_header(t_header *header, t_info *h_infos, t_image *img)
@@ -39,65 +51,61 @@ static void		write_header(const int fd, t_header header, t_info h_infos)
 	write(fd, &h_infos.important_color, 4);
 }
 
-static char	*create_img(t_env *env, t_image *img)
+static char		*cpy_img(char *copy, t_image img, int i, int *j)
+{
+	int		k;
+
+	k = 0;
+	while (k < img.l_size)
+	{
+		copy[*j] = img.data[i + k + 1];
+		copy[*j + 1] = img.data[i + k + 2];
+		copy[*j + 2] = img.data[i + k + 3];
+		*j += 3;
+		k += 4;
+	}
+	return (copy);
+}
+
+static char		*create_img(t_env *env)
 {
 	int		i;
 	int		j;
-	int		k;
-	int 	t;
+	int		t;
 	char	*copy;
 
 	j = 0;
 	t = THREAD - 1;
 	if (!(copy = (char*)malloc(sizeof(char) * env->h_infos.img_size)))
 		ft_error("malloc error in creation of saved image.");
-	while(t >= 0)
+	while (t >= 0)
 	{
 		i = (env->h_infos.img_size / THREAD) - 1;
 		while (i >= 0)
 		{
 			i -= env->img[t]->l_size;
-			k = 0;
-			while (k < env->img[t]->l_size)
-			{
-				copy[j] = env->img[t]->data[i + k + 1];
-				copy[j + 1] = env->img[t]->data[i + k + 2];
-				copy[j + 2] = env->img[t]->data[i + k + 3];
-				j += 3;
-				k += 4;
-			}
-			
+			copy = cpy_img(copy, *env->img[t], i, &j);
 		}
 		t--;
 	}
 	return (copy);
 }
 
-static char		*get_real_file(char *str)
-{
-	char 	*ret;
-
-	str += 7;
-	ret = ft_strjoin("scenes/saved/", str);
-	ret = ft_strjoin(ret, ".bmp");
-	return (ret);
-
-}
-
 void			save_img(t_env *env)
 {
-	int 		fd;
+	int			fd;
 	t_image		*tmp;
 	char		*pixel_data;
-	char 		*path;
+	char		*path;
 
-	path = get_real_file(env->menu->path);
-	if((fd = open(path, O_WRONLY | O_CREAT, OPEN_FLAG)) == -1)
+	path = ft_strjoin("saved/", env->menu->path + 7);
+	path = ft_strjoin(path, ".bmp");
+	if ((fd = open(path, O_WRONLY | O_CREAT, OPEN_FLAG)) == -1)
 		ft_error("Something went wrong with creation of image.");
 	tmp = ft_new_image(env->mlx, WIDTH, HEIGHT, 1);
 	create_header(&env->header, &env->h_infos, tmp);
 	write_header(fd, env->header, env->h_infos);
-	pixel_data = create_img(env, tmp);
+	pixel_data = create_img(env);
 	write(fd, pixel_data, env->h_infos.img_size);
 	close(fd);
 	free(path);
