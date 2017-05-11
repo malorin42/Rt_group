@@ -60,7 +60,6 @@ t_double3			specular(t_surface *surface, t_light *light,
 			surface->normal), ray.dir)), 150));
 	color_hit = v_plus_v(color_hit, specular_color);
 	return (color_hit);
-
 }
 
 t_double3			color_diffused(t_scene *scene, t_surface *surface,

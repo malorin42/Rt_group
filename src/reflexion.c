@@ -19,7 +19,7 @@ t_double3			reflect(t_double3 incidence, t_double3 normal)
 	reflect.x = incidence.x - 2 * dot_product(incidence, normal) * normal.x;
 	reflect.y = incidence.y - 2 * dot_product(incidence, normal) * normal.y;
 	reflect.z = incidence.z - 2 * dot_product(incidence, normal) * normal.z;
-	return (reflect);
+	return (normalize(reflect));
 }
 
 t_double3			color_reflected(t_vector ray, t_scene *scene,

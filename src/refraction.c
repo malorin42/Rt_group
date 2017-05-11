@@ -25,7 +25,7 @@ static t_double3	refract(t_double3 incidence, t_double3 normal, double ior)
 		sqrt(1 + ior * ior * (dot_incidence * dot_incidence - 1))) * normal.y;
 	refract.z = ior * incidence.z + (ior * dot_incidence -
 		sqrt(1 + ior * ior * (dot_incidence * dot_incidence - 1))) * normal.z;
-	return (refract);
+	return (normalize(refract));
 }
 
 t_double3			color_refracted(t_vector ray, t_scene *scene,
@@ -38,5 +38,8 @@ t_double3			color_refracted(t_vector ray, t_scene *scene,
 		surface->object->refraction);
 	refracted_color = raytracer((t_vector){surface->point, refracted_ray},
 		scene, surface->object, depth + 1);
+	refracted_color.x = max_double(0, min_double(1, refracted_color.x));
+	refracted_color.y = max_double(0, min_double(1, refracted_color.y));
+	refracted_color.z = max_double(0, min_double(1, refracted_color.z));
 	return (refracted_color);
 }

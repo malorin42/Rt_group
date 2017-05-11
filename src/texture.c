@@ -59,8 +59,8 @@ t_double3			spherical_mapping(t_surface *surface, t_vector ray,
 	double			theta;
 	t_double2		map;
 
-	ve = (t_double3){0, 1, 0};
-	vn = (t_double3){0, 0, 1};
+	ve = rotation((t_double3){0, 1, 0}, object->text_rot, REGULAR_MATRIX);
+	vn = rotation((t_double3){0, 0, 1}, object->text_rot, REGULAR_MATRIX);
 	vp = normalize(find_point(ray.pos, ray.dir, surface->distance));
 	theta = acos(dot_product(vp, ve) / sin(acos(-dot_product(vn, vp)))) /
 	(2 * PI);

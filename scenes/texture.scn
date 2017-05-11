@@ -22,10 +22,11 @@
 	<Decoupe.Z>		{-20.0	20.0}
 <Object/>
 
-<Object> type=Sphere; color=FFFFFF; gloss=0.2; transp=0.6; texture=meluche;
+<Object> type=Sphere; color=FFFFFF; gloss=0.2; transp=0.6 texture=meluche;
 	<Pos> 		{0.0 	0.0 	30.0}
 	<Rot>			{-90.0	0.0		0.0}
 	<Radius> 		{7.0}
+	<Rot_text>		{0.0	90.0 	0.0}
 <Object/>
 
 <Object> type=Cylinder; color=FFFFFF; gloss=0.2; texture=meluche;
