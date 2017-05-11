@@ -6,7 +6,7 @@
 /*   By: jbahus <jbahus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 13:36:31 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 23:44:31 by jbahus           ###   ########.fr       */
+/*   Updated: 2017/05/11 23:50:45 by jbahus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,16 @@ static void		key_updown_menu(t_env *env, int keycode)
 	{
 		if (keycode == U_ARROW && env->menu->index > 0)
 			env->menu->index--;
-		else if (keycode == D_ARROW && env->menu->i_page == env->menu->page_max)
+		else if (keycode == D_ARROW && env->menu->i_page != env->menu->page_max)
 		{
-			if (env->menu->index < (env->menu->page_max * 5) -
-				env->menu->nbr_scn)
+			if (env->menu->index < 4)
 				env->menu->index++;
 		}
-		else if (keycode == D_ARROW && env->menu->index < 4)
-			env->menu->index++;
+		else if (keycode == D_ARROW && env->menu->i_page == env->menu->page_max)
+		{
+			if (env->menu->index < env->menu->nbr_scn % 5 - 1)
+				env->menu->index++;
+		}
 	}
 }
 
