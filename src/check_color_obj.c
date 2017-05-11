@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_color_obj.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/10 16:13:40 by malorin           #+#    #+#             */
+/*   Updated: 2017/05/11 15:52:41 by malorin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../rtv1.h"
 
-static t_double3 	reinit_double()
+static t_double3	reinit_double(void)
 {
-	t_double3 	rgb;
+	t_double3	rgb;
 
 	rgb.x = 1;
 	rgb.y = 1;
@@ -19,8 +31,8 @@ static t_double3	hex_to_double(t_buff line, t_pars *pars, char *str)
 
 	tmp = ft_strnew(ft_strlen(str));
 	tmp = ft_strcpy(tmp, str);
-	i = 0;
-	while (tmp[i] != '\0' && i < 6)
+	i = -1;
+	while (tmp[++i] != '\0' && i < 6)
 	{
 		tmp[i] = ft_toupper(tmp[i]);
 		if (tmp[i] >= 48 && tmp[i] <= 57)
@@ -32,7 +44,6 @@ static t_double3	hex_to_double(t_buff line, t_pars *pars, char *str)
 			pars_error(pars, "Mauvais typage hexadecimal.", line.data);
 			return (reinit_double());
 		}
-		i++;
 	}
 	rgb.x = (hex[0] * 16 + hex[1]) / 255;
 	rgb.y = (hex[2] * 16 + hex[3]) / 255;
@@ -40,7 +51,8 @@ static t_double3	hex_to_double(t_buff line, t_pars *pars, char *str)
 	return (rgb);
 }
 
-void				check_color_light(t_buff line, t_pars *pars, t_light **light, char *value)
+void				check_color_light(t_buff line, t_pars *pars,
+	t_light **light, char *value)
 {
 	t_light		*tmp;
 
@@ -67,7 +79,8 @@ void				check_color_light(t_buff line, t_pars *pars, t_light **light, char *valu
 		free(value);
 }
 
-void				check_color_obj(t_buff line, t_pars *pars, t_object **object, char *value)
+void				check_color_obj(t_buff line, t_pars *pars,
+	t_object **object, char *value)
 {
 	t_object	*tmp;
 

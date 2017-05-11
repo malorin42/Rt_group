@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pars_head_value.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/11 15:54:50 by malorin           #+#    #+#             */
+/*   Updated: 2017/05/11 16:10:46 by malorin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../rtv1.h"
 
-static int		pars_OffOn_line(t_pars *pars, t_buff line)
+static int		pars_offon_line(t_pars *pars, t_buff line)
 {
 	char	*str;
 	int		i;
@@ -28,7 +40,7 @@ static int		pars_OffOn_line(t_pars *pars, t_buff line)
 	return (i);
 }
 
-static void		incr_i_headType(t_pars *pars, int i)
+static void		incr_i_headtype(t_pars *pars, int i)
 {
 	if (i == 1)
 		pars->i_ambiant++;
@@ -42,7 +54,7 @@ static void		incr_i_headType(t_pars *pars, int i)
 		pars->i_negative++;
 }
 
-static void 	pars_head_value(t_env *env, t_pars *pars, t_buff line, int i)
+static void		pars_head_value(t_env *env, t_pars *pars, t_buff line, int i)
 {
 	t_double3	values;
 
@@ -52,24 +64,25 @@ static void 	pars_head_value(t_env *env, t_pars *pars, t_buff line, int i)
 		{
 			values = pick_values(line, 1);
 			env->scene->ambiant = values.x;
-			incr_i_headType(pars, i);
+			incr_i_headtype(pars, i);
 		}
 		return ;
 	}
 	else if (i == 2)
-		env->scene->aliaising = pars_OffOn_line(pars, line);
+		env->scene->aliaising = pars_offon_line(pars, line);
 	else if (i == 3)
-		env->scene->direct_light = pars_OffOn_line(pars, line);
+		env->scene->direct_light = pars_offon_line(pars, line);
 	else if (i == 4)
-		env->scene->sepia = pars_OffOn_line(pars, line);
+		env->scene->sepia = pars_offon_line(pars, line);
 	else if (i == 5)
-		env->scene->neg = pars_OffOn_line(pars, line);
+		env->scene->neg = pars_offon_line(pars, line);
 	else if (i == 6)
-		env->scene->cell_shading = pars_OffOn_line(pars, line);
-	incr_i_headType(pars, i);
+		env->scene->cell_shading = pars_offon_line(pars, line);
+	incr_i_headtype(pars, i);
 }
 
-static int		lookat_head_condition(t_env *env, t_pars *pars, t_buff line, char *type)
+static int		lookat_head_condition(t_env *env, t_pars *pars, t_buff line,
+	char *type)
 {
 	printf("%d\n", pars->i_dir_light);
 	if (ft_strcmp(type, "Ambiant") == 0 && pars->i_ambiant == 0)
@@ -88,39 +101,10 @@ static int		lookat_head_condition(t_env *env, t_pars *pars, t_buff line, char *t
 		return (pars_error(pars, "Error : Unknow Head Value Name.", line.data));
 }
 
-char 			*check_line_type(t_env *env, t_pars *pars, t_buff line)
-{
-	int		i;
-	char 	*type;
-	int 	error;
-
-	error = 1;
-	type = (char*)malloc(sizeof(char) * (ft_strlen(line.data) + 1));
-	ft_parse_not(&line, "<");
-	i = line.i;
-	ft_parse_not(&line, ">");
-	if (line.data[line.i] != '>')
-		error = pars_error(pars, "Error : close the Balise Signal.", line.data);
-	if (line.data[i] != '<')
-		error = pars_error(pars, "Error : No Balise Signal.", line.data);
-	if (error == 0)
-		return (NULL);
-	line.i = i + 1;
-	i = 0;
-	while (line.data[line.i] != '\0' && line.data[line.i] != '>' && i < 10)
-	{
-		type[i] = line.data[line.i];
-		i++;
-		line.i++;
-	}
-	type[i] = '\0';
-	return (type);
-}
-
 void			pars_head_balise(t_env *env, t_pars *pars, t_buff line)
 {
 	char		*type;
-	int 		i;
+	int			i;
 
 	type = check_line_type(env, pars, line);
 	if (type != NULL)

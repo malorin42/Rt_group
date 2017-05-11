@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_error.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/10 20:40:53 by malorin           #+#    #+#             */
+/*   Updated: 2017/05/11 16:05:57 by malorin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../rtv1.h"
 
 int			pars_error(t_pars *pars, char *message, char *line)
@@ -20,7 +32,8 @@ int			pars_error(t_pars *pars, char *message, char *line)
 		free(str);
 	if (ligne != NULL)
 		free(ligne);
-	if (ft_strcmp(message, "Warning : Some Value aren't specified in <balise>") == 0)
+	if (ft_strcmp(message,
+		"Warning : Some Value aren't specified in <balise>") == 0)
 		return (1);
 	return (0);
 }

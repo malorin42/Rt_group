@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_end_balise.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/10 21:24:05 by malorin           #+#    #+#             */
+/*   Updated: 2017/05/11 15:53:27 by malorin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../rtv1.h"
 
 static int		end_balise(t_env *env, t_buff line, t_pars *pars)
@@ -61,7 +73,7 @@ static int		is_var_incr(t_env *env, t_pars *pars)
 	return (init_ivar(pars, i));
 }
 
-int			is_end_balise(t_env *env, t_pars *pars, t_buff line)
+int				is_end_balise(t_env *env, t_pars *pars, t_buff line)
 {
 	if (end_balise(env, line, pars) == 1)
 	{

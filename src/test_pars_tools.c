@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_pars_tools.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/10 16:13:40 by malorin           #+#    #+#             */
+/*   Updated: 2017/05/11 16:09:36 by malorin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../rtv1.h"
 
 static int		search_next_nbr(t_buff line, int i)
@@ -34,7 +46,8 @@ t_double3		pick_values(t_buff line, int nbr)
 	return (values);
 }
 
-int				check_object_type(t_env *env, char *type, t_pars *pars, t_buff line)
+int				check_object_type(t_env *env, char *type,
+	t_pars *pars, t_buff line)
 {
 	if (ft_strcmp(type, "Sphere") == 0)
 		init_object(env, pars, SPHERE, &env->scene->object);
@@ -45,13 +58,12 @@ int				check_object_type(t_env *env, char *type, t_pars *pars, t_buff line)
 	else if (ft_strcmp(type, "Cone") == 0)
 		init_object(env, pars, CONE, &env->scene->object);
 	else
-		return (pars_error(pars, "Error : Wrong object type.", line.data)); // return (0)
-	// if (type != NULL)
-	// 	free(type);
+		return (pars_error(pars, "Error : Wrong object type.", line.data));
 	return (1);
 }
 
-static int		check_pars_nbr_value2(t_env *env, t_pars *pars, char *line, int i)
+static int		check_pars_nbr_value2(t_env *env, t_pars *pars,
+	char *line, int i)
 {
 	while (ft_isdigit(line[i]) == 1)
 		i++;
@@ -64,7 +76,8 @@ static int		check_pars_nbr_value2(t_env *env, t_pars *pars, char *line, int i)
 	return (i);
 }
 
-int				check_pars_nbr_value(t_env *env, t_pars *pars, t_buff line, int nbr)
+int				check_pars_nbr_value(t_env *env, t_pars *pars,
+	t_buff line, int nbr)
 {
 	int		i;
 
@@ -73,8 +86,7 @@ int				check_pars_nbr_value(t_env *env, t_pars *pars, t_buff line, int nbr)
 		i++;
 	if (line.data[i] != '{')
 		pars_error(pars, "Error : Bracket Problem.", line.data);
-	i++;
-	while (line.data[i] != '\0')
+	while (line.data[++i] != '\0')
 	{
 		if (ft_isdigit(line.data[i]) == 1)
 		{
@@ -84,9 +96,12 @@ int				check_pars_nbr_value(t_env *env, t_pars *pars, t_buff line, int nbr)
 			else
 				pars_error(pars, "Error : Problem in Bracket.", line.data);
 		}
-		i++;
 	}
 	if (nbr > 0 || nbr < 0)
-		return(pars_error(pars, "Error : Wrong Numbers of Values in a Line.", line.data));
+	{
+		i = pars_error(pars,
+		"Error : Wrong Numbers of Values in a Line.", line.data);
+		return (i);
+	}
 	return (1);
 }

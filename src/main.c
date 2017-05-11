@@ -75,7 +75,6 @@ int				main(int argc, char const **argv)
 	// print_object(&env->scene->object, &env->scene->light, &env->scene->negobj);
 	mlx_string_put(((t_env*)env)->mlx, ((t_env*)env)->win_scene, 100, 100, 0xF00D532, "Loading...");
 	close(fd);
-	printf("%d\n", env->scene->direct_light);
 	mlx_loop(env->mlx);
 	return (0);
 }

@@ -219,8 +219,13 @@ void					add_light_value(t_env *env, t_double3 *values, int i);
 void					add_double_param(t_buff line, char *type, t_object **object, char *value);
 void					add_camera_value(t_env *env, t_double3 *values, int i);
 int 					add_on_off_value(t_object **object, char *value, t_pars *pars, t_buff line);
+void					add_texture(t_env *env, char *value, t_pars *pars, t_buff line);
 void					add_value(t_env *env, t_double3 *values, int i);
-
+char					*analyse_balise_lign(t_env *env, t_pars *pars, t_buff line,
+	char *type);
+void					add_perturbation(t_object **object, char *value, t_pars *pars,
+	t_buff line);
+int						is_type_xyz(char *type, int i);
 void					check_if_balise(t_env *env, t_buff line, t_pars *pars);
 void					check_files(int fd, t_env *env);
 void					check_neg_obj_name(t_env *env, char *name, t_pars *pars);

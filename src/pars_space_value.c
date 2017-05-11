@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pars_space_value.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/10 16:13:40 by malorin           #+#    #+#             */
+/*   Updated: 2017/05/11 16:05:20 by malorin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../rtv1.h"
 
 static int		pars_value(t_env *env, t_pars *pars, t_buff line, int i)
 {
-	t_double3 	values;
+	t_double3	values;
 	int			nbr;
 
 	if (i == 1 || i == 2 || i == 7)
@@ -27,11 +39,11 @@ static int		pars_value(t_env *env, t_pars *pars, t_buff line, int i)
 	return (0);
 }
 
-static int 		lookat_decoupe(t_pars *pars, char *type, t_buff line)
+static int		lookat_decoupe(t_pars *pars, char *type, t_buff line)
 {
-	char 	*dcp;
-	int 	i;
-	int 	ret;
+	char		*dcp;
+	int			i;
+	int			ret;
 
 	i = 0;
 	dcp = "Decoupe\0";
@@ -40,33 +52,34 @@ static int 		lookat_decoupe(t_pars *pars, char *type, t_buff line)
 	while (type[i] != '\0' && dcp[i] != '\0' && type[i] == dcp[i])
 		i++;
 	if (type[i] != '.')
-		return (pars_error(pars, "Error : Decoupe Balise need a X/Y/Z value name.", line.data));
-	i++;
-	if (type[i] == 'X' || type[i] == 'Y' || type[i] == 'Z' || type[i + 1] == '\0')
 	{
-		if (type[i] == 'X')
-			i = 4;
-		else if (type[i] == 'Y')
-			i = 5;
-		else if (type[i] == 'Z')
-			i = 6;
+		i = pars_error(pars, "Error : Decoupe need a X/Y/Z value name.",
+			line.data);
+		return (i);
 	}
+	i++;
+	if (type[i] == 'X' || type[i] == 'Y' || type[i] == 'Z' ||
+		type[i + 1] == '\0')
+		i = is_type_xyz(type, i);
 	else
 		return (pars_error(pars, "Error : Not a X/Y/Z value name.", line.data));
 	return (i);
 }
 
-static int 		lookat_type_condition(t_env *env, t_pars *pars, t_buff line, char *type)
+static int		lookat_type_condition(t_env *env, t_pars *pars,
+	t_buff line, char *type)
 {
-	int 		i;
+	int			i;
 
 	if (ft_strcmp(type, "Pos") == 0 && pars->i_pos == 0)
 		return (1);
-	else if ((!ft_strcmp(type, "Rot") || !ft_strcmp(type, "Dir")) && pars->i_dir == 0)
+	else if ((!ft_strcmp(type, "Rot") || !ft_strcmp(type, "Dir")) &&
+		pars->i_dir == 0)
 		return (2);
 	else if (ft_strcmp(type, "Radius") == 0 && pars->i_radius == 0)
 		return (3);
-	else if ((i = lookat_decoupe(pars, type, line)) != 0 && pars->i_dcp < 2 && pars->dcp == 1)
+	else if ((i = lookat_decoupe(pars, type, line)) != 0 &&
+		pars->i_dcp < 2 && pars->dcp == 1)
 		return (i);
 	else if (ft_strcmp(type, "Rot_text") == 0 && pars->texture == 1)
 		return (7);
@@ -88,7 +101,7 @@ static void		incr_i_type(t_pars *pars, int i)
 
 void			pars_in_balise(t_env *env, t_pars *pars, t_buff line)
 {
-	char 		*type;
+	char		*type;
 	int			i;
 
 	i = 0;
