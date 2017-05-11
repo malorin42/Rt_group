@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_scene_menu.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbahus <jbahus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:00:44 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 20:07:47 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 21:45:53 by jbahus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,20 @@ static int		add_scene_to_tab(char **tab, char *scn, int i)
 static void		write_page_status(t_env *env)
 {
 	char	*str;
+	char	*tmp;
+	char	*tmp2;
 
-	str = (char*)malloc(sizeof(char) * 18);
 	str = ft_strjoin(str, "Page : ");
-	str = ft_strjoin(str, ft_itoa(env->menu->i_page));
-	str = ft_strjoin(str, " / ");
-	str = ft_strjoin(str, ft_itoa(env->menu->page_max));
+	tmp = ft_itoa(env->menu->i_page);
+	tmp2 = ft_strjoin(str, tmp);
+	free(tmp);
+	free(str);
+	tmp = ft_strjoin(tmp2, " / ");
+	free(tmp2);
+	tmp2 = ft_itoa(env->menu->page_max);
+	str = ft_strjoin(tmp, tmp2);
+	free(tmp);
+	free(tmp2);
 	mlx_string_put(env->mlx, env->win_menu, 50, 200, 0xF00D532, str);
 	free(str);
 	if (env->menu->i_page == 0)
