@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aempisse <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/14 03:33:36 by aempisse          #+#    #+#             */
-/*   Updated: 2014/11/14 03:33:45 by aempisse         ###   ########.fr       */
+/*   Updated: 2017/05/11 22:31:56 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,12 @@ int				get_next_line(int fd, t_buff *line)
 			if ((len = buff_read(gnl)) < 0)
 				break ;
 			if (len == 0 && gnl->length == 0)
-				return (*line = (t_buff){(NULL), 0, 0}, free(gnl->buff - gnl->offset),
-				*gnl = (t_gnlfd){NULL, fd, 0, 0, 0, gnl->next}, 0);
+			{
+				*line = (t_buff){(NULL), 0, 0};
+				free(gnl->buff - gnl->offset);
+				*gnl = (t_gnlfd){NULL, fd, 0, 0, 0, gnl->next};
+				return (0);
+			}
 			if (len == 0)
 				return (buff_cut(gnl, gnl->length, line, 0));
 		}

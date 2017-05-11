@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_int.c                                     :+:      :+:    :+:   */
+/*   free_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/11 22:00:54 by malorin           #+#    #+#             */
-/*   Updated: 2017/05/11 22:29:07 by malorin          ###   ########.fr       */
+/*   Created: 2017/05/11 22:12:26 by malorin           #+#    #+#             */
+/*   Updated: 2017/05/11 22:22:12 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../rt.h"
 
-int				ft_parse_int(t_buff *buff)
+void	free_negobj(t_negobj *obj)
 {
-	int				nb;
-	int				negatif;
+	if (obj->next)
+		free_negobj(obj->next);
+	free(obj);
+}
 
-	negatif = (buff->data[buff->i] == '-') ? 1 : 0;
-	if (buff->data[buff->i] == '-' || buff->data[buff->i] == '+')
-		buff->i++;
-	nb = 0;
-	while (buff->i < buff->length && ft_isdigit(buff->data[buff->i]))
-		nb = nb * 10 + (buff->data[buff->i++] - '0');
-	return (negatif ? -nb : nb);
+void	free_obj(t_object *obj)
+{
+	if (obj->next)
+		free_obj(obj->next);
+	free(obj->texture);
+	free(obj);
+}
+
+void	free_light(t_light *light)
+{
+	if (light->next)
+		free_light(light->next);
+	free(light->texture);
+	free(light);
 }

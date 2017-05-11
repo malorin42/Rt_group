@@ -6,36 +6,20 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 13:38:28 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 20:06:16 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 22:21:41 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../rt.h"
 
-void	free_obj(t_object *obj)
-{
-	if (obj->next)
-		free_obj(obj->next);
-	free(obj->texture);
-	free(obj);
-}
-
-void	free_light(t_light *light)
-{
-	if (light->next)
-		free_light(light->next);
-	free(light->texture);
-	free(light);
-}
-
-void	init_scene_2(t_env *env)
+static void		init_scene_2(t_env *env)
 {
 	if (env->scene->object)
 		free_obj(env->scene->object);
 	if (env->scene->light)
 		free_light(env->scene->light);
 	if (env->scene->negobj)
-		free(env->scene->negobj);
+		free_negobj(env->scene->negobj);
 	init_scene(env);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbahus <jbahus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/09 20:04:27 by aempisse          #+#    #+#             */
-/*   Updated: 2017/05/02 12:40:11 by jbahus           ###   ########.fr       */
+/*   Updated: 2017/05/11 22:34:52 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,51 +36,50 @@
 # define AG(t,a,i)		((t)(((t_array*)(a))->data[i]))
 # define TG(t,b,i)		(*(t*)(((t_tab*)b)->data + (((t_tab*)b)->size * (i))))
 
-typedef struct	s_pt
+typedef struct		s_pt
 {
 	int				x;
 	int				y;
-}				t_pt;
+}					t_pt;
 
-typedef struct	s_pos
+typedef struct		s_pos
 {
 	double			x;
 	double			y;
 	double			z;
-}				t_pos;
+}					t_pos;
 
-typedef struct	s_array
+typedef struct		s_array
 {
 	void			**data;
 	int				length;
 	int				alloc_length;
-}				t_array;
+}					t_array;
 
-typedef struct	s_tab
+typedef struct		s_tab
 {
 	unsigned char	*data;
 	int				length;
 	int				bytes;
 	int				alloc_bytes;
 	int				size;
-}				t_tab;
+}					t_tab;
 
-typedef struct	s_buff
+typedef struct		s_buff
 {
 	char			*data;
 	int				i;
 	int				length;
-}				t_buff;
+}					t_buff;
 
-typedef struct	s_list
+typedef struct		s_list
 {
 	void			*content;
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
 
-
-typedef struct	s_image
+typedef struct		s_image
 {
 	unsigned char	*data;
 	char			*img;
@@ -89,25 +88,24 @@ typedef struct	s_image
 	int				l_size;
 	int				opp;
 	int				endian;
-}				t_image;
+}					t_image;
 
-typedef struct	s_argb
+typedef struct		s_argb
 {
 	unsigned char	b;
 	unsigned char	g;
 	unsigned char	r;
 	unsigned char	a;
-}				t_argb;
+}					t_argb;
 
-typedef union	u_color
+typedef union		u_color
 {
 	t_argb			b;
 	unsigned int	u;
 	int				i;
-}				t_color;
+}					t_color;
 
-
-typedef struct	s_gnlfd
+typedef struct		s_gnlfd
 {
 	char			*buff;
 	int				fd;
@@ -115,7 +113,7 @@ typedef struct	s_gnlfd
 	int				offset;
 	int				i;
 	struct s_gnlfd	*next;
-}				t_gnlfd;
+}					t_gnlfd;
 
 void				*ft_memset(void *s, int c, size_t n);
 void				ft_bzero(void *s, size_t n);

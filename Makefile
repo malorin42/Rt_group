@@ -15,7 +15,7 @@ OBJ += obj/intersect_tools.o obj/math.o obj/vector.o obj/multi_threading.o obj/i
 OBJ += obj/render_menu.o obj/draw_menu.o obj/draw_tools.o obj/save_img.o obj/parse_error.o
 OBJ += obj/color_pixel_image.o obj/cel_shading.o obj/key_enter.o obj/key_hook.o
 OBJ += obj/texture.o obj/check_end_balise.o obj/anti_aliasing.o obj/pars_texture.o obj/pars_balise_text.o obj/setup_scene_menu.o
-OBJ += obj/object_add.o
+OBJ += obj/object_add.o obj/free_list.o
 
 LIBFT = ./libft/libft.a
 

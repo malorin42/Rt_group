@@ -6,7 +6,7 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 17:11:36 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 20:52:22 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 22:24:53 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,6 +225,10 @@ t_double3				pick_values(t_buff line, int nbr);
 int						check_pars_nbr_value(t_env *env, t_pars *pars,
 							t_buff line, int nbr);
 void					empty_lign(t_env *env, t_pars *pars, t_buff line);
+
+void					free_obj(t_object *obj);
+void					free_light(t_light *light);
+void					free_negobj(t_negobj *obj);
 
 t_image					*init_texture(void *mlx, char *file);
 void					add_value_neg(t_env *env, t_double3 *values, int i);

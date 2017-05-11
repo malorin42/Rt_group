@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aempisse <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/08 19:06:43 by aempisse          #+#    #+#             */
-/*   Updated: 2014/11/09 19:20:29 by aempisse         ###   ########.fr       */
+/*   Updated: 2017/05/11 22:28:00 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,3 @@ char		*ft_itoa(int n)
 	}
 	return (str);
 }
-
-/*char		*free_itoa(int n)
-{
-	char	*str;
-	char	*tmp;
-
-	tmp = ft_itoa(n);
-	str = tmp;
-	free(tmp);
-	return (str);
-}*/
