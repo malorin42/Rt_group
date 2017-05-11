@@ -6,7 +6,7 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:54:50 by malorin           #+#    #+#             */
-/*   Updated: 2017/05/11 16:10:46 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 17:11:04 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ static void		pars_head_value(t_env *env, t_pars *pars, t_buff line, int i)
 static int		lookat_head_condition(t_env *env, t_pars *pars, t_buff line,
 	char *type)
 {
-	printf("%d\n", pars->i_dir_light);
 	if (ft_strcmp(type, "Ambiant") == 0 && pars->i_ambiant == 0)
 		return (1);
 	else if (ft_strcmp(type, "Aliasing") == 0 && pars->i_aliai == 0)
