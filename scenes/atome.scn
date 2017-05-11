@@ -10,6 +10,48 @@
 	<Radius> 		{0.4}
 <Object/>
 
+<Object> type=Sphere; color=red;
+	<Pos> 			{-0.6 	-0.5 	-10.0}
+	<Rot>			{0.0	0.0		0.0}
+	<Radius> 		{0.4}
+<Object/>
+
+<Object> type=Sphere; color=red;
+	<Pos> 			{-0.6 	0.5 	-10.0}
+	<Rot>			{0.0	0.0		0.0}
+	<Radius> 		{0.4}
+<Object/>
+
+<Object> type=Sphere; color=red;
+	<Pos> 			{0.6 	0.5 	-10.0}
+	<Rot>			{0.0	0.0		0.0}
+	<Radius> 		{0.4}
+<Object/>
+
+<Object> type=Sphere; color=blue;
+	<Pos> 			{1.1 	0.25 	-10.0}
+	<Rot>			{0.0	0.0		0.0}
+	<Radius> 		{0.3}
+<Object/>
+
+<Object> type=Sphere; color=blue;
+	<Pos> 			{-1.1 	0.25 	-10.0}
+	<Rot>			{0.0	0.0		0.0}
+	<Radius> 		{0.3}
+<Object/>
+
+<Object> type=Sphere; color=blue;
+	<Pos> 			{-1.1 	-0.25 	-10.0}
+	<Rot>			{0.0	0.0		0.0}
+	<Radius> 		{0.3}
+<Object/>
+
+<Object> type=Sphere; color=blue;
+	<Pos> 			{1.1 	-0.25 	-10.0}
+	<Rot>			{0.0	0.0		0.0}
+	<Radius> 		{0.3}
+<Object/>
+
 <NegObj>
 	<Pos>			{0.0	0.0		2.0}
 	<Rot>			{0.20 	21.90 	0.0}
