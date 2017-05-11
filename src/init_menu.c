@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_menu.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbahus <jbahus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 14:02:50 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 15:47:37 by jbahus           ###   ########.fr       */
+/*   Updated: 2017/05/11 16:58:44 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void			init_menu(t_env *env, const char *argv)
 {
-	env->win_menu = mlx_new_window(env->mlx, 500, 600, "Menu");
 	mlx_key_hook(env->win_menu, &key_hook, env);
 	env->menu = (t_menu*)malloc(sizeof(t_menu));
 	env->menu->index = 0;

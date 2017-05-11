@@ -3,7 +3,6 @@
 
 # include "libft/libft.h"
 # include <mlx.h>
-// # include "minilibx/mlx.h"
 # include <math.h>
 # include <stdio.h>
 # include <pthread.h>
@@ -14,11 +13,10 @@
 # define FOV 30
 # define DEPTH_MAX 5
 # define THREAD 32
+ 
+# define STRUCTURENOTIFYMASK (1L<<17)
+# define DESTROYNOTIFY 17
 
-	 // Key pour Linux 
-// # define KEY_ESC 65307
-
-	// Key pour Mac 
 # define KEY_ESC 53
 # define KEY_ENTER 36
 # define L_ARROW 123
@@ -208,6 +206,7 @@ typedef struct          s_env
 int						loop_hook(t_env *env);
 int						key_hook(int keycode, t_env *env);
 int						key_hook(int keycode, t_env *env);
+int						red_cross(t_env env);
 void					key_enter_menu(t_env *env);
 
 t_double3				pick_values(t_buff line, int nbr);

@@ -1,5 +1,11 @@
 #include "../rtv1.h"
 
+int				red_cross(t_env env)
+{
+	exit(0);
+	return (0);
+}
+
 static t_env	*env_init(void)
 {
 	t_env		*env;
@@ -15,6 +21,7 @@ static t_env	*env_init(void)
 		env->img[i++] = ft_new_image(env->mlx, WIDTH, HEIGHT, THREAD);
 	env->nbr_obj = 0;
 	env->scene = (t_scene*)malloc(sizeof(t_scene));
+	env->win_menu = mlx_new_window(env->mlx, 500, 600, "Menu");
 	env->scene->camera = (t_vector){(t_double3){0, 0, 0}, (t_double3){0, 0, 0}};
 	env->scene->object = NULL;
 	env->scene->light = NULL;
@@ -28,6 +35,10 @@ static t_env	*env_init(void)
 	pthread_mutex_init(&env->my_mutex, NULL);
     pthread_cond_init(&env->cond, NULL);
 	mlx_key_hook(env->win_scene, &key_hook, env);
+	mlx_hook(env->win_scene, DESTROYNOTIFY, STRUCTURENOTIFYMASK,
+		red_cross, &env);
+	mlx_hook(env->win_menu, DESTROYNOTIFY, STRUCTURENOTIFYMASK,
+		red_cross, &env);
 	mlx_loop_hook(env->mlx, &loop_hook, env);
 	return (env);
 }
