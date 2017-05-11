@@ -6,11 +6,11 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 16:13:40 by malorin           #+#    #+#             */
-/*   Updated: 2017/05/11 16:33:03 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 20:04:26 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 void		add_camera_value(t_env *env, t_double3 *values, int i)
 {

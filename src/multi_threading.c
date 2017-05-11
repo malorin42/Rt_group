@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   multi_threading.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbahus <jbahus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 12:56:17 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/09 13:00:02 by jbahus           ###   ########.fr       */
+/*   Updated: 2017/05/11 20:06:37 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 void			multi_threading(t_env *env)
 {

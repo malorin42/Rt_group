@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbahus <jbahus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 14:03:36 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 16:51:06 by jbahus           ###   ########.fr       */
+/*   Updated: 2017/05/11 20:07:12 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 int				intersect_plane(t_vector ray, t_object *plane,
 	double *distance)

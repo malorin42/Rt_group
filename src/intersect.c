@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbahus <jbahus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 14:02:50 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 16:50:27 by jbahus           ###   ########.fr       */
+/*   Updated: 2017/05/11 20:06:08 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 t_double3			get_normal(t_object *object, t_double3 point)
 {

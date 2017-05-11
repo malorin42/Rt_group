@@ -6,11 +6,11 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 16:13:40 by malorin           #+#    #+#             */
-/*   Updated: 2017/05/11 16:05:20 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 20:07:00 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 static int		pars_value(t_env *env, t_pars *pars, t_buff line, int i)
 {

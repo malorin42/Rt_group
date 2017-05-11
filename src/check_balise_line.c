@@ -6,11 +6,11 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 21:25:17 by malorin           #+#    #+#             */
-/*   Updated: 2017/05/11 18:23:29 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 20:05:25 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 static void		pars_balise_type2(t_env *env, t_buff line, t_pars *pars)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbahus <jbahus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 14:13:04 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 14:39:31 by jbahus           ###   ########.fr       */
+/*   Updated: 2017/05/11 20:07:30 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 static t_double3		pixel_ray_init(t_double3 camera_dir, int x, int y)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   refraction.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbahus <jbahus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 14:02:50 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 16:51:19 by jbahus           ###   ########.fr       */
+/*   Updated: 2017/05/11 20:07:25 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 static t_double3	refract(t_double3 incidence, t_double3 normal, double ior)
 {

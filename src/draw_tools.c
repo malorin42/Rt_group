@@ -6,11 +6,11 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 14:02:50 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 16:18:31 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 20:05:47 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 void			ft_draw_right_arrow(t_env *env)
 {

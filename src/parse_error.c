@@ -6,11 +6,11 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 20:40:53 by malorin           #+#    #+#             */
-/*   Updated: 2017/05/11 16:05:57 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 20:07:08 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 int			pars_error(t_pars *pars, char *message, char *line)
 {

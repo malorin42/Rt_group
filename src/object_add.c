@@ -6,11 +6,11 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 18:39:33 by malorin           #+#    #+#             */
-/*   Updated: 2017/05/11 18:39:38 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 20:06:44 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 void			light_add(t_light **first, t_light *new)
 {

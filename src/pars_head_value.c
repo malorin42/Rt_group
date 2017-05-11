@@ -6,11 +6,11 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:54:50 by malorin           #+#    #+#             */
-/*   Updated: 2017/05/11 19:51:18 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 20:06:55 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 static int		pars_offon_line(t_pars *pars, t_buff line)
 {

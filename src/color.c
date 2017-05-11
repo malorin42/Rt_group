@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbahus <jbahus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 12:42:18 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/09 16:37:49 by jbahus           ###   ########.fr       */
+/*   Updated: 2017/05/11 20:04:52 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 static void		sepia(t_color rgb_color, int *r, int *g, int *b)
 {
@@ -22,7 +22,7 @@ static void		sepia(t_color rgb_color, int *r, int *g, int *b)
 		(rgb_color.b.b * 0.131);
 }
 
-t_double3			color_mix(t_double3 color1, double ratio, t_double3 color2)
+t_double3		color_mix(t_double3 color1, double ratio, t_double3 color2)
 {
 	t_double3		mix;
 

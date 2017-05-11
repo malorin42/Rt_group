@@ -6,11 +6,11 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 15:34:10 by malorin           #+#    #+#             */
-/*   Updated: 2017/05/11 15:34:28 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 20:06:49 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 static char	*take_balise_value(t_env *env, t_pars *pars, t_buff line, int i)
 {

@@ -6,11 +6,11 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 16:13:40 by malorin           #+#    #+#             */
-/*   Updated: 2017/05/11 17:44:44 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 20:04:22 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 int			add_on_off_value(t_object **object,
 	char *value, t_pars *pars, t_buff line)
@@ -65,7 +65,8 @@ void		add_double_param(t_buff line, char *type, t_object **object,
 	if (ft_strcmp(type, "gloss") == 0)
 		tmp->gloss = max_double(0, min_double(1, ft_parse_double(&line)));
 	else if (ft_strcmp(type, "transp") == 0)
-		tmp->transparency = max_double(0, min_double(1, ft_parse_double(&line)));
+		tmp->transparency = max_double(0, min_double(1,
+			ft_parse_double(&line)));
 	else if (ft_strcmp(type, "refraction") == 0)
 		tmp->refraction = max_double(1, ft_parse_double(&line));
 	else if (ft_strcmp(type, "reflex") == 0)

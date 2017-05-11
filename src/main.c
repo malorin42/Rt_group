@@ -6,11 +6,11 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 17:08:04 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 19:52:00 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 20:06:25 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 int				red_cross(t_env env)
 {

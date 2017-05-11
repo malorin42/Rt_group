@@ -6,11 +6,11 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 21:24:05 by malorin           #+#    #+#             */
-/*   Updated: 2017/05/11 15:53:27 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 20:05:33 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 static int		end_balise(t_env *env, t_buff line, t_pars *pars)
 {

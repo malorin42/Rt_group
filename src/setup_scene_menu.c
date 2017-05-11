@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   setup_scene_menu.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbahus <jbahus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:00:44 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 16:07:06 by jbahus           ###   ########.fr       */
+/*   Updated: 2017/05/11 20:07:47 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 static int		add_scene_to_tab(char **tab, char *scn, int i)
 {

@@ -6,11 +6,11 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 18:39:14 by malorin           #+#    #+#             */
-/*   Updated: 2017/05/11 18:39:56 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 20:06:40 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rtv1.h"
+#include "../rt.h"
 
 t_light			*light_new(t_env *env, t_pars *pars, t_buff line)
 {
