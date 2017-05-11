@@ -6,7 +6,7 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 19:52:43 by malorin           #+#    #+#             */
-/*   Updated: 2017/05/11 20:07:17 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/12 00:29:58 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ t_surface			*is_in_light(t_surface *surface, t_scene *scene,
 	*dot_light = max_double(0, *dot_light);
 	if (length_v(light->dir) > 0.01)
 	{
-		dot_light_dir = abs_double(dot_product(light_ray.dir,
-			normalize(light->dir)));
+		dot_light_dir = -dot_product(light_ray.dir,
+			normalize(light->dir));
 		dot_light_dir = max_double(0, dot_light_dir);
 		*dot_light *= dot_light_dir;
 	}

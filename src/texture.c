@@ -6,7 +6,7 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 14:02:50 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 20:08:06 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/12 00:43:21 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ t_double3			cylindrical_mapping(t_surface *surface, t_vector ray,
 	double			theta;
 	t_double2		map;
 
-	ve = (t_double3){0, 1, 0};
-	vn = (t_double3){0, 0, 1};
+	ve = rotation((t_double3){0, 1, 0}, object->text_rot, REGULAR_MATRIX);
+	vn = rotation((t_double3){0, 0, 1}, object->text_rot, REGULAR_MATRIX);
 	vp = find_point(ray.pos, ray.dir, surface->distance);
 	theta = acos(dot_product(ve, normalize((t_double3){vp.x, vp.y, 0}))) /
 	(2 * PI);

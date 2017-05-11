@@ -19,7 +19,6 @@ OBJ += obj/object_add.o obj/free_list.o
 
 LIBFT = ./libft/libft.a
 
-# LIBMLX = -L./minilibx/ -lmlx_Linux -L/usr/lib/x86_64-linux-gnu/ -lXext -lX11 -lm -lpthread
 LIBMLX = ./libmlx.a -framework OPENGL -framework Appkit -lpthread
 
 all: obj $(NAME)

@@ -6,7 +6,7 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 17:11:36 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 22:24:53 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/12 00:58:27 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@
 # define CYLINDER 2
 # define CONE 3
 # define SPOTLIGHT 4
-
-# define AMBIANT 0.05
 
 # define RED "ff0000"
 # define BLUE "0000ff"

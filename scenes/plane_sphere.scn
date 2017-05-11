@@ -19,3 +19,8 @@
 	<Pos>			{0.0	0.0		30.0}
 	<Dir>			{0.0	0.0		0.0}
 <Camera/>
+
+<HEAD>
+	<Ambiant>		{0.13}
+	<Cartoon>	ON;
+<HEAD/>
