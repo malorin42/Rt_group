@@ -6,7 +6,7 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 17:11:36 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 18:25:31 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 18:37:19 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ typedef struct			s_light
 	t_double3			dir;
 	t_double3			color;
 	t_image				*texture;
-	double				dot_light;
 	struct s_light		*next;
 }						t_light;
 
@@ -261,8 +260,6 @@ void					check_color_obj(t_buff line, t_pars *pars,
 void					check_color_light(t_buff line, t_pars *pars,
 							t_light **light, char *value);
 void					check_plane_obj(t_env *env, t_buff line, int i);
-void					print_object(t_object **first, t_light **first_l,
-							t_negobj **first_n);
 void					test_decoup_balise(t_env *env,
 							t_pars *pars, char *line);
 void					pars_in_balise(t_env *env, t_pars *pars, t_buff line);

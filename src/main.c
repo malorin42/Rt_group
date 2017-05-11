@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbahus <jbahus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 17:08:04 by jbahus            #+#    #+#             */
-/*   Updated: 2017/05/11 18:15:47 by jbahus           ###   ########.fr       */
+/*   Updated: 2017/05/11 18:36:59 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int				main(int argc, char const **argv)
 	env = env_init();
 	init_menu(env, argv[1]);
 	check_files(fd, env);
-	print_object(&env->scene->object, &env->scene->light, &env->scene->negobj);
 	mlx_string_put(((t_env*)env)->mlx, ((t_env*)env)->win_scene,
 		100, 100, 0xF00D532, "Loading...");
 	close(fd);
