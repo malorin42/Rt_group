@@ -6,7 +6,7 @@
 /*   By: malorin <malorin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 18:39:14 by malorin           #+#    #+#             */
-/*   Updated: 2017/05/11 20:06:40 by malorin          ###   ########.fr       */
+/*   Updated: 2017/05/11 20:17:31 by malorin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_object		*object_new(int type)
 	object->color = (t_double3){1, 1, 1};
 	object->reflex = 0;
 	object->transparency = 0;
-	object->gloss = 0;
+	object->gloss = 0.2;
 	object->refraction = 1.2;
 	object->perturbation = 0;
 	object->next = NULL;

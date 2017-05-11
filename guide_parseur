@@ -21,6 +21,7 @@ Typage pour <Light>
 	<Sepia>			OFF;
 	<Negative>		OFF;
 	<Cartoon>		OFF;
+	<Aliasing>		ON;
 <HEAD/>
 
 <Object>
